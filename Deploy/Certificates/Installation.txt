@@ -1,0 +1,4 @@
+Import to: LocalMachine (certificates snapin in MMC) -> Personal
+Set permission on private key to IIS.
+
+On client it must be in TrustedPeople store.
