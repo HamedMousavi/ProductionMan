@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using ProductionMan.Web.Api.Services;
+using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace ProductionMan.Web.Api
 {
@@ -18,6 +20,8 @@ namespace ProductionMan.Web.Api
             );
 
             config.EnableSystemDiagnosticsTracing();
+
+            config.Services.Add(typeof(IExceptionLogger), new DefaultExceptionLogger());
         }
     }
 }

@@ -9,6 +9,9 @@ namespace ProductionMan.Web.Api
     public class WebApiApplication : System.Web.HttpApplication
     {
 
+        private ILog _logger;
+
+
         protected void Application_Start()
         {
             // Configure logger
@@ -22,8 +25,27 @@ namespace ProductionMan.Web.Api
         private void ConfigureLogger()
         {
             XmlConfigurator.Configure();
-            var logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-            logger.Info("Testing logger!");
+            Log.Info("Testing logger!");
+        }
+
+
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            if (exception != null)
+            {
+                Log.Error("Unhandled exception.", exception);
+            }
+        }
+
+
+        public ILog Log
+        {
+            get 
+            {
+                return _logger ??
+                       (_logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
+            }
         }
     }
 }
