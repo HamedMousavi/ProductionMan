@@ -25,7 +25,7 @@ namespace ProductionMan.Web.Api
         private void ConfigureLogger()
         {
             XmlConfigurator.Configure();
-            Log.Info("Testing logger!");
+            Log.Info("Application Started!");
         }
 
 
@@ -39,7 +39,7 @@ namespace ProductionMan.Web.Api
         }
 
 
-        public ILog Log
+        private ILog Log
         {
             get 
             {
