@@ -15,23 +15,25 @@ namespace ProductionMan.Web.Api.Security
             CancellationToken cancellationToken)
         {
             var claims = await LoadPermissions(credentials, cancellationToken);
-            return new ClaimsPrincipal(new[] {new ClaimsIdentity(claims, "Token")});
+            return claims == null ? null : new ClaimsPrincipal(new[] {new ClaimsIdentity(claims, "Token")});
         }
 
 
-        private Task<ClaimList> LoadPermissions(Credentials credentials, CancellationToken cancellationToken)
+        private static Task<ClaimList> LoadPermissions(Credentials credentials, CancellationToken cancellationToken)
         {
-            var claims = new ClaimList
-            {
-                new Claim(ClaimTypes.Name, "hamed"),
-            };
 
             if (credentials.Username == "1" && credentials.Password == "1")
             {
-                claims.Add(new Claim(ClaimTypes.Uri, "api/users"));
+                var claims = new ClaimList
+                {
+                    new Claim(ClaimTypes.Name, "hamed"),
+                    new Claim(ClaimTypes.Uri, "api/users")
+                };
+
+                return Task.FromResult(claims);
             }
 
-            return Task.FromResult(claims);
+            return Task.FromResult<ClaimList>(null);
         }
     }
 }

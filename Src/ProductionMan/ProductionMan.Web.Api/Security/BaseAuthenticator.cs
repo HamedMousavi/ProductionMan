@@ -32,7 +32,7 @@ namespace ProductionMan.Web.Api.Security
                 return;
             }
 
-            if (authorization.Scheme != "Basic")
+            if (authorization.Scheme.ToLower() != "basic")
             {
                 // No authentication was attempted (for this authentication method).
                 // Do not set either Principal (which would indicate success) or ErrorResult (indicating an error).
