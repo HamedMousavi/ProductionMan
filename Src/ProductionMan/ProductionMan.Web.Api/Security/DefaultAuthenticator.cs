@@ -1,4 +1,5 @@
-﻿using ProductionMan.Web.Api.Security.Models;
+﻿using ProductionMan.Data.MsAdo;
+using ProductionMan.Web.Api.Security.Models;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
@@ -21,13 +22,15 @@ namespace ProductionMan.Web.Api.Security
 
         private static Task<ClaimList> LoadPermissions(Credentials credentials, CancellationToken cancellationToken)
         {
+            var data = new Data.MembershipRepository(UnitOfWorkFactory.Create());
+            var user = data.Find(credentials.Username, credentials.Password);
 
-            if (credentials.Username == "1" && credentials.Password == "1")
+            if (user != null)
             {
                 var claims = new ClaimList
                 {
-                    new Claim(ClaimTypes.Name, "hamed"),
-                    new Claim(ClaimTypes.Uri, "api/users")
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Uri, "get:api/users")
                 };
 
                 return Task.FromResult(claims);

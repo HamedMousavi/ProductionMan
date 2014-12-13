@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using System.Configuration;
+using log4net;
 using log4net.Config;
 using System.Web.Http;
 
@@ -17,6 +18,9 @@ namespace ProductionMan.Web.Api
             // Configure logger
             ConfigureLogger();
 
+            // Configure database
+            ConfigureDatabase();
+
             // Configure app
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
@@ -26,6 +30,13 @@ namespace ProductionMan.Web.Api
         {
             XmlConfigurator.Configure();
             Log.Info("Application Started!");
+        }
+
+
+        private void ConfigureDatabase()
+        {
+            Data.Settings.ConnectionString =
+                ConfigurationManager.ConnectionStrings["ProductionMan.Web.Api.Properties.Settings.ProductionMan"].ToString();
         }
 
 
