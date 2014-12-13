@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ProductionMan.Web.Api.Models
+namespace ProductionMan.Web.Api.Common.Models
 {
     public class LinkList : List<Link>
     {

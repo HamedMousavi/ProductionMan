@@ -90,9 +90,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\LinkList.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Security\AuthenticationFailureResult.cs" />
@@ -118,6 +115,10 @@
     <ProjectReference Include="..\ProductionMan.Common\ProductionMan.Common.csproj">
       <Project>{33b2185e-ec7e-4407-85c7-4504c5573633}</Project>
       <Name>ProductionMan.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductionMan.Web.Api.Common\ProductionMan.Web.Api.Common.csproj">
+      <Project>{e95842d5-99af-4110-9399-82cf9b123a47}</Project>
+      <Name>ProductionMan.Web.Api.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
