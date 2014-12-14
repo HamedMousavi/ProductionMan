@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="Form" TargetType="Window">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Background" Value="{StaticResource WindowBkColorDark}" />
+        <Setter Property="FontFamily" Value="Tahoma" />
+        <Setter Property="SizeToContent" Value="Manual" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+</ResourceDictionary>

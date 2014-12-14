@@ -26,7 +26,7 @@ namespace ProductionMan.Data
             var list = new List<User>();
 
             _context.CreateCommand(
-                true,
+                false,
                 CommandType.Text,
                 "SELECT [UserId], [DisplayName],[Culture] FROM Users",
                 null
@@ -58,7 +58,7 @@ namespace ProductionMan.Data
             User user = null;
 
             _context.CreateCommand(
-                true,
+                false,
                 CommandType.Text,
                 "SELECT [UserId], [DisplayName],[Culture] FROM Users WHERE [Username]=@username AND [Password]=@password",
                 new List<SqlParameter>

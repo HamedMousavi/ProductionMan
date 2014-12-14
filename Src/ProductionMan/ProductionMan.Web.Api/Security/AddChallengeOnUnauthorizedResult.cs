@@ -29,9 +29,9 @@ namespace ProductionMan.Web.Api.Security
 
         public async Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
-            HttpResponseMessage response = await InnerResult.ExecuteAsync(cancellationToken);
+            var response = await InnerResult.ExecuteAsync(cancellationToken);
 
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            if (response!= null && response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 // Only add one challenge per authentication scheme.
                 if (response.Headers.WwwAuthenticate.All(h => h.Scheme != Challenge.Scheme))

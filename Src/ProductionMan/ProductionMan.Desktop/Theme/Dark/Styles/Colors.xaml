@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Windows -->
+    <SolidColorBrush x:Key="SeparatorColor" Color="#252525" />
+    <SolidColorBrush x:Key="WindowBkColorDark" Color="#2e363b" />
+    <SolidColorBrush x:Key="WindowBkColorLight" Color="#f2f2f2" />
+    <SolidColorBrush x:Key="WindowBkColorGray" Color="#252525" />
+
+    <!-- Text -->
+    <SolidColorBrush x:Key="TextColorBlack" Color="#252525" />
+    <SolidColorBrush x:Key="TextColorGray" Color="#b2b2b2" />
+    <SolidColorBrush x:Key="TextColorWhite" Color="#f2f2f2" />
+    <SolidColorBrush x:Key="TextColorBlue" Color="#8abbfe" />
+    <SolidColorBrush x:Key="TextColorLightGreen" Color="#97d545" />
+
+    <!-- Buttons -->
+    <SolidColorBrush x:Key="TextColorButton" Color="{StaticResource TextColorWhite}" />
+    <LinearGradientBrush x:Key="ButtonAcceptColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#97d545" Offset="0" />
+        <GradientStop Color="#8fcb3f" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonAcceptBorderColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#c4fb7b" Offset="0" />
+        <GradientStop Color="#8fcb3f" Offset="1" />
+    </LinearGradientBrush>
+    
+</ResourceDictionary>

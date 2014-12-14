@@ -41,6 +41,9 @@ namespace ProductionMan.Web.Api
 
             // Authentication
             config.Filters.Add(new DefaultAuthenticator());
+
+            // Authorization
+            //config.Filters.Add(new DefaultIAuthorizer());
         }
 
 
