@@ -26,7 +26,8 @@
         <Setter Property="Foreground" Value="{StaticResource TextColorBlack}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#f2981d"></Setter>
         <Setter Property="Height" Value="32" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
@@ -35,12 +36,13 @@
         <Setter Property="Foreground" Value="{StaticResource TextColorBlack}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#f2981d"></Setter>
         <Setter Property="Height" Value="32" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="AcceptButton" TargetType="Button">
+    <Style x:Key="AcceptButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Foreground" Value="{StaticResource TextColorWhite}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Background" Value="{StaticResource ButtonAcceptColor}" />

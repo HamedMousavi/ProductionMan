@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿using System.Windows.Input;
 
 
 namespace ProductionMan.Desktop
@@ -14,6 +14,7 @@ namespace ProductionMan.Desktop
             InitializeComponent();
 
             Title = Localized.Resources.WindowTitleLogin;
+            Loaded += (sender, e) => MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
         }
     }
 }

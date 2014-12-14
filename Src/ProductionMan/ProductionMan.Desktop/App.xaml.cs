@@ -17,9 +17,6 @@ namespace ProductionMan.Desktop
             var culture = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
-
-            var wnd = new LoginWindow();
-            wnd.Show();
         }
     }
 }
