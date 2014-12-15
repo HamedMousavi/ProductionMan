@@ -27,15 +27,17 @@
                 </Grid.ColumnDefinitions>
                 <Label   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Username}" />
                 <Image   Grid.Row="1" Grid.Column="0" Style="{StaticResource NonScaledImage}" Source="{StaticResource Username}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource LoginTextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource LoginTextBox}" Text="{Binding Username}"/>
 
                 <Label   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Password}" />
                 <Image   Grid.Row="4" Grid.Column="0"  Style="{StaticResource NonScaledImage}" Source="{StaticResource Password}" />
-                <PasswordBox Grid.Row="4" Grid.Column="1" Style="{StaticResource LoginPassBox}" />
+                <PasswordBox Grid.Row="4" Grid.Column="1" Style="{StaticResource LoginPassBox}" LostFocus="OnPasswordChanged" x:Name="PasswordCtrl" />
             </Grid>
         </Border>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10">
-            <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.Login}" />
+            <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.Login}"
+                    Command="{Binding Path=LoginCommand}" CommandParameter="{Binding}" >
+            </Button>
         </StackPanel>
         <Label Grid.Row="3" Style="{StaticResource StatusBarLabel}" />
     </Grid>
