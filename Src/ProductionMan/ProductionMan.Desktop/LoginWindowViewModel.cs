@@ -7,7 +7,7 @@ using ProductionMan.Domain.Security;
 namespace ProductionMan.Desktop
 {
 
-    public class LoginWindowViewModel : NotifyPropertyChanged
+    public class LoginWindowViewModel : BaseViewModel
     {
 
         private User _user;

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
@@ -12,6 +13,7 @@ namespace ProductionMan.Desktop
     {
 
         private readonly CommandFactory _commandFactory;
+        private Window _loginWindow;
 
 
         public WindowManager(CommandFactory commandFactory)
@@ -58,7 +60,7 @@ namespace ProductionMan.Desktop
             var model = new LoginWindowViewModel { User = user, ActiveContentSelector = contentSelector };
 
             // Display window
-            new LoginWindow {DataContext = model}.Show();
+            (_loginWindow = new LoginWindow {DataContext = model}).Show();
         }
 
 
@@ -81,6 +83,18 @@ namespace ProductionMan.Desktop
         private void DisplayMainWindow(User user)
         {
             // Undone:
+
+            _loginWindow.Close();
+
+            var wnd = new MainWindow
+            {
+                DataContext = new MainWindowViewModel
+                {
+                    Username = user.Name
+                }
+            };
+
+            wnd.Show();
         }
     }
 }

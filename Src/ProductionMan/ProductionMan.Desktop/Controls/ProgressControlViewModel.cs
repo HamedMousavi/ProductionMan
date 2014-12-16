@@ -1,7 +1,23 @@
-﻿namespace ProductionMan.Desktop.Controls
+﻿using ProductionMan.Common;
+
+
+namespace ProductionMan.Desktop.Controls
 {
-    public class ProgressControlViewModel
+
+    public class ProgressControlViewModel : NotifyPropertyChanged
     {
-        public string Message { get; set; }
+
+        private string _message;
+
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value; 
+                FirePropertyChanged(this, "Message");
+            }
+        }
     }
 }

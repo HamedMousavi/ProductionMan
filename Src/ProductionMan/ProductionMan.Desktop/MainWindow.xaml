@@ -1,15 +1,23 @@
 ﻿<Window x:Class="ProductionMan.Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:ProductionMan.Desktop.Converters"
         Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
     
-    <TabControl Background="Black">
-        <TabItem Header="Users">
-            <ListBox ItemsSource="{Binding Path=Users}"></ListBox>
-        </TabItem>
-        <TabItem Header="TabItem">
-            <Grid Background="#FFE5E5E5"/>
-        </TabItem>
-    </TabControl>
+    <Window.Resources>
+        <ResourceDictionary>
+            <converters:FlowDirectionConverter x:Key="FlowDirectionConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
     
+    <Grid FlowDirection="{Binding Path=FlowDirection, Converter={StaticResource FlowDirectionConverter}}">
+        <TabControl Background="Black">
+            <TabItem Header="Users">
+                <ListBox ItemsSource="{Binding Path=Users}"></ListBox>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>

@@ -50,6 +50,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="CommandFactory.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Controls\Authentication\Login.xaml.cs">
@@ -62,7 +63,9 @@
     <Compile Include="Controls\ProgressControlViewModel.cs" />
     <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\Authentication\LoginViewModel.cs" />
+    <Compile Include="Converters\FlowDirectionConverter.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="WindowManager.cs" />
     <Page Include="Controls\Authentication\Login.xaml">
       <SubType>Designer</SubType>
@@ -92,7 +95,6 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -165,9 +167,7 @@
       <Name>ProductionMan.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Theme\Dark\Pictures\Password.png" />
     <Resource Include="Theme\Dark\Pictures\Username.png" />
