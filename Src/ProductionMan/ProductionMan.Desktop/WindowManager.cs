@@ -33,7 +33,8 @@ namespace ProductionMan.Desktop
             {
                 DataContext = new LoginViewModel
                 {
-                    LoginCommand = _commandFactory.CreateLoginCommand(user)
+                    LoginCommand = _commandFactory.CreateLoginCommand(user),
+                    ExitCommand = _commandFactory.CreateExitCommand()
                 }
             };
 
@@ -68,7 +69,7 @@ namespace ProductionMan.Desktop
         {
             if (e.NameIs("LoginStatus"))
             {
-                var user = (User) sender;
+                var user = sender as User;
                 if (user != null)
                 {
                     if (user.LoginStatus == User.LoginStates.SignedIn)
@@ -82,10 +83,6 @@ namespace ProductionMan.Desktop
 
         private void DisplayMainWindow(User user)
         {
-            // Undone:
-
-            _loginWindow.Close();
-
             var wnd = new MainWindow
             {
                 DataContext = new MainWindowViewModel
@@ -95,6 +92,8 @@ namespace ProductionMan.Desktop
             };
 
             wnd.Show();
+
+            _loginWindow.Close();
         }
     }
 }

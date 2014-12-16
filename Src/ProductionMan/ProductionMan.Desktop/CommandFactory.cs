@@ -13,5 +13,11 @@ namespace ProductionMan.Desktop
         {
             return new LoginCommand(user);
         }
+
+
+        internal ICommand CreateExitCommand()
+        {
+            return new ExitCommand();
+        }
     }
 }

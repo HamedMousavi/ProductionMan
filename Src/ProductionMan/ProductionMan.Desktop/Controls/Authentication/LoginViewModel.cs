@@ -14,6 +14,8 @@ namespace ProductionMan.Desktop.Controls.Authentication
 
         public ICommand LoginCommand { get; set; }
 
+        public ICommand ExitCommand { get; set; }
+
 
         public string Username
         {

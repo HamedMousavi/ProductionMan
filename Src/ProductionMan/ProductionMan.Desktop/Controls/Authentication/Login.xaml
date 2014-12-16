@@ -36,10 +36,11 @@
                 <PasswordBox Grid.Row="4" Grid.Column="1" Style="{StaticResource LoginPassBox}" LostFocus="OnPasswordChanged" x:Name="PasswordCtrl" />
             </Grid>
         </Border>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5,10,5,10">
             <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.Login}"
-                    Command="{Binding Path=LoginCommand}" CommandParameter="{Binding}" >
-            </Button>
+                    Command="{Binding Path=LoginCommand}" CommandParameter="{Binding}" />
+            <Button Style="{StaticResource CancelButton}" Content="{x:Static localized:Resources.Exit}"
+                    Command="{Binding Path=ExitCommand}" CommandParameter="{Binding}" />
         </StackPanel>
         <Label Grid.Row="3" Style="{StaticResource StatusBarLabel}" />
     </Grid>

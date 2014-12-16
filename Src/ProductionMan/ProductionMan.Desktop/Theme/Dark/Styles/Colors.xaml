@@ -25,5 +25,21 @@
         <GradientStop Color="#c4fb7b" Offset="0" />
         <GradientStop Color="#89c639" Offset="1" />
     </LinearGradientBrush>
-    
+    <LinearGradientBrush x:Key="ButtonCancelColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#4e80c1" Offset="0" />
+        <GradientStop Color="#4968a1" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonCancelBorderColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#94b8e3" Offset="0" />
+        <GradientStop Color="#4968a1" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonNormalColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#afad8d" Offset="0" />
+        <GradientStop Color="#a09e81" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonNormalBorderColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#ece5e3" Offset="0" />
+        <GradientStop Color="#a09e81" Offset="1" />
+    </LinearGradientBrush>
+
 </ResourceDictionary>

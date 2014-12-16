@@ -29,8 +29,8 @@ namespace ProductionMan.Domain.Security
 
             ServiceProxy.SetCredentials(username, password);
             var permissions = await ServiceProxy.GetPermissions();
-            
-            //LoginStatus = LoginStates.IncorrectCredentials;
+
+            LoginStatus = LoginStates.SignedIn;
         }
 
 
