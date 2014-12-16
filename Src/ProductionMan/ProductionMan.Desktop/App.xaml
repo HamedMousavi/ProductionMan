@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Theme/Dark/Styles/Windows.xaml" />
                 <ResourceDictionary Source="/Theme/Dark/Styles/AppControls.xaml" />
                 <ResourceDictionary Source="/Theme/Dark/Styles/AppImages.xaml" />
+                <ResourceDictionary Source="/Theme/Dark/Styles/ProgressRing.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

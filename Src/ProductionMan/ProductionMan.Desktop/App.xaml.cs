@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 
 
 namespace ProductionMan.Desktop
@@ -51,9 +52,14 @@ namespace ProductionMan.Desktop
 
         private void SetupLanguage()
         {
-            var culture = new CultureInfo("en-US");
+            //var culture = new CultureInfo("en-US");
+            var culture = new CultureInfo("fa-IR");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
+
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement), new FrameworkPropertyMetadata(
+                XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
 

@@ -1,6 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using ProductionMan.Common;
+using ProductionMan.Desktop.Controls;
+using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Domain.Security;
 
 
@@ -25,10 +26,39 @@ namespace ProductionMan.Desktop
             user.PropertyChanged -= UserOnPropertyChanged;
             user.PropertyChanged += UserOnPropertyChanged;
 
+            // Create Login content
+            var loginContent = new Login
+            {
+                DataContext = new LoginViewModel
+                {
+                    LoginCommand = _commandFactory.CreateLoginCommand(user)
+                }
+            };
+
+            // Create content for other states in LoginWindow
+            var signingInContent = new ProgressControl
+            {
+                DataContext = new ProgressControlViewModel {Message = Localized.Resources.SigningInMessage}
+            };
+
+            var signedInContent = new ProgressControl
+            {
+                DataContext = new ProgressControlViewModel {Message = Localized.Resources.LoadinMessage}
+            };
+
+            // Create a selector to select propert content based on each possible state
+            var contentSelector = new LoginWindowContentSelector();
+            contentSelector.AddContent(User.LoginStates.NeverSignedIn, loginContent);
+            contentSelector.AddContent(User.LoginStates.IncorrectCredentials, loginContent);
+            contentSelector.AddContent(User.LoginStates.Error, loginContent);
+            contentSelector.AddContent(User.LoginStates.SigningIn, signingInContent);
+            contentSelector.AddContent(User.LoginStates.SignedIn, signedInContent);
+
+            // Prepare view model
+            var model = new LoginWindowViewModel { User = user, ActiveContentSelector = contentSelector };
+
             // Display window
-            var model = new LoginViewModel {LoginCommand = _commandFactory.CreateLoginCommand(user)};
-            var window = new LoginWindow {DataContext = model};
-            window.Show();
+            new LoginWindow {DataContext = model}.Show();
         }
 
 

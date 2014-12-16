@@ -123,11 +123,17 @@
   <data name="AppTitle" xml:space="preserve">
     <value>ProMan</value>
   </data>
+  <data name="LoadinMessage" xml:space="preserve">
+    <value>Loading, please wait...</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="SigningInMessage" xml:space="preserve">
+    <value>Signing in, please wait...</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

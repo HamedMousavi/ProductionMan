@@ -79,6 +79,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading, please wait....
+        /// </summary>
+        public static string LoadinMessage {
+            get {
+                return ResourceManager.GetString("LoadinMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
@@ -93,6 +102,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signing in, please wait....
+        /// </summary>
+        public static string SigningInMessage {
+            get {
+                return ResourceManager.GetString("SigningInMessage", resourceCulture);
             }
         }
         

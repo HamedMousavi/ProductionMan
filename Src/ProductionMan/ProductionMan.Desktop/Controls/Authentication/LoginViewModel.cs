@@ -2,7 +2,7 @@
 using ProductionMan.Common;
 
 
-namespace ProductionMan.Desktop
+namespace ProductionMan.Desktop.Controls.Authentication
 {
 
     public class LoginViewModel : NotifyPropertyChanged

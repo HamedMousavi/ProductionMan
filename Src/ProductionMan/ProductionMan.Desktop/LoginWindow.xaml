@@ -4,41 +4,5 @@
         xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
         Title="LoginWindow" Height="260" Width="400"
         Style="{StaticResource Form}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Margin="10" Style="{StaticResource LogoText}" Text="{x:Static localized:Resources.AppTitle}" />
-        <Border Grid.Row="1" Background="{StaticResource WindowBkColorLight}" BorderThickness="1" BorderBrush="White">
-            <Grid Margin="10,10,10,30">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Username}" />
-                <Image   Grid.Row="1" Grid.Column="0" Style="{StaticResource NonScaledImage}" Source="{StaticResource Username}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource LoginTextBox}" Text="{Binding Username}"/>
-
-                <Label   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Password}" />
-                <Image   Grid.Row="4" Grid.Column="0"  Style="{StaticResource NonScaledImage}" Source="{StaticResource Password}" />
-                <PasswordBox Grid.Row="4" Grid.Column="1" Style="{StaticResource LoginPassBox}" LostFocus="OnPasswordChanged" x:Name="PasswordCtrl" />
-            </Grid>
-        </Border>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10">
-            <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.Login}"
-                    Command="{Binding Path=LoginCommand}" CommandParameter="{Binding}" >
-            </Button>
-        </StackPanel>
-        <Label Grid.Row="3" Style="{StaticResource StatusBarLabel}" />
-    </Grid>
+    <ContentControl Content="{Binding ActiveContent}"/>
 </Window>

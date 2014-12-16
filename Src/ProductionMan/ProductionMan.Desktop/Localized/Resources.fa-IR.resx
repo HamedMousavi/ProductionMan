@@ -123,11 +123,17 @@
   <data name="AppTitle" xml:space="preserve">
     <value>ProMan</value>
   </data>
+  <data name="LoadinMessage" xml:space="preserve">
+    <value>در حال آماده سازی برنامه، لطفا صبر کنید...</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
+  </data>
+  <data name="SigningInMessage" xml:space="preserve">
+    <value>در حال ورود، لطفا صبر کنید...</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>نام کاربر</value>
