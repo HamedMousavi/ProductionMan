@@ -3,10 +3,13 @@ using ProductionMan.Web.Api.Services;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 
+
 namespace ProductionMan.Web.Api
 {
+
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
             // Tracing, logging, and error handling

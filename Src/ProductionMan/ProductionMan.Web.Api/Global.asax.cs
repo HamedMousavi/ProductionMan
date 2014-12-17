@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Text;
 using log4net;
 using log4net.Config;
 using System.Web.Http;
@@ -23,6 +24,9 @@ namespace ProductionMan.Web.Api
 
             // Configure app
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            //Encoding latinEncoding = Encoding.GetEncoding("UTF-8");
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter.SupportedEncodings.Add(latinEncoding);
         }
 
 

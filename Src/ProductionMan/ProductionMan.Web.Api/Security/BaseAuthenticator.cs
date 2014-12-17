@@ -42,7 +42,7 @@ namespace ProductionMan.Web.Api.Security
             if (String.IsNullOrEmpty(authorization.Parameter))
             {
                 // Authentication was attempted but failed. Set ErrorResult to indicate an error.
-                context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
+                context.ErrorResult = new AuthenticationFailureResult(Localized.Resources.MissingCredentials, request);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace ProductionMan.Web.Api.Security
             if (credentials == null)
             {
                 // Authentication was attempted but failed. Set ErrorResult to indicate an error.
-                context.ErrorResult = new AuthenticationFailureResult("Invalid credentials", request);
+                context.ErrorResult = new AuthenticationFailureResult(Localized.Resources.InvalidCredentials, request);
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace ProductionMan.Web.Api.Security
             if (principal == null)
             {
                 // Authentication was attempted but failed. Set ErrorResult to indicate an error.
-                context.ErrorResult = new AuthenticationFailureResult("Invalid username or password", request);
+                context.ErrorResult = new AuthenticationFailureResult(Localized.Resources.AuthenticationFailed, request);
             }
             else
             {

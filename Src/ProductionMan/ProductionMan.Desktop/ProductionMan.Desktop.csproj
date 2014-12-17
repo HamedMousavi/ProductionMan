@@ -71,6 +71,7 @@
     <Compile Include="Controls\Authentication\LoginViewModel.cs" />
     <Compile Include="Converters\FlowDirectionConverter.cs" />
     <Compile Include="Converters\LoginStatusIconConverter.cs" />
+    <Compile Include="CreateLoginPage.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="WindowManager.cs" />

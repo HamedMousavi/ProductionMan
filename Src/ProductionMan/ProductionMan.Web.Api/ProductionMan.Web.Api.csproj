@@ -135,6 +135,10 @@
       <Project>{e95842d5-99af-4110-9399-82cf9b123a47}</Project>
       <Name>ProductionMan.Web.Api.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProductionMan.Web.Api.Localized\ProductionMan.Web.Api.Localized.csproj">
+      <Project>{725b5a2c-d56b-4f09-ae7f-b1eba8a829c2}</Project>
+      <Name>ProductionMan.Web.Api.Localized</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

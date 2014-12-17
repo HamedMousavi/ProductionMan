@@ -1,6 +1,7 @@
 ﻿using System;
 using ProductionMan.Common;
 using System.Collections.Generic;
+using ProductionMan.Domain.WebServices;
 
 
 namespace ProductionMan.Domain.Security
@@ -13,6 +14,7 @@ namespace ProductionMan.Domain.Security
         private string _name;
         private string _culture;
         private long _id;
+        private Membership _membership;
 
 
         public User()
@@ -20,6 +22,7 @@ namespace ProductionMan.Domain.Security
             _id = -1;
             _name = "Unknown User";
             _loginStatus = LoginStates.NeverSignedIn;
+            _membership = new Membership();
             Permissions = new List<Permission>();
         }
 
@@ -33,10 +36,10 @@ namespace ProductionMan.Domain.Security
 
             LoginStatus = LoginStates.SigningIn;
 
-            ServiceProxy.SetCredentials(username, password);
-            var permissions = await ServiceProxy.GetPermissions();
+            _membership.SetCredentials(username, password);
+            var permissions = await _membership.GetPermissions();
 
-            LoginStatus = LoginStates.Error;
+            LoginStatus = LoginStates.IncorrectCredentials;
         }
 
 
