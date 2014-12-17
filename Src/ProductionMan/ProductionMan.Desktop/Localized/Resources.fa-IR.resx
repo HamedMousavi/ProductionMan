@@ -132,6 +132,9 @@
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
+  <data name="LoginRetry" xml:space="preserve">
+    <value>تلاش برای ورود مجدد</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
   </data>

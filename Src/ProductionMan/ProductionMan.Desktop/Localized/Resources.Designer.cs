@@ -106,6 +106,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Retry Signing In.
+        /// </summary>
+        public static string LoginRetry {
+            get {
+                return ResourceManager.GetString("LoginRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {

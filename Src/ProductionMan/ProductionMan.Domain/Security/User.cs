@@ -1,4 +1,5 @@
-﻿using ProductionMan.Common;
+﻿using System;
+using ProductionMan.Common;
 using System.Collections.Generic;
 
 
@@ -25,12 +26,31 @@ namespace ProductionMan.Domain.Security
 
         public async void LoginAsync(string username, string password)
         {
+            if (LoginStatus != LoginStates.NeverSignedIn)
+            {
+                throw new InvalidOperationException("Cannot login again while an incomplete login is in progress. Try calling RequestRetry() prior to calling this method.");
+            }
+
             LoginStatus = LoginStates.SigningIn;
 
             ServiceProxy.SetCredentials(username, password);
             var permissions = await ServiceProxy.GetPermissions();
 
-            LoginStatus = LoginStates.SignedIn;
+            LoginStatus = LoginStates.Error;
+        }
+
+
+        /// <summary>
+        /// This call will prepare user for a second login attempt
+        /// </summary>
+        public void RequestRetry()
+        {
+            if (LoginStatus == LoginStates.SigningIn)
+            {
+                throw new InvalidOperationException("Cannot login again while an incomplete login is in progress. Wait before previous request is complete.");
+            }
+
+            LoginStatus = LoginStates.NeverSignedIn;
         }
 
 
@@ -89,5 +109,8 @@ namespace ProductionMan.Domain.Security
 
 
         public List<Permission> Permissions { get; private set; }
+
+
+        public string LoginStatusMessage { get { return "ERROR LOGING IN. Please try again!"; } }
     }
 }

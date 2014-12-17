@@ -2,4 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BitmapImage x:Key="Username" UriSource="pack://application:,,,/Theme/Dark/Pictures/Username.png" />
     <BitmapImage x:Key="Password" UriSource="pack://application:,,,/Theme/Dark/Pictures/Password.png" />
+    <BitmapImage x:Key="MidExclamation" UriSource="pack://application:,,,/Theme/Dark/Pictures/exclamation.png" />
+    <BitmapImage x:Key="MidError" UriSource="pack://application:,,,/Theme/Dark/Pictures/cross-circle.png" />
 </ResourceDictionary>

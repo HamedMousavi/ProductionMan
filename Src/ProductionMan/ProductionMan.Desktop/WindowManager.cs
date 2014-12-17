@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
@@ -49,11 +50,20 @@ namespace ProductionMan.Desktop
                 DataContext = new ProgressControlViewModel {Message = Localized.Resources.LoadinMessage}
             };
 
+            var errorContent = new StatusMessage
+            {
+                DataContext = new StatusMessageViewModel(user)
+                {
+                    ExitCommand = _commandFactory.CreateExitCommand(),
+                    RetryLoginCommand = _commandFactory.CreateRetryLoginCommand(user)
+                }
+            };
+
             // Create a selector to select propert content based on each possible state
             var contentSelector = new LoginWindowContentSelector();
             contentSelector.AddContent(User.LoginStates.NeverSignedIn, loginContent);
-            contentSelector.AddContent(User.LoginStates.IncorrectCredentials, loginContent);
-            contentSelector.AddContent(User.LoginStates.Error, loginContent);
+            contentSelector.AddContent(User.LoginStates.IncorrectCredentials, errorContent);
+            contentSelector.AddContent(User.LoginStates.Error, errorContent);
             contentSelector.AddContent(User.LoginStates.SigningIn, signingInContent);
             contentSelector.AddContent(User.LoginStates.SignedIn, signedInContent);
 

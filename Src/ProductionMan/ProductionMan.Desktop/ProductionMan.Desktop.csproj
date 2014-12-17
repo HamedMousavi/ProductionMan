@@ -54,10 +54,15 @@
     <Compile Include="CommandFactory.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\LoginRetryCommand.cs" />
     <Compile Include="Controls\Authentication\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Authentication\LoginWindowContentSelector.cs" />
+    <Compile Include="Controls\Authentication\StatusMessage.xaml.cs">
+      <DependentUpon>StatusMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Authentication\StatusMessageViewModel.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
     </Compile>
@@ -65,10 +70,15 @@
     <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\Authentication\LoginViewModel.cs" />
     <Compile Include="Converters\FlowDirectionConverter.cs" />
+    <Compile Include="Converters\LoginStatusIconConverter.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="WindowManager.cs" />
     <Page Include="Controls\Authentication\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Authentication\StatusMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,7 +178,10 @@
       <Name>ProductionMan.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\cross-circle.png" />
+    <Resource Include="Theme\Dark\Pictures\exclamation.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Theme\Dark\Pictures\Password.png" />
     <Resource Include="Theme\Dark\Pictures\Username.png" />
