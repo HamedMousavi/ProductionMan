@@ -1,7 +1,8 @@
-﻿using System;
-using ProductionMan.Common;
-using System.Collections.Generic;
+﻿using ProductionMan.Common;
 using ProductionMan.Domain.WebServices;
+using ProductionMan.Web.Api.Common.Models;
+using System;
+using System.Collections.Generic;
 
 
 namespace ProductionMan.Domain.Security
@@ -14,7 +15,7 @@ namespace ProductionMan.Domain.Security
         private string _name;
         private string _culture;
         private long _id;
-        private Membership _membership;
+        private readonly Membership _membership;
 
 
         public User()

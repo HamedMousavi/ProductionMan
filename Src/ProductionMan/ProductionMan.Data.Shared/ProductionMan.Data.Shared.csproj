@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B7B56708-3BFA-475F-A597-A978E486BC61}</ProjectGuid>
+    <ProjectGuid>{9879D6FF-5A77-4E0E-914F-B24E80521091}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProductionMan.Data</RootNamespace>
-    <AssemblyName>ProductionMan.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>ProductionMan.Data.Shared</RootNamespace>
+    <AssemblyName>ProductionMan.Data.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,25 +32,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MsAdo\AdoConverter.cs" />
-    <Compile Include="MsAdo\AdoNetUnitOfWork.cs" />
-    <Compile Include="MsAdo\IUnitOfWork.cs" />
-    <Compile Include="MsAdo\UnitOfWorkFactory.cs" />
+    <Compile Include="Models\Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MembershipRepository.cs" />
-    <Compile Include="Settings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj">
-      <Project>{9879d6ff-5a77-4e0e-914f-b24e80521091}</Project>
-      <Name>ProductionMan.Data.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

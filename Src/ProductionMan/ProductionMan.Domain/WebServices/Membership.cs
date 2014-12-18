@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using ProductionMan.Web.Api.Common.Models;
 
 
 namespace ProductionMan.Domain.WebServices
@@ -10,12 +10,12 @@ namespace ProductionMan.Domain.WebServices
     public class Membership : WebServiceBase
     {
 
-        private const string PermissionsUrl = "Users";
+        private const string PermissionsUrl = "Permissions";
         
         
-        public async Task<List<string>> GetPermissions()
+        public async Task<List<Permission>> GetPermissions()
         {
-            List<string> permissions = null;
+            List<Permission> permissions = null;
 
             using (var client = new HttpClient())
             {
@@ -25,7 +25,7 @@ namespace ProductionMan.Domain.WebServices
                 var response = await client.GetAsync(PermissionsUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    permissions = response.Content.ReadAsAsync<List<string>>().Result;
+                    permissions = response.Content.ReadAsAsync<List<Permission>>().Result;
                 }
             }
 

@@ -1,9 +1,10 @@
-﻿
-namespace ProductionMan.Web.Api.Common.Models
+﻿namespace ProductionMan.Web.Api.Common.Models
 {
-    public class User : Data.Shared.Models.User, ILinkable
+    public class Permission : Data.Shared.Models.Permission, ILinkable
     {
-
+        #region Links
+        
+        
         private LinkList _links;
 
 
@@ -13,5 +14,7 @@ namespace ProductionMan.Web.Api.Common.Models
             set { _links = value; }
         }
 
+
+        #endregion Links
     }
 }

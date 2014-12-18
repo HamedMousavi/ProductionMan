@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionMan.Domain", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionMan.Web.Api.Localized", "ProductionMan.Web.Api.Localized\ProductionMan.Web.Api.Localized.csproj", "{725B5A2C-D56B-4F09-AE7F-B1EBA8A829C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionMan.Data.Shared", "ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj", "{9879D6FF-5A77-4E0E-914F-B24E80521091}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{725B5A2C-D56B-4F09-AE7F-B1EBA8A829C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{725B5A2C-D56B-4F09-AE7F-B1EBA8A829C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{725B5A2C-D56B-4F09-AE7F-B1EBA8A829C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

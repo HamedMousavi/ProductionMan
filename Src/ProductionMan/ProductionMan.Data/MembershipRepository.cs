@@ -1,5 +1,5 @@
-﻿using ProductionMan.Data.Models.Membership;
-using ProductionMan.Data.MsAdo;
+﻿using ProductionMan.Data.MsAdo;
+using ProductionMan.Data.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;

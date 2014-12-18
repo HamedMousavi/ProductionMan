@@ -118,12 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AuthenticationFailed" xml:space="preserve">
-    <value>نام کاربری و یا رمز عبور نادرست است</value>
+    <value>Authentication failed, Invalid username or password.</value>
+    <comment>ASCII ONLY</comment>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>نام کاربری و یا رمز عبور وارد شده معتبر نیست</value>
+    <value>Provided credential information are not valid.</value>
+    <comment>ASCII ONLY</comment>
   </data>
   <data name="MissingCredentials" xml:space="preserve">
-    <value>نام کاربری و رمز عبور خالی وارد شده است</value>
+    <value>No credential information provided.</value>
+    <comment>ASCII ONLY</comment>
   </data>
 </root>

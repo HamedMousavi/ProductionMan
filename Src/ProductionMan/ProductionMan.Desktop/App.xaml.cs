@@ -1,7 +1,11 @@
-﻿using System.Globalization;
+﻿using log4net;
+using log4net.Config;
+using System;
+using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Threading;
 
 
 namespace ProductionMan.Desktop
@@ -16,10 +20,16 @@ namespace ProductionMan.Desktop
         private Domain.Security.User _user;
         private WindowManager _windowManager;
         private CommandFactory _commandFactory;
+        private ILog _logger;
 
 
         private void StartApplication(object sender, StartupEventArgs e)
         {
+            // Configure logger
+            SetupLogger();
+
+            SetupGlobalExceptionHandlers();
+
             SetupLanguage();
 
             SetupSecurity();
@@ -29,6 +39,34 @@ namespace ProductionMan.Desktop
             SetupWindowManager();
 
             StartApplicationWindow();
+        }
+
+
+        private void SetupLogger()
+        {
+            XmlConfigurator.Configure();
+            _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            _logger.Info("Application Started!");
+        }
+
+
+        private void SetupGlobalExceptionHandlers()
+        {
+            AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
+            Current.DispatcherUnhandledException += OnDispatcherUnhandledException;
+        }
+
+
+        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            _logger.Error("Unhandled global", e.Exception);
+            e.Handled = true;
+        }
+
+
+        private void OnDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            _logger.Error(e.ToString());
         }
 
 

@@ -33,17 +33,20 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ILinkable.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\LinkList.cs" />
+    <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj">
+      <Project>{9879d6ff-5a77-4e0e-914f-b24e80521091}</Project>
+      <Name>ProductionMan.Data.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

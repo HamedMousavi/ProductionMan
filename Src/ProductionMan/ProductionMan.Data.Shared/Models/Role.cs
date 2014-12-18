@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace ProductionMan.Data.Models.Membership
+namespace ProductionMan.Data.Shared.Models
 {
 
     public class Role

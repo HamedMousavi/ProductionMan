@@ -90,7 +90,11 @@ namespace ProductionMan.Desktop
         {
             return new ProgressControl
             {
-                DataContext = new ProgressControlViewModel { Message = Localized.Resources.LoadinMessage }
+                DataContext = new ProgressControlViewModel
+                {
+                    Message = Localized.Resources.LoadinMessage,
+                    ExitCommand = _commandFactory.CreateExitCommand()
+                }
             };
         }
 
@@ -99,7 +103,11 @@ namespace ProductionMan.Desktop
         {
             return new ProgressControl
             {
-                DataContext = new ProgressControlViewModel { Message = Localized.Resources.SigningInMessage }
+                DataContext = new ProgressControlViewModel
+                {
+                    Message = Localized.Resources.SigningInMessage,
+                    ExitCommand = _commandFactory.CreateExitCommand()
+                }
             };
         }
 

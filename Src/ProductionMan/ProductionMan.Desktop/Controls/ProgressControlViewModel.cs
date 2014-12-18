@@ -1,4 +1,5 @@
-﻿using ProductionMan.Common;
+﻿using System.Windows.Input;
+using ProductionMan.Common;
 
 
 namespace ProductionMan.Desktop.Controls
@@ -8,6 +9,7 @@ namespace ProductionMan.Desktop.Controls
     {
 
         private string _message;
+        private ICommand _exitCommand;
 
 
         public string Message
@@ -17,6 +19,16 @@ namespace ProductionMan.Desktop.Controls
             {
                 _message = value; 
                 FirePropertyChanged(this, "Message");
+            }
+        }
+
+        public ICommand ExitCommand
+        {
+            get { return _exitCommand; }
+            set
+            {
+                _exitCommand = value;
+                FirePropertyChanged(this, "ExitCommand");
             }
         }
     }

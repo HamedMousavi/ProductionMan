@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ProductionMan.Desktop.Controls"
+             xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -13,9 +14,14 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <controls:ProgressRing Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsActive="True" Foreground="{StaticResource TextColorSeaBlue}" />
         <TextBlock Grid.Row="3" HorizontalAlignment="Center" Text="{Binding Message}" Style="{StaticResource ProgressMessage}" />
+        <StackPanel Grid.Row="5" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5,10,5,10">
+            <Button Style="{StaticResource CancelButton}" Content="{x:Static localized:Resources.Exit}"
+                    Command="{Binding Path=ExitCommand}" CommandParameter="{Binding}" />
+        </StackPanel>
     </Grid>
 </UserControl>
