@@ -1,4 +1,5 @@
-﻿using ProductionMan.Common;
+﻿using System.Net;
+using ProductionMan.Common;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 using System;
@@ -16,6 +17,7 @@ namespace ProductionMan.Domain.Security
         private string _culture;
         private long _id;
         private readonly Membership _membership;
+        private string _loginStatusMessage;
 
 
         public User()
@@ -38,9 +40,27 @@ namespace ProductionMan.Domain.Security
             LoginStatus = LoginStates.SigningIn;
 
             _membership.SetCredentials(username, password);
-            var permissions = await _membership.GetPermissions();
+            var response = await _membership.GetPermissions();
 
-            LoginStatus = LoginStates.IncorrectCredentials;
+            Permissions = response.Results;
+            LoginStatusMessage = response.CallStatusMessage;
+            LoginStatus = Map(response.CallStatusCode);
+        }
+
+
+        private LoginStates Map(HttpStatusCode httpStatus)
+        {
+            switch (httpStatus)
+            {
+                case HttpStatusCode.OK:
+                    return LoginStates.SignedIn;
+
+                case HttpStatusCode.Unauthorized:
+                    return LoginStates.IncorrectCredentials;
+
+                default:
+                    return LoginStates.Error;
+            }
         }
 
 
@@ -79,6 +99,17 @@ namespace ProductionMan.Domain.Security
         }
 
 
+        public string LoginStatusMessage
+        {
+            get { return _loginStatusMessage; }
+            private set
+            {
+                _loginStatusMessage = value;
+                FirePropertyChanged(this, "LoginStatusMessage");
+            }
+        }
+
+
         public long Id
         {
             get { return _id; }
@@ -113,8 +144,5 @@ namespace ProductionMan.Domain.Security
 
 
         public List<Permission> Permissions { get; private set; }
-
-
-        public string LoginStatusMessage { get { return "ERROR LOGING IN. Please try again!"; } }
     }
 }

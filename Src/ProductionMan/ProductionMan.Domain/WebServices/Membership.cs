@@ -11,25 +11,26 @@ namespace ProductionMan.Domain.WebServices
     {
 
         private const string PermissionsUrl = "Permissions";
-        
-        
-        public async Task<List<Permission>> GetPermissions()
+
+
+        public async Task<ServiceCallResult<List<Permission>>> GetPermissions()
         {
-            List<Permission> permissions = null;
+            var result = new ServiceCallResult<List<Permission>>();
 
             using (var client = new HttpClient())
             {
                 PrepareHeaders(client, true);
 
-                // HTTP GET
                 var response = await client.GetAsync(PermissionsUrl);
+                result.CallStatusCode = response.StatusCode;
+                result.CallStatusMessage = response.ReasonPhrase;
                 if (response.IsSuccessStatusCode)
                 {
-                    permissions = response.Content.ReadAsAsync<List<Permission>>().Result;
+                    result.Results = response.Content.ReadAsAsync<List<Permission>>().Result;
                 }
             }
 
-            return permissions;
+            return result;
         }
     }
 }
