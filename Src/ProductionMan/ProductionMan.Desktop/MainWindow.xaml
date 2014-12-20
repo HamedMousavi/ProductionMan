@@ -2,22 +2,77 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:ProductionMan.Desktop.Converters"
+        xmlns:controls="clr-namespace:ProductionMan.Desktop.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mainTabControl="clr-namespace:ProductionMan.Desktop.Controls.MainTabControl"
+        mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <ResourceDictionary>
             <converters:FlowDirectionConverter x:Key="FlowDirectionConverter" />
+            <converters:TabControlHeaderIconConverter x:Key="TabControlHeaderIconConverter" />
         </ResourceDictionary>
     </Window.Resources>
-    
-    <Grid FlowDirection="{Binding Path=FlowDirection, Converter={StaticResource FlowDirectionConverter}}">
-        <TabControl Background="Black">
-            <TabItem Header="Users">
-                <ListBox ItemsSource="{Binding Path=Users}"></ListBox>
-            </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+    <Border Style="{StaticResource MainBorder}">
+        <Grid Style="{StaticResource MainGrid}" FlowDirection="{Binding Path=FlowDirection, Converter={StaticResource FlowDirectionConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Style="{StaticResource MainTitleBar}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Style="{StaticResource MainLogoImage}" Source="{StaticResource AppLogo}" />
+                <controls:SignedInUser Grid.Column="2" />
+            </Grid>
+
+            <TabControl Grid.Row="1" Style="{StaticResource MainTabControl}" ItemsSource="{Binding Tabs}">
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MainTabItem}">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                    </Style>
+                </TabControl.ItemContainerStyle>
+                <TabControl.ItemTemplate>
+                    <DataTemplate DataType="mainTabControl:TabItemViewModel">
+                        <StackPanel Style="{StaticResource MainTabItemPanel}">
+                            <Image  Style="{StaticResource MainTabItemImage}" Source="{Binding Path=HeaderIcon, Converter={StaticResource TabControlHeaderIconConverter}}"></Image>
+                            <Label Style="{StaticResource MainTabItemLabel}" Content="{Binding HeaderLabel}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <Grid />
+                        <!--<views:ItemView/>-->
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+            
+            <StatusBar Grid.Row="2" Style="{StaticResource MainStatusBar}">
+                <Image></Image>
+                <Label Margin="0" Padding="0" Foreground="{StaticResource TextColorWhite}">Welcome dear user! :-)</Label>
+            </StatusBar>
+        </Grid>
+    </Border>
 </Window>
+
+
+<!--<TabItem xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                Header="Users" Style="{StaticResource MainTabItem}">
+    <Grid Background="{StaticResource BkLight}" />
+</TabItem>
+<TabItem Header="Processes" Style="{StaticResource MainTabItem}">
+    <Grid Background="{StaticResource BkLight}" />
+</TabItem>
+<TabItem Header="Permissions" Style="{StaticResource MainTabItem}">
+    <Grid Background="{StaticResource BkLight}" />
+</TabItem>
+<TabItem Header="Settings" Style="{StaticResource MainTabItem}">
+    <Grid Background="{StaticResource BkLight}" />
+</TabItem>-->

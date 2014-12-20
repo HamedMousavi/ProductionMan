@@ -90,8 +90,8 @@ namespace ProductionMan.Desktop
 
         private void SetupLanguage()
         {
-            //var culture = new CultureInfo("en-US");
-            var culture = new CultureInfo("fa-IR");
+            var culture = new CultureInfo("en-US");
+            //var culture = new CultureInfo("fa-IR");
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 

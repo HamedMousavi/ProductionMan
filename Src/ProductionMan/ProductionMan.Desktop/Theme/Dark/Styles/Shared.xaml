@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="AcceptButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Foreground" Value="{StaticResource TextColorWhite}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Background" Value="{StaticResource ButtonAcceptColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonAcceptBorderColor}" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Foreground" Value="{StaticResource TextColorWhite}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Background" Value="{StaticResource ButtonCancelColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonCancelBorderColor}" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="NonScaledImage" TargetType="Image">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FlowDirection" Value="LeftToRight" />
+        <Setter Property="Stretch" Value="None" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+    
+    <Style x:Key="Form" TargetType="Window">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Background" Value="{StaticResource WindowBkColorDark}" />
+        <Setter Property="FontFamily" Value="Tahoma" />
+        <Setter Property="SizeToContent" Value="Manual" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    
+</ResourceDictionary>

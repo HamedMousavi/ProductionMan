@@ -7,13 +7,21 @@
     <SolidColorBrush x:Key="WindowBkColorLight" Color="#f2f2f2" />
     <SolidColorBrush x:Key="WindowBkColorGray" Color="#252525" />
 
+    <SolidColorBrush x:Key="BkDarkest" Color="#1c262c" />
+    <SolidColorBrush x:Key="BkDarker" Color="#3c464d" />
+    <SolidColorBrush x:Key="BkDark" Color="#657077" />
+    <SolidColorBrush x:Key="BkLight" Color="#e3e3e3" />
+
+    <SolidColorBrush x:Key="BorderLight" Color="#73828b" />
+
     <!-- Text -->
     <SolidColorBrush x:Key="TextColorBlack" Color="#252525" />
-    <SolidColorBrush x:Key="TextColorGray" Color="#b2b2b2" />
+    <SolidColorBrush x:Key="TextColorGray" Color="#acaba1" />
     <SolidColorBrush x:Key="TextColorWhite" Color="#f2f2f2" />
     <SolidColorBrush x:Key="TextColorLightBlue" Color="#8abbfe" />
     <SolidColorBrush x:Key="TextColorSeaBlue" Color="#457BBE" />
     <SolidColorBrush x:Key="TextColorLightGreen" Color="#97d545" />
+    <SolidColorBrush x:Key="TextColorGold" Color="Gold" />
 
     <!-- Buttons -->
     <SolidColorBrush x:Key="TextColorButton" Color="{StaticResource TextColorWhite}" />

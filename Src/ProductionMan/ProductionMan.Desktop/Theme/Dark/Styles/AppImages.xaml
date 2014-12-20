@@ -4,4 +4,6 @@
     <BitmapImage x:Key="Password" UriSource="pack://application:,,,/Theme/Dark/Pictures/Password.png" />
     <BitmapImage x:Key="MidExclamation" UriSource="pack://application:,,,/Theme/Dark/Pictures/exclamation.png" />
     <BitmapImage x:Key="MidError" UriSource="pack://application:,,,/Theme/Dark/Pictures/cross-circle.png" />
+    <BitmapImage x:Key="AppLogo" UriSource="pack://application:,,,/Theme/Dark/Pictures/logo.png" />
+    <BitmapImage x:Key="Users" UriSource="pack://application:,,,/Theme/Dark/Pictures/user_gomer.png" />
 </ResourceDictionary>

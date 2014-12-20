@@ -5,12 +5,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/Dark/Styles/AppImages.xaml" />
                 <ResourceDictionary Source="/Theme/Dark/Styles/Colors.xaml" />
                 <ResourceDictionary Source="/Theme/Dark/Styles/Buttons.xaml" />
-                <ResourceDictionary Source="/Theme/Dark/Styles/Windows.xaml" />
-                <ResourceDictionary Source="/Theme/Dark/Styles/AppControls.xaml" />
-                <ResourceDictionary Source="/Theme/Dark/Styles/AppImages.xaml" />
                 <ResourceDictionary Source="/Theme/Dark/Styles/ProgressRing.xaml" />
+                <ResourceDictionary Source="/Theme/Dark/Styles/Shared.xaml" />
+                <ResourceDictionary Source="/Theme/Dark/Styles/LoginWindowStyles.xaml" />
+                <ResourceDictionary Source="/Theme/Dark/Styles/MainWindowStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

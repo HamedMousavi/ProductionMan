@@ -66,14 +66,19 @@
       <DependentUpon>StatusMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Authentication\StatusMessageViewModel.cs" />
+    <Compile Include="Controls\MainTabControl\TabItemViewModel.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProgressControlViewModel.cs" />
     <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\Authentication\LoginViewModel.cs" />
+    <Compile Include="Controls\SignedInUser.xaml.cs">
+      <DependentUpon>SignedInUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\FlowDirectionConverter.cs" />
     <Compile Include="Converters\LoginStatusIconConverter.cs" />
+    <Compile Include="Converters\TabControlHeaderIconConverter.cs" />
     <Compile Include="CreateLoginPage.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
@@ -87,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ProgressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SignedInUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,7 +123,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Theme\Dark\Styles\AppControls.xaml">
+    <Page Include="Theme\Dark\Styles\LoginWindowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,7 +139,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Theme\Dark\Styles\MainWindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\Dark\Styles\ProgressRing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\Dark\Styles\Shared.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,6 +206,12 @@
   <ItemGroup>
     <Resource Include="Theme\Dark\Pictures\Password.png" />
     <Resource Include="Theme\Dark\Pictures\Username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\user_gomer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
