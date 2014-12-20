@@ -9,6 +9,7 @@ namespace ProductionMan.Desktop.Controls.MainTabControl
         private string _headerLabel;
         private string _pageTitle;
         private string _headerIcon;
+        private bool _isSelected;
 
 
         public string HeaderLabel
@@ -44,6 +45,14 @@ namespace ProductionMan.Desktop.Controls.MainTabControl
         }
 
 
-        public bool IsSelected { get; set; }
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                _isSelected = value;
+                FirePropertyChanged(this, "IsSelected");
+            }
+        }
     }
 }

@@ -7,12 +7,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mainTabControl="clr-namespace:ProductionMan.Desktop.Controls.MainTabControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     
     <Window.Resources>
         <ResourceDictionary>
             <converters:FlowDirectionConverter x:Key="FlowDirectionConverter" />
             <converters:TabControlHeaderIconConverter x:Key="TabControlHeaderIconConverter" />
+            <converters:TabControlHeaderForegroundConverter x:Key="TabControlHeaderForegroundConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <Border Style="{StaticResource MainBorder}">
@@ -35,20 +36,34 @@
             <TabControl Grid.Row="1" Style="{StaticResource MainTabControl}" ItemsSource="{Binding Tabs}">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MainTabItem}">
-                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                        <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Style>
                 </TabControl.ItemContainerStyle>
                 <TabControl.ItemTemplate>
                     <DataTemplate DataType="mainTabControl:TabItemViewModel">
                         <StackPanel Style="{StaticResource MainTabItemPanel}">
-                            <Image  Style="{StaticResource MainTabItemImage}" Source="{Binding Path=HeaderIcon, Converter={StaticResource TabControlHeaderIconConverter}}"></Image>
-                            <Label Style="{StaticResource MainTabItemLabel}" Content="{Binding HeaderLabel}"/>
+                            <Image  Style="{StaticResource MainTabItemImage}">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource TabControlHeaderIconConverter}">
+                                        <Binding Path="IsSelected" />
+                                        <Binding Path="HeaderIcon" />
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
+                            <Label Style="{StaticResource MainTabItemLabel}" Content="{Binding HeaderLabel}" Foreground="{Binding Path=IsSelected, Converter={StaticResource TabControlHeaderForegroundConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
-                    <DataTemplate>
-                        <Grid />
+                    <DataTemplate DataType="mainTabControl:TabItemViewModel">
+                        <StackPanel Orientation="Vertical">
+                            <Label Style="{StaticResource MainTabPageLabel}" Content="{Binding PageTitle}" />
+                            <Border BorderThickness="1,0,1,0" BorderBrush="White">
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <TextBlock Text="Hi there!"></TextBlock>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
                         <!--<views:ItemView/>-->
                     </DataTemplate>
                 </TabControl.ContentTemplate>

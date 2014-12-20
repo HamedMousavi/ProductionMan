@@ -35,7 +35,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
-                    <Grid x:Name="templateRoot" ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                    <Grid x:Name="templateRoot" ClipToBounds="true" KeyboardNavigation.TabNavigation="Local">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="ColumnDefinition0"/>
                             <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
@@ -49,10 +49,9 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="1" Opacity="0.3" Direction="90" BlurRadius="4" />
                             </Border.Effect>
-                            <StackPanel Orientation="Vertical">
-                                <Label BorderThickness="1" BorderBrush="{StaticResource BorderLight}" Margin="0" Padding="8" Background="{StaticResource BkDark}" Foreground="{StaticResource TextColorGold}" Content="{Binding PageTitle}" Height="40" />
-                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                            </StackPanel>
+                            <Border BorderThickness="0,0,0,1" BorderBrush="White">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="0" />
+                            </Border>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -98,13 +97,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Border  BorderThickness="2,2,2,0" Cursor="Hand" SnapsToDevicePixels="true">
+                    <Border  BorderThickness="2,2,2,0" Cursor="Hand" >
                         <!--<Border.Effect>
                             <DropShadowEffect Color="Black" ShadowDepth="2" Opacity="0.2" Direction="90" />
                         </Border.Effect>-->
-                        <Border Name="HeaderOuterBorder" BorderThickness="1,1,1,0" SnapsToDevicePixels="true">
-                            <Border Name="HeaderBorder" BorderThickness="1,1,1,0" SnapsToDevicePixels="true">
-                                <Border Name="HeaderOverrideBorder" BorderThickness="0,0,0,3" Margin="-1,0,-1,-2" Padding="8,5,8,5" SnapsToDevicePixels="true">
+                        <Border Name="HeaderOuterBorder" BorderThickness="1,1,1,0" >
+                            <Border Name="HeaderBorder" BorderThickness="1,1,1,0" >
+                                <Border Name="HeaderOverrideBorder" BorderThickness="0,0,0,2" Margin="-1,0,-1,-2" Padding="8,5,8,5" >
                                     <ContentPresenter ContentSource="Header" />
                                 </Border>
                             </Border>
@@ -127,26 +126,31 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="{StaticResource TextColorGray}" />
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource TextColorGold}"></Setter>
-                <Setter Property="FontWeight" Value="Bold" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
 
 
     <Style x:Key="MainTabItemLabel" TargetType="Label">
         <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
+        <!--<Setter Property="Foreground" Value="White"></Setter>-->
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="Margin" Value="0"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+
+    <Style x:Key="MainTabPageLabel" TargetType="Label">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderLight}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Background" Value="{StaticResource BkDark}" />
+        <Setter Property="Foreground" Value="{StaticResource TextColorGold}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="40"></Setter>
     </Style>
 
     <Style x:Key="MainTabItemPanel" TargetType="StackPanel">

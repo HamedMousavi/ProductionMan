@@ -5,5 +5,15 @@
     <BitmapImage x:Key="MidExclamation" UriSource="pack://application:,,,/Theme/Dark/Pictures/exclamation.png" />
     <BitmapImage x:Key="MidError" UriSource="pack://application:,,,/Theme/Dark/Pictures/cross-circle.png" />
     <BitmapImage x:Key="AppLogo" UriSource="pack://application:,,,/Theme/Dark/Pictures/logo.png" />
-    <BitmapImage x:Key="Users" UriSource="pack://application:,,,/Theme/Dark/Pictures/user_gomer.png" />
+
+    <BitmapImage x:Key="PackageOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/package_off.png" />
+    <BitmapImage x:Key="PackageOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/package_on.png" />
+    <BitmapImage x:Key="ProcessOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/process_off.png" />
+    <BitmapImage x:Key="ProcessOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/process_on.png" />
+    <BitmapImage x:Key="SettingsOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/settings_off.png" />
+    <BitmapImage x:Key="SettingsOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/settings_on.png" />
+    <BitmapImage x:Key="StoresOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/stores_off.png" />
+    <BitmapImage x:Key="StoresOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/stores_on.png" />
+    <BitmapImage x:Key="UserOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/user_off.png" />
+    <BitmapImage x:Key="UserOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/user_on.png" />
 </ResourceDictionary>

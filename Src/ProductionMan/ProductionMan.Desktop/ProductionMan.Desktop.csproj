@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Converters\FlowDirectionConverter.cs" />
     <Compile Include="Converters\LoginStatusIconConverter.cs" />
+    <Compile Include="Converters\TabControlHeaderForegroundConverter.cs" />
     <Compile Include="Converters\TabControlHeaderIconConverter.cs" />
     <Compile Include="CreateLoginPage.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
@@ -211,7 +212,16 @@
     <Resource Include="Theme\Dark\Pictures\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Theme\Dark\Pictures\user_gomer.png" />
+    <Resource Include="Theme\Dark\Pictures\package_off.png" />
+    <Resource Include="Theme\Dark\Pictures\package_on.png" />
+    <Resource Include="Theme\Dark\Pictures\process_off.png" />
+    <Resource Include="Theme\Dark\Pictures\process_on.png" />
+    <Resource Include="Theme\Dark\Pictures\settings_off.png" />
+    <Resource Include="Theme\Dark\Pictures\settings_on.png" />
+    <Resource Include="Theme\Dark\Pictures\stores_off.png" />
+    <Resource Include="Theme\Dark\Pictures\stores_on.png" />
+    <Resource Include="Theme\Dark\Pictures\user_off.png" />
+    <Resource Include="Theme\Dark\Pictures\user_on.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
