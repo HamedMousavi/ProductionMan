@@ -16,7 +16,7 @@ namespace ProductionMan.Web.Api.Security
             CancellationToken cancellationToken)
         {
             var claims = await LoadPermissions(credentials, cancellationToken);
-            return claims == null ? null : new ClaimsPrincipal(new[] {new ClaimsIdentity(claims, "Token")});
+            return claims == null ? null : new DefaultPrincipal(claims);
         }
 
 

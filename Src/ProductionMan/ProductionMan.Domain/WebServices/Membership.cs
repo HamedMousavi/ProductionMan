@@ -10,6 +10,7 @@ namespace ProductionMan.Domain.WebServices
     public class Membership : WebServiceBase
     {
 
+        private const string CurrentUserUrl = "Users/Current";
         private const string PermissionsUrl = "Permissions";
 
 
@@ -27,6 +28,26 @@ namespace ProductionMan.Domain.WebServices
                 if (response.IsSuccessStatusCode)
                 {
                     result.Results = response.Content.ReadAsAsync<List<Permission>>().Result;
+                }
+            }
+
+            return result;
+        }
+
+
+        public async Task<ServiceCallResult<User>> GetUserDetails()
+        {
+            var result = new ServiceCallResult<User>();
+            using (var client = new HttpClient())
+            {
+                PrepareHeaders(client, true);
+
+                var response = await client.GetAsync(CurrentUserUrl);
+                result.CallStatusCode = response.StatusCode;
+                result.CallStatusMessage = response.ReasonPhrase;
+                if (response.IsSuccessStatusCode)
+                {
+                    result.Results = response.Content.ReadAsAsync<User>().Result;
                 }
             }
 

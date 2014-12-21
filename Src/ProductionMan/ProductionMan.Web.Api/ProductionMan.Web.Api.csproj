@@ -87,9 +87,11 @@
     <Compile Include="Security\BaseAuthenticator.cs" />
     <Compile Include="Security\DefaultAuthenticator.cs" />
     <Compile Include="Security\DefaultIAuthorizer.cs" />
+    <Compile Include="Security\DefaultPrincipal.cs" />
     <Compile Include="Security\Models\ClaimList.cs" />
     <Compile Include="Security\Models\Credentials.cs" />
     <Compile Include="Services\DefaultExceptionLogger.cs" />
+    <Compile Include="Services\Log4NetTraceWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

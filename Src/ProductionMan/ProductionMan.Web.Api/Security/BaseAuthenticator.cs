@@ -65,6 +65,7 @@ namespace ProductionMan.Web.Api.Security
             else
             {
                 // Authentication was attempted and succeeded. Set Principal to the authenticated user.
+                Thread.CurrentPrincipal = principal;
                 context.Principal = principal;
             }
         }

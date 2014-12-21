@@ -1,4 +1,5 @@
-﻿using ProductionMan.Web.Api.Security;
+﻿using System.Web.Http.Tracing;
+using ProductionMan.Web.Api.Security;
 using ProductionMan.Web.Api.Services;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
@@ -53,7 +54,8 @@ namespace ProductionMan.Web.Api
         private static void ConfigureAppServices(HttpConfiguration config)
         {
             // Tracing
-            config.EnableSystemDiagnosticsTracing();
+            //config.EnableSystemDiagnosticsTracing();
+            config.Services.Replace(typeof(ITraceWriter), new Log4NetTraceWriter());
 
             // Error logging
             config.Services.Add(typeof(IExceptionLogger), new DefaultExceptionLogger());

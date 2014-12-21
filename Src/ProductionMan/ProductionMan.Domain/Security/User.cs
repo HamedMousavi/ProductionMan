@@ -40,11 +40,13 @@ namespace ProductionMan.Domain.Security
             LoginStatus = LoginStates.SigningIn;
 
             _membership.SetCredentials(username, password);
-            var response = await _membership.GetPermissions();
-
-            Permissions = response.Results;
+            var response = await _membership.GetUserDetails();
             LoginStatusMessage = response.CallStatusMessage;
             LoginStatus = Map(response.CallStatusCode);
+            Name = response.Results.Name;
+            //var response = await _membership.GetPermissions();
+
+            //Permissions = response.Results;
         }
 
 
