@@ -1,9 +1,8 @@
-﻿using System.ComponentModel;
-using ProductionMan.Common;
+﻿using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
-using ProductionMan.Desktop.Controls.MainTabControl;
-using ProductionMan.Domain.Security;
+using ProductionMan.Desktop.Controls.MainParts;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 
 namespace ProductionMan.Desktop
@@ -12,11 +11,11 @@ namespace ProductionMan.Desktop
     public class MainWindowViewModel : BaseViewModel
     {
 
-        private User _user;
         private object _activeContent;
         private BaseContentSelector<TabItemViewModel> _activeContentSelector;
         private ObservableCollection<TabItemViewModel> _tabs;
         private TabItemViewModel _selectedItem;
+        private LogonBoxViewModel _logonBoxModel;
 
 
         public ObservableCollection<TabItemViewModel> Tabs
@@ -29,14 +28,14 @@ namespace ProductionMan.Desktop
             }
         }
 
-        
-        public User User
+
+        public LogonBoxViewModel LogonBoxModel
         {
-            get { return _user; }
+            get { return _logonBoxModel; }
             set
             {
-                _user= value;
-                FirePropertyChanged(this, "User");
+                _logonBoxModel = value;
+                FirePropertyChanged(this, "LogonBoxModel");
             }
         }
 

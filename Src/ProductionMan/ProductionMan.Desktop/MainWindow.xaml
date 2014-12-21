@@ -2,10 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:ProductionMan.Desktop.Converters"
-        xmlns:controls="clr-namespace:ProductionMan.Desktop.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mainTabControl="clr-namespace:ProductionMan.Desktop.Controls.MainTabControl"
+        xmlns:mainParts="clr-namespace:ProductionMan.Desktop.Controls.MainParts"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     
@@ -31,7 +30,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Image Style="{StaticResource MainLogoImage}" Source="{StaticResource AppLogo}" />
-                <controls:SignedInUser Grid.Column="2" />
+                <mainParts:LogonBox Grid.Column="2" DataContext="{Binding LogonBoxModel}" />
             </Grid>
 
             <TabControl Grid.Row="1" Style="{StaticResource MainTabControl}" 
@@ -43,7 +42,7 @@
                     </Style>
                 </TabControl.ItemContainerStyle>
                 <TabControl.ItemTemplate>
-                    <DataTemplate DataType="mainTabControl:TabItemViewModel">
+                    <DataTemplate DataType="mainParts:TabItemViewModel">
                         <StackPanel Style="{StaticResource MainTabItemPanel}">
                             <Image  Style="{StaticResource MainTabItemImage}">
                                 <Image.Source>
@@ -58,7 +57,7 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
-                    <DataTemplate DataType="mainTabControl:TabItemViewModel">
+                    <DataTemplate DataType="mainParts:TabItemViewModel">
                         <StackPanel Orientation="Vertical">
                             <Label Style="{StaticResource MainTabPageLabel}" Content="{Binding PageTitle}" />
                         </StackPanel>

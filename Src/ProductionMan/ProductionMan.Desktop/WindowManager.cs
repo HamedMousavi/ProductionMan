@@ -1,6 +1,7 @@
 ﻿using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
+using ProductionMan.Desktop.Controls.MainParts;
 using ProductionMan.Desktop.Controls.MainTabControl;
 using ProductionMan.Domain.Security;
 using System.Collections.ObjectModel;
@@ -171,7 +172,7 @@ namespace ProductionMan.Desktop
                 DataContext = new MainWindowViewModel
                 {
                     Tabs = tabs,
-                    User = user,
+                    LogonBoxModel = new LogonBoxViewModel { User = user},
                     ActiveContentSelector = mainContentSelector,
                     SelectedItem = tabs[0]
                 }

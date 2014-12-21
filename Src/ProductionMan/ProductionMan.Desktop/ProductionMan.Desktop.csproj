@@ -66,8 +66,12 @@
     </Compile>
     <Compile Include="Controls\Authentication\StatusMessageViewModel.cs" />
     <Compile Include="Controls\BaseContentSelector.cs" />
-    <Compile Include="Controls\MainTabControl\TabItemViewModel.cs" />
-    <Compile Include="Controls\MainTabControl\UserManager.xaml.cs">
+    <Compile Include="Controls\MainParts\LogonBox.xaml.cs">
+      <DependentUpon>LogonBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\LogonBoxViewModel.cs" />
+    <Compile Include="Controls\MainParts\TabItemViewModel.cs" />
+    <Compile Include="Controls\MainParts\UserManager.xaml.cs">
       <DependentUpon>UserManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProgressControl.xaml.cs">
@@ -76,14 +80,10 @@
     <Compile Include="Controls\ProgressControlViewModel.cs" />
     <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\Authentication\LoginViewModel.cs" />
-    <Compile Include="Controls\SignedInUser.xaml.cs">
-      <DependentUpon>SignedInUser.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\FlowDirectionConverter.cs" />
     <Compile Include="Converters\LoginStatusIconConverter.cs" />
     <Compile Include="Converters\TabControlHeaderForegroundConverter.cs" />
     <Compile Include="Converters\TabControlHeaderIconConverter.cs" />
-    <Compile Include="CreateLoginPage.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="WindowManager.cs" />
@@ -95,15 +95,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainTabControl\UserManager.xaml">
+    <Page Include="Controls\MainParts\LogonBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainParts\UserManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ProgressControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SignedInUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

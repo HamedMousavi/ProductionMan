@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProductionMan.Desktop.Controls
+namespace ProductionMan.Desktop.Controls.MainParts
 {
     /// <summary>
-    /// Interaction logic for SignedInUser.xaml
+    /// Interaction logic for LogonBox.xaml
     /// </summary>
-    public partial class SignedInUser : UserControl
+    public partial class LogonBox : UserControl
     {
-        public SignedInUser()
+        public LogonBox()
         {
             InitializeComponent();
         }
