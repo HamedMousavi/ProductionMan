@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using ProductionMan.Common;
+using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Domain.Security;
 
@@ -11,7 +12,7 @@ namespace ProductionMan.Desktop
     {
 
         private User _user;
-        private LoginWindowContentSelector _activeContentSelector;
+        private BaseContentSelector<User.LoginStates> _activeContentSelector;
         private object _activeContent;
 
 
@@ -44,7 +45,7 @@ namespace ProductionMan.Desktop
         }
 
 
-        public LoginWindowContentSelector ActiveContentSelector
+        public BaseContentSelector<User.LoginStates> ActiveContentSelector
         {
             get { return _activeContentSelector; }
             set

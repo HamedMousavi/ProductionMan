@@ -19,18 +19,15 @@
         <Setter Property="Background" Value="{StaticResource BkDarkest}" />
     </Style>
 
-    <!--<Style x:Key="MainTabControlBorder" TargetType="Border">
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="{StaticResource BkDarkest}" />
-    </Style>-->
-
     <Style x:Key="MainTabControl" TargetType="TabControl">
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="{StaticResource BkLight}" />
         <Setter Property="BorderBrush" Value="{StaticResource BkDarkest}" />
-        <Setter Property="Margin" Value="3" />
+        <Setter Property="BorderThickness" Value="1,1,1,0"/>
+        <Setter Property="Margin" Value="3,3,3,0" />
         <!--<Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TabItem.Selected.Border}"/>-->
-        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -49,9 +46,7 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="1" Opacity="0.3" Direction="90" BlurRadius="4" />
                             </Border.Effect>
-                            <Border BorderThickness="0,0,0,1" BorderBrush="White">
-                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="0" />
-                            </Border>
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="0" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -129,7 +124,6 @@
     </Style>
 
 
-
     <Style x:Key="MainTabItemLabel" TargetType="Label">
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <!--<Setter Property="Foreground" Value="White"></Setter>-->
@@ -142,7 +136,7 @@
     </Style>
 
     <Style x:Key="MainTabPageLabel" TargetType="Label">
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="1,1,1,0" />
         <Setter Property="BorderBrush" Value="{StaticResource BorderLight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="8" />
@@ -162,6 +156,25 @@
 
     <Style x:Key="MainTabItemImage" BasedOn="{StaticResource NonScaledImage}" TargetType="Image">
         <Setter Property="Margin" Value="0"></Setter>
+    </Style>
+
+    <Style x:Key="MainContainerOuterBorder" TargetType="Border">
+        <Setter Property="Margin" Value="3,0,3,3" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="BorderThickness" Value="1,0,1,1" />
+        <Setter Property="BorderBrush" Value="{StaticResource BkDarkest}" />
+    </Style>
+
+    <Style x:Key="MainContainerInnerBorder" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource BkLight}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="BorderThickness" Value="1,0,1,1" />
+        <Setter Property="BorderBrush" Value="White" />
     </Style>
 
     <Style x:Key="MainStatusBar" TargetType="StatusBar">

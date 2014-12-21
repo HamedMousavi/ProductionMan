@@ -61,12 +61,15 @@
     <Compile Include="Controls\Authentication\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Authentication\LoginWindowContentSelector.cs" />
     <Compile Include="Controls\Authentication\StatusMessage.xaml.cs">
       <DependentUpon>StatusMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Authentication\StatusMessageViewModel.cs" />
+    <Compile Include="Controls\BaseContentSelector.cs" />
     <Compile Include="Controls\MainTabControl\TabItemViewModel.cs" />
+    <Compile Include="Controls\MainTabControl\UserManager.xaml.cs">
+      <DependentUpon>UserManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Authentication\StatusMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainTabControl\UserManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

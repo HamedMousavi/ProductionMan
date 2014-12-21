@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using ProductionMan.Common;
+﻿using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
+using ProductionMan.Desktop.Controls.MainTabControl;
 using ProductionMan.Domain.Security;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
 
 
 namespace ProductionMan.Desktop
@@ -42,9 +44,9 @@ namespace ProductionMan.Desktop
 
 
         #region Login
-       
-        
-        private Window CreateLoginWindow(User user, LoginWindowContentSelector contentSelector)
+
+
+        private Window CreateLoginWindow(User user, BaseContentSelector<User.LoginStates> contentSelector)
         {
             // Prepare view model
             var model = new LoginWindowViewModel { User = user, ActiveContentSelector = contentSelector };
@@ -60,9 +62,9 @@ namespace ProductionMan.Desktop
         }
 
 
-        private LoginWindowContentSelector CreateLoginPageSelector(UserControl loginContent, UserControl errorContent, UserControl signingInContent, UserControl signedInContent)
+        private BaseContentSelector<User.LoginStates> CreateLoginPageSelector(UserControl loginContent, UserControl errorContent, UserControl signingInContent, UserControl signedInContent)
         {
-            var contentSelector = new LoginWindowContentSelector();
+            var contentSelector = new BaseContentSelector<User.LoginStates>();
             contentSelector.AddContent(User.LoginStates.NeverSignedIn, loginContent);
             contentSelector.AddContent(User.LoginStates.IncorrectCredentials, errorContent);
             contentSelector.AddContent(User.LoginStates.Error, errorContent);
@@ -146,11 +148,32 @@ namespace ProductionMan.Desktop
 
         private void DisplayMainWindow(User user)
         {
+            var tabs = new ObservableCollection<TabItemViewModel>
+            {
+                new TabItemViewModel {HeaderLabel = "Users", HeaderIcon = "User", PageTitle = "Mangage Users"},
+                new TabItemViewModel {HeaderLabel = "Permissions", HeaderIcon = "", PageTitle = "Edit Permissions"},
+                new TabItemViewModel {HeaderLabel = "Materials", HeaderIcon = "Package", PageTitle = "Edit Materials"},
+                new TabItemViewModel {HeaderLabel = "Processes", HeaderIcon = "Process", PageTitle = "Manage Processes"},
+                new TabItemViewModel {HeaderLabel = "Stores", HeaderIcon = "Stores", PageTitle = "Manage Stores"},
+                new TabItemViewModel {HeaderLabel = "Settings", HeaderIcon = "Settings", PageTitle = "Settings"},
+            };
+
+            var mainContentSelector = new BaseContentSelector<TabItemViewModel>();
+            mainContentSelector.AddContent(tabs[0], new UserManager());
+            mainContentSelector.AddContent(tabs[1], new UserControl());
+            mainContentSelector.AddContent(tabs[2], new UserControl());
+            mainContentSelector.AddContent(tabs[3], new UserControl());
+            mainContentSelector.AddContent(tabs[4], new UserControl());
+            mainContentSelector.AddContent(tabs[5], new UserControl());
+
             var wnd = new MainWindow
             {
                 DataContext = new MainWindowViewModel
                 {
-                    Username = user.Name
+                    Tabs = tabs,
+                    User = user,
+                    ActiveContentSelector = mainContentSelector,
+                    SelectedItem = tabs[0]
                 }
             };
 

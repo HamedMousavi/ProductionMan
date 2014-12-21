@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mainTabControl="clr-namespace:ProductionMan.Desktop.Controls.MainTabControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
+        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     
     <Window.Resources>
         <ResourceDictionary>
@@ -19,6 +19,7 @@
     <Border Style="{StaticResource MainBorder}">
         <Grid Style="{StaticResource MainGrid}" FlowDirection="{Binding Path=FlowDirection, Converter={StaticResource FlowDirectionConverter}}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -33,7 +34,9 @@
                 <controls:SignedInUser Grid.Column="2" />
             </Grid>
 
-            <TabControl Grid.Row="1" Style="{StaticResource MainTabControl}" ItemsSource="{Binding Tabs}">
+            <TabControl Grid.Row="1" Style="{StaticResource MainTabControl}" 
+                        ItemsSource="{Binding Tabs}"
+                        SelectedItem="{Binding Path=SelectedItem}">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource MainTabItem}">
                         <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -58,36 +61,22 @@
                     <DataTemplate DataType="mainTabControl:TabItemViewModel">
                         <StackPanel Orientation="Vertical">
                             <Label Style="{StaticResource MainTabPageLabel}" Content="{Binding PageTitle}" />
-                            <Border BorderThickness="1,0,1,0" BorderBrush="White">
-                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                    <TextBlock Text="Hi there!"></TextBlock>
-                                </Grid>
-                            </Border>
                         </StackPanel>
                         <!--<views:ItemView/>-->
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
-            
-            <StatusBar Grid.Row="2" Style="{StaticResource MainStatusBar}">
+
+            <Border Grid.Row="2" Style="{StaticResource MainContainerOuterBorder}">
+                <Border Style="{StaticResource MainContainerInnerBorder}">
+                    <ContentControl Content="{Binding ActiveContent}"/>
+                </Border>
+            </Border>
+
+            <StatusBar Grid.Row="3" Style="{StaticResource MainStatusBar}">
                 <Image></Image>
                 <Label Margin="0" Padding="0" Foreground="{StaticResource TextColorWhite}">Welcome dear user! :-)</Label>
             </StatusBar>
         </Grid>
     </Border>
 </Window>
-
-
-<!--<TabItem xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                                Header="Users" Style="{StaticResource MainTabItem}">
-    <Grid Background="{StaticResource BkLight}" />
-</TabItem>
-<TabItem Header="Processes" Style="{StaticResource MainTabItem}">
-    <Grid Background="{StaticResource BkLight}" />
-</TabItem>
-<TabItem Header="Permissions" Style="{StaticResource MainTabItem}">
-    <Grid Background="{StaticResource BkLight}" />
-</TabItem>
-<TabItem Header="Settings" Style="{StaticResource MainTabItem}">
-    <Grid Background="{StaticResource BkLight}" />
-</TabItem>-->
