@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddNewItem" xml:space="preserve">
+    <value>افزودن</value>
+  </data>
   <data name="AppDir" xml:space="preserve">
     <value>RTL</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>ProMan</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>حذف</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>خروج</value>
@@ -135,11 +141,53 @@
   <data name="LoginRetry" xml:space="preserve">
     <value>تلاش برای ورود مجدد</value>
   </data>
+  <data name="PageTitleAbout" xml:space="preserve">
+    <value>دربار برنامه</value>
+  </data>
+  <data name="PageTitleMaterials" xml:space="preserve">
+    <value>تعریف مواد</value>
+  </data>
+  <data name="PageTitlePermissions" xml:space="preserve">
+    <value>مدیریت سطوح دسترسی و مجوزها</value>
+  </data>
+  <data name="PageTitleProcesses" xml:space="preserve">
+    <value>تعریف فرآیندها</value>
+  </data>
+  <data name="PageTitleSettings" xml:space="preserve">
+    <value>تغییر تنظیمات</value>
+  </data>
+  <data name="PageTitleStores" xml:space="preserve">
+    <value>تعریف مخازن</value>
+  </data>
+  <data name="PageTitleUsers" xml:space="preserve">
+    <value>مدیریت کاربران</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
   </data>
   <data name="SigningInMessage" xml:space="preserve">
     <value>در حال ورود، لطفا صبر کنید...</value>
+  </data>
+  <data name="TabTitleAbout" xml:space="preserve">
+    <value>درباره...</value>
+  </data>
+  <data name="TabTitleMaterials" xml:space="preserve">
+    <value>مواد</value>
+  </data>
+  <data name="TabTitlePermissions" xml:space="preserve">
+    <value>سطوح دسترسی</value>
+  </data>
+  <data name="TabTitleProcesses" xml:space="preserve">
+    <value>فرآیندها</value>
+  </data>
+  <data name="TabTitleSettings" xml:space="preserve">
+    <value>تنظیمات</value>
+  </data>
+  <data name="TabTitleStores" xml:space="preserve">
+    <value>مخازن</value>
+  </data>
+  <data name="TabTitleUsers" xml:space="preserve">
+    <value>کاربران</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>نام کاربر</value>

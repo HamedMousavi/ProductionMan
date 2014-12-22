@@ -64,5 +64,20 @@ namespace ProductionMan.Desktop
         {
             return CreateCommand(CommandKey.RetryLogin, typeof(LoginRetryCommand), new object[] { user });
         }
+
+        internal ICommand CreateAddUserCommand()
+        {
+            return null;
+        }
+
+        internal ICommand CreateDeleteUserCommand()
+        {
+            return null;
+        }
+
+        public ICommand ToggleUserCommand()
+        {
+            return null;
+        }
     }
 }

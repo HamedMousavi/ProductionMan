@@ -14,7 +14,6 @@ namespace ProductionMan.Web.Api.Controllers
     public class UsersController : ApiController
     {
 
-        //[Route("", Name = "GetUsersRoute")]
         public IEnumerable<User> GetUsers()
         {
             var data = new Data.MembershipRepository(UnitOfWorkFactory.Create());
@@ -28,7 +27,7 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
-        //[Route("{tag:alpha}", Name = "GetUserRoute")]
+        // Get: api/Users/Current (id=Current)
         public User GetUser(string id)
         {
             if (string.Equals(id, "Current", StringComparison.InvariantCultureIgnoreCase))

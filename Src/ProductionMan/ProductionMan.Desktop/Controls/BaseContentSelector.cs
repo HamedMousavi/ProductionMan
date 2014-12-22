@@ -8,31 +8,31 @@ namespace ProductionMan.Desktop.Controls
     public class BaseContentSelector<T>
     {
 
-        private readonly Dictionary<T, UserControl> _registry;
+        protected readonly Dictionary<T, UserControl> Registry;
 
 
         public BaseContentSelector()
         {
-            _registry = new Dictionary<T, UserControl>();
+            Registry = new Dictionary<T, UserControl>();
         }
 
 
         public void AddContent(T state, UserControl content)
         {
-            if (_registry.ContainsKey(state))
+            if (Registry.ContainsKey(state))
             {
-                _registry[state] = content;
+                Registry[state] = content;
             }
             else
             {
-                _registry.Add(state, content);
+                Registry.Add(state, content);
             }
         }
 
 
         public UserControl Select(T index)
         {
-            return _registry[index];
+            return Registry[index];
         }
     }
 }

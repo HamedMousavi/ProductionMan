@@ -1,9 +1,7 @@
-﻿using System.Net;
-using ProductionMan.Common;
+﻿using ProductionMan.Common;
 using ProductionMan.Domain.WebServices;
-using ProductionMan.Web.Api.Common.Models;
 using System;
-using System.Collections.Generic;
+using System.Net;
 
 
 namespace ProductionMan.Domain.Security
@@ -16,17 +14,18 @@ namespace ProductionMan.Domain.Security
         private string _name;
         private string _culture;
         private long _id;
-        private readonly Membership _membership;
+        private readonly Membership _membershipService;
         private string _loginStatusMessage;
 
 
-        public User()
+        public User(Membership membershipService)
         {
+            _membershipService = membershipService;
             _id = -1;
             _name = "Unknown User";
             _loginStatus = LoginStates.NeverSignedIn;
-            _membership = new Membership();
-            Permissions = new List<Permission>();
+            //_membershipService = new Membership();
+            //Permissions = new List<Permission>();
         }
 
 
@@ -37,16 +36,33 @@ namespace ProductionMan.Domain.Security
                 throw new InvalidOperationException("Cannot login again while an incomplete login is in progress. Try calling RequestRetry() prior to calling this method.");
             }
 
+            // Set status to looging in
             LoginStatus = LoginStates.SigningIn;
 
-            _membership.SetCredentials(username, password);
-            var response = await _membership.GetUserDetails();
+            // Set credentials
+            if (_membershipService.ServiceCredentialProvider == null)
+            {
+                var provider = new DefaultServiceCredentialProvider();
+                provider.SetCredentials(username, password);
+                _membershipService.ServiceCredentialProvider = provider;
+            }
+
+            var response = await _membershipService.GetUserDetails();
+
+            // If signed in successfully
+            if (response.CallStatusCode == HttpStatusCode.OK)
+            {
+                // Set users name
+                Name = response.Results.Name;
+                
+                //// Load list of user permissions
+                //var perms = await _membershipService.GetPermissions();
+                //Permissions = perms.Results;
+            }
+
+            // Update status based on login info
             LoginStatusMessage = response.CallStatusMessage;
             LoginStatus = Map(response.CallStatusCode);
-            Name = response.Results.Name;
-            //var response = await _membership.GetPermissions();
-
-            //Permissions = response.Results;
         }
 
 
@@ -145,6 +161,6 @@ namespace ProductionMan.Domain.Security
         }
 
 
-        public List<Permission> Permissions { get; private set; }
+        //public List<Permission> Permissions { get; private set; }
     }
 }

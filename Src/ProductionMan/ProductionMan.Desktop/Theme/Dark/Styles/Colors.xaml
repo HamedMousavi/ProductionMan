@@ -49,5 +49,13 @@
         <GradientStop Color="#ece5e3" Offset="0" />
         <GradientStop Color="#a09e81" Offset="1" />
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonDeleteColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#d00000" Offset="0" />
+        <GradientStop Color="#b00000" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonDeleteBorderColor" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#ff1020" Offset="0" />
+        <GradientStop Color="#b00000" Offset="1" />
+    </LinearGradientBrush>
 
 </ResourceDictionary>

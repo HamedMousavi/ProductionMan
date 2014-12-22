@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddNewItem" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AppDir" xml:space="preserve">
     <value>LTR</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>ProMan</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
@@ -135,11 +141,53 @@
   <data name="LoginRetry" xml:space="preserve">
     <value>Retry Signing In</value>
   </data>
+  <data name="PageTitleAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="PageTitleMaterials" xml:space="preserve">
+    <value>Edit Materials</value>
+  </data>
+  <data name="PageTitlePermissions" xml:space="preserve">
+    <value>Edit Permissions</value>
+  </data>
+  <data name="PageTitleProcesses" xml:space="preserve">
+    <value>Manage Processes</value>
+  </data>
+  <data name="PageTitleSettings" xml:space="preserve">
+    <value>Change Settings</value>
+  </data>
+  <data name="PageTitleStores" xml:space="preserve">
+    <value>Manage Stores</value>
+  </data>
+  <data name="PageTitleUsers" xml:space="preserve">
+    <value>Mangage Users</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
   <data name="SigningInMessage" xml:space="preserve">
     <value>Signing in, please wait...</value>
+  </data>
+  <data name="TabTitleAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="TabTitleMaterials" xml:space="preserve">
+    <value>Materials</value>
+  </data>
+  <data name="TabTitlePermissions" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="TabTitleProcesses" xml:space="preserve">
+    <value>Processes</value>
+  </data>
+  <data name="TabTitleSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TabTitleStores" xml:space="preserve">
+    <value>Stores</value>
+  </data>
+  <data name="TabTitleUsers" xml:space="preserve">
+    <value>Users</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

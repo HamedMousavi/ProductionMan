@@ -1,13 +1,13 @@
-﻿using ProductionMan.Common;
+﻿using System.Net;
+using System.Threading.Tasks;
+using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
-using ProductionMan.Desktop.Controls.MainTabControl;
-using ProductionMan.Domain.Security;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
+using ProductionMan.Domain.WebServices;
 
 
 namespace ProductionMan.Desktop
@@ -17,37 +17,35 @@ namespace ProductionMan.Desktop
     {
 
         private readonly CommandFactory _commandFactory;
+        private readonly Membership _membershipService;
         private Window _loginWindow;
 
 
-        public WindowManager(CommandFactory commandFactory)
+        public WindowManager(CommandFactory commandFactory, Membership membershipService)
         {
             _commandFactory = commandFactory;
+            _membershipService = membershipService;
         }
 
 
-        public void DisplayLoginWindow(User user)
+        public void DisplayLoginWindow(Domain.Security.User user)
         {
             // register for user changes so to load main window if login succeeded
             WireupEvent(user);
 
-            // Create login content pages
-            // Create a selector to select propert content based on each possible state
-            var contentSelector = CreateLoginPageSelector(
-                CreateLoginPage(user),
-                CreateLoginStatusMessagePage(user),
-                CreateLoginProgressPage(),
-                CreateLoginLoadinPage());
+            var windowSelector = 
+                new LoginWindowSelector(
+                    new LoginWindowFactory(_commandFactory, user));
 
             // Display window
-            CreateLoginWindow(user, contentSelector).Show();
+            CreateLoginWindow(user, windowSelector).Show();
         }
 
 
         #region Login
 
 
-        private Window CreateLoginWindow(User user, BaseContentSelector<User.LoginStates> contentSelector)
+        private Window CreateLoginWindow(Domain.Security.User user, BaseContentSelector<Domain.Security.User.LoginStates> contentSelector)
         {
             // Prepare view model
             var model = new LoginWindowViewModel { User = user, ActiveContentSelector = contentSelector };
@@ -56,88 +54,24 @@ namespace ProductionMan.Desktop
         }
 
 
-        private void WireupEvent(User user)
+        private void WireupEvent(Domain.Security.User user)
         {
             user.PropertyChanged -= UserOnPropertyChanged;
             user.PropertyChanged += UserOnPropertyChanged;
         }
 
 
-        private BaseContentSelector<User.LoginStates> CreateLoginPageSelector(UserControl loginContent, UserControl errorContent, UserControl signingInContent, UserControl signedInContent)
-        {
-            var contentSelector = new BaseContentSelector<User.LoginStates>();
-            contentSelector.AddContent(User.LoginStates.NeverSignedIn, loginContent);
-            contentSelector.AddContent(User.LoginStates.IncorrectCredentials, errorContent);
-            contentSelector.AddContent(User.LoginStates.Error, errorContent);
-            contentSelector.AddContent(User.LoginStates.SigningIn, signingInContent);
-            contentSelector.AddContent(User.LoginStates.SignedIn, signedInContent);
-
-            return contentSelector;
-        }
-
-
-        private UserControl CreateLoginPage(User user)
-        {
-            return new Login
-            {
-                DataContext = new LoginViewModel
-                {
-                    LoginCommand = _commandFactory.CreateLoginCommand(user),
-                    ExitCommand = _commandFactory.CreateExitCommand()
-                }
-            };
-        }
-
-
-        private UserControl CreateLoginLoadinPage()
-        {
-            return new ProgressControl
-            {
-                DataContext = new ProgressControlViewModel
-                {
-                    Message = Localized.Resources.LoadinMessage,
-                    ExitCommand = _commandFactory.CreateExitCommand()
-                }
-            };
-        }
-
-
-        private UserControl CreateLoginProgressPage()
-        {
-            return new ProgressControl
-            {
-                DataContext = new ProgressControlViewModel
-                {
-                    Message = Localized.Resources.SigningInMessage,
-                    ExitCommand = _commandFactory.CreateExitCommand()
-                }
-            };
-        }
-
-
-        private UserControl CreateLoginStatusMessagePage(User user)
-        {
-            return new StatusMessage
-            {
-                DataContext = new StatusMessageViewModel(user)
-                {
-                    ExitCommand = _commandFactory.CreateExitCommand(),
-                    RetryLoginCommand = _commandFactory.CreateRetryLoginCommand(user)
-                }
-            };
-        }
-
-
-        private void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.NameIs("LoginStatus"))
             {
-                var user = sender as User;
+                var user = sender as Domain.Security.User;
                 if (user != null)
                 {
-                    if (user.LoginStatus == User.LoginStates.SignedIn)
+                    if (user.LoginStatus == Domain.Security.User.LoginStates.SignedIn)
                     {
-                        DisplayMainWindow(user);
+                        await DisplayMainWindow(user);
+                        _loginWindow.Close();
                     }
                 }
             }
@@ -147,40 +81,36 @@ namespace ProductionMan.Desktop
         #endregion Login
 
 
-        private void DisplayMainWindow(User user)
+        private async Task DisplayMainWindow(Domain.Security.User user)
         {
-            var tabs = new ObservableCollection<TabItemViewModel>
-            {
-                new TabItemViewModel {HeaderLabel = "Users", HeaderIcon = "User", PageTitle = "Mangage Users"},
-                new TabItemViewModel {HeaderLabel = "Permissions", HeaderIcon = "", PageTitle = "Edit Permissions"},
-                new TabItemViewModel {HeaderLabel = "Materials", HeaderIcon = "Package", PageTitle = "Edit Materials"},
-                new TabItemViewModel {HeaderLabel = "Processes", HeaderIcon = "Process", PageTitle = "Manage Processes"},
-                new TabItemViewModel {HeaderLabel = "Stores", HeaderIcon = "Stores", PageTitle = "Manage Stores"},
-                new TabItemViewModel {HeaderLabel = "Settings", HeaderIcon = "Settings", PageTitle = "Settings"},
-            };
+            var windowSelector = 
+                new MainWindowSelector(_membershipService, _commandFactory);
 
-            var mainContentSelector = new BaseContentSelector<TabItemViewModel>();
-            mainContentSelector.AddContent(tabs[0], new UserManager());
-            mainContentSelector.AddContent(tabs[1], new UserControl());
-            mainContentSelector.AddContent(tabs[2], new UserControl());
-            mainContentSelector.AddContent(tabs[3], new UserControl());
-            mainContentSelector.AddContent(tabs[4], new UserControl());
-            mainContentSelector.AddContent(tabs[5], new UserControl());
+            var result = await windowSelector.CreateContent();
 
+            if (result.CallStatusCode != HttpStatusCode.OK) return;
+
+            CreateMainWindow(
+                windowSelector,
+                new LogonBoxViewModel { User = user },
+                windowSelector.Tabs).Show();
+        }
+
+
+        private Window CreateMainWindow(MainWindowSelector windowSelector, LogonBoxViewModel logonBoxViewModel, ObservableCollection<TabItemViewModel> tabsViewModel)
+        {
             var wnd = new MainWindow
             {
                 DataContext = new MainWindowViewModel
                 {
-                    Tabs = tabs,
-                    LogonBoxModel = new LogonBoxViewModel { User = user},
-                    ActiveContentSelector = mainContentSelector,
-                    SelectedItem = tabs[0]
+                    Tabs = tabsViewModel,
+                    LogonBoxModel = logonBoxViewModel,
+                    ActiveContentSelector = windowSelector,
+                    SelectedItem = tabsViewModel[0]
                 }
             };
 
-            wnd.Show();
-
-            _loginWindow.Close();
+            return wnd;
         }
     }
 }

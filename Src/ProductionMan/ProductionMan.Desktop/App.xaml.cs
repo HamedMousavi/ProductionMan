@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Threading;
+using ProductionMan.Domain.WebServices;
 
 
 namespace ProductionMan.Desktop
@@ -17,9 +18,6 @@ namespace ProductionMan.Desktop
     public partial class App
     {
 
-        private Domain.Security.User _user;
-        private WindowManager _windowManager;
-        private CommandFactory _commandFactory;
         private ILog _logger;
 
 
@@ -31,12 +29,6 @@ namespace ProductionMan.Desktop
             SetupGlobalExceptionHandlers();
 
             SetupLanguage();
-
-            SetupSecurity();
-
-            SetupCommandFactory();
-
-            SetupWindowManager();
 
             StartApplicationWindow();
         }
@@ -70,24 +62,6 @@ namespace ProductionMan.Desktop
         }
 
 
-        private void SetupSecurity()
-        {
-            _user = new Domain.Security.User();
-        }
-
-
-        private void SetupCommandFactory()
-        {
-            _commandFactory = new CommandFactory();
-        }
-
-
-        private void SetupWindowManager()
-        {
-            _windowManager = new WindowManager(_commandFactory);
-        }
-
-
         private void SetupLanguage()
         {
             //var culture = new CultureInfo("en-US");
@@ -103,7 +77,10 @@ namespace ProductionMan.Desktop
 
         private void StartApplicationWindow()
         {
-            _windowManager.DisplayLoginWindow(_user);
+            var membershipService = new Membership();
+
+            new WindowManager(new CommandFactory(), membershipService).
+                DisplayLoginWindow(new Domain.Security.User(membershipService));
         }
     }
 }

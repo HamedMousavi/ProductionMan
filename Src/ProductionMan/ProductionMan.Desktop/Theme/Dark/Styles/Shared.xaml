@@ -11,6 +11,16 @@
         <Setter Property="Cursor" Value="Hand" />
     </Style>
 
+    <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Foreground" Value="{StaticResource TextColorWhite}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Background" Value="{StaticResource ButtonDeleteColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonDeleteBorderColor}" />
+        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
     <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Foreground" Value="{StaticResource TextColorWhite}" />
         <Setter Property="FontWeight" Value="Bold" />

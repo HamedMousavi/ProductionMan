@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading;
 
 
@@ -22,19 +21,12 @@ namespace ProductionMan.Domain.WebServices
         private const string EnglishLanguageName = "en-US";
 
         private List<StringWithQualityHeaderValue> _languages;
-        protected AuthenticationHeaderValue Credentials;
+
+        public IServiceCredentialProvider ServiceCredentialProvider { get; set; }
 
 
-        //public WebServiceBase()
-        //{
-        //}
-
-
-        public void SetCredentials(string username, string password)
+        public WebServiceBase()
         {
-            Credentials = new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password))));
-
             // UNDONE: UPON APP LANGUAGE CHANGE, REGENERATE THIS
             SetupLanguages();
         }
@@ -55,7 +47,7 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        protected void PrepareHeaders(HttpClient client, bool setCredentials)
+        protected void PrepareHeaders(HttpClient client)
         {
             client.BaseAddress = _baseAddress;
 
@@ -78,9 +70,9 @@ namespace ProductionMan.Domain.WebServices
             client.DefaultRequestHeaders.Add(VersionHeaderName, ApiVersionString);
 
             // Credentials
-            if (setCredentials)
+            if (ServiceCredentialProvider != null)
             {
-                client.DefaultRequestHeaders.Authorization = Credentials;
+                ServiceCredentialProvider.AttachCredentials(client);
             }
         }
 

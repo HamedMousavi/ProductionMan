@@ -61,6 +61,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddNewItem {
+            get {
+                return ResourceManager.GetString("AddNewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LTR.
         /// </summary>
         public static string AppDir {
@@ -75,6 +84,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string AppTitle {
             get {
                 return ResourceManager.GetString("AppTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteItem {
+            get {
+                return ResourceManager.GetString("DeleteItem", resourceCulture);
             }
         }
         
@@ -115,6 +133,69 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string PageTitleAbout {
+            get {
+                return ResourceManager.GetString("PageTitleAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Materials.
+        /// </summary>
+        public static string PageTitleMaterials {
+            get {
+                return ResourceManager.GetString("PageTitleMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Permissions.
+        /// </summary>
+        public static string PageTitlePermissions {
+            get {
+                return ResourceManager.GetString("PageTitlePermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Processes.
+        /// </summary>
+        public static string PageTitleProcesses {
+            get {
+                return ResourceManager.GetString("PageTitleProcesses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Settings.
+        /// </summary>
+        public static string PageTitleSettings {
+            get {
+                return ResourceManager.GetString("PageTitleSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Stores.
+        /// </summary>
+        public static string PageTitleStores {
+            get {
+                return ResourceManager.GetString("PageTitleStores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mangage Users.
+        /// </summary>
+        public static string PageTitleUsers {
+            get {
+                return ResourceManager.GetString("PageTitleUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -129,6 +210,69 @@ namespace ProductionMan.Desktop.Localized {
         public static string SigningInMessage {
             get {
                 return ResourceManager.GetString("SigningInMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string TabTitleAbout {
+            get {
+                return ResourceManager.GetString("TabTitleAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materials.
+        /// </summary>
+        public static string TabTitleMaterials {
+            get {
+                return ResourceManager.GetString("TabTitleMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permissions.
+        /// </summary>
+        public static string TabTitlePermissions {
+            get {
+                return ResourceManager.GetString("TabTitlePermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processes.
+        /// </summary>
+        public static string TabTitleProcesses {
+            get {
+                return ResourceManager.GetString("TabTitleProcesses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string TabTitleSettings {
+            get {
+                return ResourceManager.GetString("TabTitleSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stores.
+        /// </summary>
+        public static string TabTitleStores {
+            get {
+                return ResourceManager.GetString("TabTitleStores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string TabTitleUsers {
+            get {
+                return ResourceManager.GetString("TabTitleUsers", resourceCulture);
             }
         }
         

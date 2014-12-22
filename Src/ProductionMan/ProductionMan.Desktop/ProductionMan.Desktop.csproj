@@ -61,19 +61,32 @@
     <Compile Include="Controls\Authentication\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Authentication\LoginWindowFactory.cs" />
+    <Compile Include="Controls\Authentication\LoginWindowSelector.cs" />
     <Compile Include="Controls\Authentication\StatusMessage.xaml.cs">
       <DependentUpon>StatusMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Authentication\StatusMessageViewModel.cs" />
     <Compile Include="Controls\BaseContentSelector.cs" />
+    <Compile Include="Controls\MainParts\BaseListViewModel.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\IControlFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\UserManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
+      <DependentUpon>GenericListManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\MainWindowSelector.cs" />
     <Compile Include="Controls\MainParts\LogonBox.xaml.cs">
       <DependentUpon>LogonBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainParts\LogonBoxViewModel.cs" />
+    <Compile Include="Controls\MainParts\MaterialManager.xaml.cs">
+      <DependentUpon>MaterialManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MainParts\TabItemViewModel.cs" />
     <Compile Include="Controls\MainParts\UserManager.xaml.cs">
       <DependentUpon>UserManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainParts\UserManagerViewModel.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
     </Compile>
@@ -95,7 +108,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\MainParts\GenericListManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MainParts\LogonBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainParts\MaterialManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,9 +223,17 @@
       <Project>{33b2185e-ec7e-4407-85c7-4504c5573633}</Project>
       <Name>ProductionMan.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj">
+      <Project>{9879d6ff-5a77-4e0e-914f-b24e80521091}</Project>
+      <Name>ProductionMan.Data.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProductionMan.Domain\ProductionMan.Domain.csproj">
       <Project>{85041feb-d27a-4dc6-97ae-fb5a77b1eb77}</Project>
       <Name>ProductionMan.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProductionMan.Web.Api.Common\ProductionMan.Web.Api.Common.csproj">
+      <Project>{e95842d5-99af-4110-9399-82cf9b123a47}</Project>
+      <Name>ProductionMan.Web.Api.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

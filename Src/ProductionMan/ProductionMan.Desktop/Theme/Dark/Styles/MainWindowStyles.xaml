@@ -187,4 +187,42 @@
         <Setter Property="Margin" Value="3,0,3,3" />
     </Style>
 
+
+    <Style x:Key="CleanDataGrid" TargetType="DataGrid">
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource BkDark}" />
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{StaticResource BkDarkest}" />
+        <Setter Property="Background" Value="{StaticResource BkLight}" />
+    </Style>
+
+    <Style x:Key="CleanDataGridRowFocusColor" TargetType="{x:Type DataGridRow}">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="False" />
+                    <Condition Property="IsSelected" Value="True" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="(DataGridRow.Foreground)" To="Khaki" Duration="0:0:1"></ColorAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="CleanDataGridCenterVAlign" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

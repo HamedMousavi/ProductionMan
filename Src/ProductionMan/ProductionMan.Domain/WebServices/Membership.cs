@@ -20,7 +20,7 @@ namespace ProductionMan.Domain.WebServices
 
             using (var client = new HttpClient())
             {
-                PrepareHeaders(client, true);
+                PrepareHeaders(client);
 
                 var response = await client.GetAsync(PermissionsUrl);
                 result.CallStatusCode = response.StatusCode;
@@ -40,7 +40,7 @@ namespace ProductionMan.Domain.WebServices
             var result = new ServiceCallResult<User>();
             using (var client = new HttpClient())
             {
-                PrepareHeaders(client, true);
+                PrepareHeaders(client);
 
                 var response = await client.GetAsync(CurrentUserUrl);
                 result.CallStatusCode = response.StatusCode;
@@ -52,6 +52,13 @@ namespace ProductionMan.Domain.WebServices
             }
 
             return result;
+        }
+
+
+        public Task<ServiceCallResult<List<User>>> GetUsers()
+        {
+            ServiceCallResult<List<User>> result = null;
+            return Task.FromResult(result);
         }
     }
 }
