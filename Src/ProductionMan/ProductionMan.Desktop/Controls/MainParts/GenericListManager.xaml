@@ -11,16 +11,22 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Style="{StaticResource ListManagerToolbar}">
-            <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.AddNewItem}" Command="{Binding AddCommand}" />
-            <Button Style="{StaticResource DeleteButton}" Content="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" />
-        </StackPanel>
+
         <DataGrid Grid.Row="1"
             IsReadOnly="True" CanUserAddRows="False"
             SelectionMode="Single" SelectionUnit="FullRow" 
-            AutoGenerateColumns="False" Margin="0"
+            AutoGenerateColumns="True" Margin="0"
             Style="{StaticResource CleanDataGrid}" CellStyle="{StaticResource CleanDataGridCenterVAlign}"
             ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+            <DataGrid.Resources>
+                <ResourceDictionary>
+                    <!--<SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="NavajoWhite"/>-->
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="NavajoWhite"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="NavajoWhite"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                </ResourceDictionary>
+            </DataGrid.Resources>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <!--<EventSetter Event="RequestBringIntoView" Handler="DisableScrollEventHandler"></EventSetter>-->
@@ -31,6 +37,13 @@
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static localized:Resources.AddNewItem}" Command="{Binding AddCommand}" />
+                    <MenuItem Header="{x:Static localized:Resources.EditItem}" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItem}" />
+                    <MenuItem Header="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </UserControl>

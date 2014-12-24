@@ -1,16 +1,12 @@
-﻿using ProductionMan.Common;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts
 {
 
-    public abstract class BaseListViewModel<T> : NotifyPropertyChanged
+    public abstract class BaseListViewModel<T> : GenericListToolbarViewModel
     {
 
-        private ICommand _addCommand;
-        private ICommand _deleteCommand;
         private ObservableCollection<T> _items;
         private T _selectedItem;
 
@@ -34,31 +30,6 @@ namespace ProductionMan.Desktop.Controls.MainParts
             {
                 _selectedItem = value;
                 FirePropertyChanged(this, "SelectedItem");
-
-            }
-        }
-
-
-        public ICommand AddCommand
-        {
-            get { return _addCommand; }
-            set
-            {
-                _addCommand = value;
-                FirePropertyChanged(this, "AddCommand");
-
-            }
-        }
-
-
-        public ICommand DeleteCommand
-        {
-            get { return _deleteCommand; }
-            set
-            {
-                _deleteCommand = value;
-                FirePropertyChanged(this, "DeleteCommand");
-
             }
         }
     }

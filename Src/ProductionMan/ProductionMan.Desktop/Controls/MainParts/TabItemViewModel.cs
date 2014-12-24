@@ -1,14 +1,17 @@
 ﻿using ProductionMan.Common;
 
+
 namespace ProductionMan.Desktop.Controls.MainParts
 {
 
     public class TabItemViewModel : NotifyPropertyChanged
     {
+
         private string _headerLabel;
         private string _pageTitle;
         private string _headerIcon;
         private bool _isSelected;
+        private object _toolbar;
 
 
         public string HeaderLabel
@@ -40,6 +43,17 @@ namespace ProductionMan.Desktop.Controls.MainParts
             {
                 _pageTitle = value;
                 FirePropertyChanged(this, "PageTitle");
+            }
+        }
+
+
+        public object Toolbar
+        {
+            get { return _toolbar; }
+            set
+            {
+                _toolbar = value;
+                FirePropertyChanged(this, "Toolbar");
             }
         }
 

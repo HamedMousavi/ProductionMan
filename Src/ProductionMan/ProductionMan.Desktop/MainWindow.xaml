@@ -60,9 +60,16 @@
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate DataType="mainParts:TabItemViewModel">
-                        <StackPanel Orientation="Vertical">
-                            <Label Style="{StaticResource MainTabPageLabel}" Content="{Binding PageTitle}" />
-                        </StackPanel>
+                        <Border Style="{StaticResource MainTabPageToolbarBorder}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Style="{StaticResource MainTabPageLabel}" Content="{Binding PageTitle}" />
+                                <ContentControl Grid.Column="1" HorizontalAlignment="Right" Content="{Binding Toolbar}"/>
+                            </Grid>
+                        </Border>
                         <!--<views:ItemView/>-->
                     </DataTemplate>
                 </TabControl.ContentTemplate>

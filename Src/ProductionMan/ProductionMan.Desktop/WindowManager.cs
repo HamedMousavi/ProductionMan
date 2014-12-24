@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using ProductionMan.Common;
+using ProductionMan.Desktop.Commands;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
@@ -14,7 +15,7 @@ using ProductionMan.Domain.WebServices;
 namespace ProductionMan.Desktop
 {
 
-    public class WindowManager
+    public class WindowManager : IUserWindowManager
     {
 
         private readonly CommandFactory _commandFactory;
@@ -89,7 +90,8 @@ namespace ProductionMan.Desktop
         private async Task DisplayMainWindow(Domain.Security.User user)
         {
             var windowSelector = 
-                new MainWindowSelector(_membershipService, _commandFactory, _languageService);
+                new MainWindowSelector(_membershipService,
+                    new MainWindowFactory(_membershipService, _commandFactory, _languageService, this));
 
             var result = await windowSelector.CreateContent();
 
@@ -116,6 +118,21 @@ namespace ProductionMan.Desktop
             };
 
             return wnd;
+        }
+
+        public void DisplayUserEditorWindow(UserEditorWindowViewModel viewModel)
+        {
+            
+        }
+
+        public bool RequestPermissionToDelete(UserEditorWindowViewModel viewModel)
+        {
+            return true;
+        }
+
+        public void DisplayUserAddWindow(UserEditorWindowViewModel viewModel)
+        {
+            
         }
     }
 }

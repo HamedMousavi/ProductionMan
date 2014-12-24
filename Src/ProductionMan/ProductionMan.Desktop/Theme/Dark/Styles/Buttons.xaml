@@ -34,7 +34,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border CornerRadius="1" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
                         <Border.Effect>
-                            <DropShadowEffect ShadowDepth="0" BlurRadius="6" />
+                            <DropShadowEffect ShadowDepth="0" BlurRadius="4" />
                         </Border.Effect>
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>

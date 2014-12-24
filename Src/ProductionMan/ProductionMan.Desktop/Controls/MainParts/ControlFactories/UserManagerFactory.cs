@@ -12,13 +12,13 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
     {
         
         private readonly Membership _membershipService;
-        private readonly CommandFactory _commandFactory;
+        private readonly UserManagerViewModel _viewModel;
 
 
-        public UserManagerFactory(Membership membershipService, CommandFactory commandFactory)
+        public UserManagerFactory(Membership membershipService, UserManagerViewModel viewModel)
         {
             _membershipService = membershipService;
-            _commandFactory = commandFactory;
+            _viewModel = viewModel;
         }
 
 
@@ -34,15 +34,10 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
                 }
             }
 
+            _viewModel.Items = users;
             return new GenericListManager
             {
-                DataContext = new UserManagerViewModel
-                {
-                    Items = users,
-                    AddCommand = _commandFactory.CreateAddUserCommand(),
-                    DeleteCommand = _commandFactory.CreateDeleteUserCommand(),
-                    ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand()
-                }
+                DataContext = _viewModel
             };
         }
 
@@ -53,7 +48,8 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
             {
                 HeaderLabel = Localized.Resources.TabTitleUsers,
                 HeaderIcon = "User",
-                PageTitle = Localized.Resources.PageTitleUsers
+                PageTitle = Localized.Resources.PageTitleUsers,
+                Toolbar = new GenericListToolbar { DataContext = _viewModel }
             };
         }
     }

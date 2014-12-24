@@ -8,41 +8,36 @@ using ProductionMan.Web.Api.Common.Models;
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
 
-    class StoreManagerFactory : IControlFactory
+    public class StoreManagerFactory : IControlFactory
     {
-
+        
         private readonly Membership _membershipService;
-        private readonly CommandFactory _commandFactory;
+        private StoreManagerViewModel _viewModel;
 
 
-        public StoreManagerFactory(Membership membershipService, CommandFactory commandFactory)
+        public StoreManagerFactory(Membership membershipService, StoreManagerViewModel viewModel)
         {
             _membershipService = membershipService;
-            _commandFactory = commandFactory;
+            _viewModel = viewModel;
         }
 
 
         public async Task<UserControl> CreateUserControl()
         {
-            var response = await _membershipService.GetUsers();
-            var users = new ObservableCollection<User>();
-            if (response != null)
-            {
-                foreach (var user in response.Results)
-                {
-                    users.Add(user);
-                }
-            }
+            //var response = await _membershipService.GetUsers();
+            //var users = new ObservableCollection<User>();
+            //if (response != null)
+            //{
+            //    foreach (var user in response.Results)
+            //    {
+            //        users.Add(user);
+            //    }
+            //}
 
+            //_viewModel.Items = users;
             return new GenericListManager
             {
-                DataContext = new UserManagerViewModel
-                {
-                    Items = users,
-                    AddCommand = _commandFactory.CreateAddUserCommand(),
-                    DeleteCommand = _commandFactory.CreateDeleteUserCommand(),
-                    ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand()
-                }
+                DataContext = _viewModel
             };
         }
 
@@ -53,7 +48,8 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
             {
                 HeaderLabel = Localized.Resources.TabTitleStores,
                 HeaderIcon = "Stores",
-                PageTitle = Localized.Resources.PageTitleStores
+                PageTitle = Localized.Resources.PageTitleStores,
+                Toolbar = new GenericListToolbar { DataContext = _viewModel }
             };
         }
     }

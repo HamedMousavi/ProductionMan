@@ -1,6 +1,4 @@
-﻿using ProductionMan.Desktop.Services;
-using ProductionMan.Domain.WebServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Controls;
 
 
@@ -9,23 +7,19 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 
     class SettingsManagerFactory : IControlFactory
     {
-        private readonly ILanguageService _languageService;
-        private readonly CommandFactory _commandFactory;
+
+        private readonly SettingsPageViewModel _viewModel;
 
 
-        public SettingsManagerFactory(ILanguageService languageService, CommandFactory commandFactory)
+        public SettingsManagerFactory(SettingsPageViewModel viewModel)
         {
-            _languageService = languageService;
-            _commandFactory = commandFactory;
+            _viewModel = viewModel;
         }
 
 
         public async Task<UserControl> CreateUserControl()
         {
-            return new SettingsPage()
-            {
-                DataContext = new SettingsPageViewModel(_languageService)
-            };
+            return new SettingsPage {DataContext = _viewModel};
         }
 
 

@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Controls;
-using ProductionMan.Desktop.Commands;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
@@ -9,12 +8,12 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
     class AboutUsFactory : IControlFactory
     {
 
-        private readonly CommandFactory _commandFactory;
+        private readonly AboutPageViewModel _viewModel;
 
 
-        public AboutUsFactory(CommandFactory commandFactory)
+        public AboutUsFactory(AboutPageViewModel viewModel)
         {
-            _commandFactory = commandFactory;
+            _viewModel = viewModel;
         }
 
 
@@ -22,13 +21,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
         public async Task<UserControl> CreateUserControl()
 #pragma warning restore 1998
         {
-            return new AboutPage
-            {
-                DataContext = new AboutPageViewModel
-                {
-                    OpenUrlCommand = new NavigateToWebsiteCommand()
-                }
-            };
+            return new AboutPage {DataContext = _viewModel};
         }
 
 

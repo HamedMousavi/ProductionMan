@@ -147,6 +147,9 @@
   <data name="DeleteItem" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>

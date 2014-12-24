@@ -1,8 +1,7 @@
-﻿using ProductionMan.Web.Api.Common.Models;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using ProductionMan.Web.Api.Common.Models;
 
-
-namespace ProductionMan.Desktop.Controls.MainParts
+namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
 
     public class UserManagerViewModel : BaseListViewModel<User>

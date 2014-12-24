@@ -8,41 +8,37 @@ using System.Windows.Controls;
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
 
-    class ProcessManagerFactory : IControlFactory
+    public class ProcessManagerFactory : IControlFactory
     {
 
+        
         private readonly Membership _membershipService;
-        private readonly CommandFactory _commandFactory;
+        private ProcessManagerViewModel _viewModel;
 
 
-        public ProcessManagerFactory(Membership membershipService, CommandFactory commandFactory)
+        public ProcessManagerFactory(Membership membershipService, ProcessManagerViewModel viewModel)
         {
             _membershipService = membershipService;
-            _commandFactory = commandFactory;
+            _viewModel = viewModel;
         }
 
 
         public async Task<UserControl> CreateUserControl()
         {
-            var response = await _membershipService.GetUsers();
-            var users = new ObservableCollection<User>();
-            if (response != null)
-            {
-                foreach (var user in response.Results)
-                {
-                    users.Add(user);
-                }
-            }
+            //var response = await _membershipService.GetUsers();
+            //var users = new ObservableCollection<User>();
+            //if (response != null)
+            //{
+            //    foreach (var user in response.Results)
+            //    {
+            //        users.Add(user);
+            //    }
+            //}
 
+            //_viewModel.Items = users;
             return new GenericListManager
             {
-                DataContext = new UserManagerViewModel
-                {
-                    Items = users,
-                    AddCommand = _commandFactory.CreateAddUserCommand(),
-                    DeleteCommand = _commandFactory.CreateDeleteUserCommand(),
-                    ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand()
-                }
+                DataContext = _viewModel
             };
         }
 
@@ -53,7 +49,8 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
             {
                 HeaderLabel = Localized.Resources.TabTitleProcesses,
                 HeaderIcon = "Process",
-                PageTitle = Localized.Resources.PageTitleProcesses
+                PageTitle = Localized.Resources.PageTitleProcesses,
+                Toolbar = new GenericListToolbar { DataContext = _viewModel }
             };
         }
     }

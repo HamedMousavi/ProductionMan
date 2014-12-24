@@ -85,12 +85,9 @@ namespace ProductionMan.Desktop
         {
             var membershipService = new Membership();
             var statusService = new DefaultStatusService(_languageService);
+            var commandFactory = new CommandFactory();
 
-            new WindowManager(
-                new CommandFactory(), 
-                membershipService, 
-                _languageService, 
-                statusService).
+            new WindowManager(commandFactory, membershipService, _languageService, statusService).
                     DisplayLoginWindow(new Domain.Security.User(membershipService));
 
             SetStatus(statusService);

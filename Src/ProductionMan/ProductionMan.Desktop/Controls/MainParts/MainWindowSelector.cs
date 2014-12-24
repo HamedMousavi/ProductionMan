@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
-using ProductionMan.Desktop.Services;
+﻿using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts
@@ -15,16 +14,14 @@ namespace ProductionMan.Desktop.Controls.MainParts
 
         private ObservableCollection<TabItemViewModel> _tabs;
         private readonly Membership _membershipService;
+        private readonly MainWindowFactory _windowFactory;
         private Dictionary<string, IControlFactory> _controlFactories;
-        private readonly CommandFactory _commandFactory;
-        private readonly ILanguageService _languageService;
 
 
-        public MainWindowSelector(Membership membershipService, CommandFactory commandFactory, ILanguageService languageService)
+        public MainWindowSelector(Membership membershipService, MainWindowFactory windowFactory)
         {
             _membershipService = membershipService;
-            _commandFactory = commandFactory;
-            _languageService = languageService;
+            _windowFactory = windowFactory;
 
             CreateControlFactories();
         }
@@ -34,13 +31,13 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             _controlFactories = new Dictionary<string, IControlFactory>
             {
-                {"Users", new UserManagerFactory(_membershipService, _commandFactory)},
-                {"Permissions", new PermissionManagerFactory(_membershipService, _commandFactory)},
-                {"Materials", new MaterialManagerFactory(_membershipService, _commandFactory)},
-                {"Processes", new ProcessManagerFactory(_membershipService, _commandFactory)},
-                {"Stores", new StoreManagerFactory(_membershipService, _commandFactory)},
-                {"Settings", new SettingsManagerFactory(_languageService, _commandFactory)},
-                {"About", new AboutUsFactory(_commandFactory)}
+                {"Users",       _windowFactory.CreateUserManagerFactory()       },
+                {"Permissions", _windowFactory.CreatePermissionManagerFactory() },
+                {"Materials",   _windowFactory.CreateMaterialManagerFactory()   },
+                {"Processes",   _windowFactory.CreateProcessManagerFactory()    },
+                {"Stores",      _windowFactory.CreateStoreManagerFactory()      },
+                {"Settings",    _windowFactory.CreateSettingsManagerFactory()   },
+                {"About",       _windowFactory.CreateAboutUsFactory()           },
             };
         }
 

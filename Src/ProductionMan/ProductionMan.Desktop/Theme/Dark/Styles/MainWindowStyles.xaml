@@ -135,16 +135,23 @@
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
     </Style>
 
-    <Style x:Key="MainTabPageLabel" TargetType="Label">
+    <Style x:Key="MainTabPageToolbarBorder" TargetType="Border">
         <Setter Property="BorderThickness" Value="1,1,1,0" />
         <Setter Property="BorderBrush" Value="{StaticResource BorderLight}" />
         <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="Background" Value="{StaticResource BkDark}" />
+        <Setter Property="Height" Value="42" />
+    </Style>
+
+    <Style x:Key="MainTabPageLabel" TargetType="Label">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="8,0,8,0" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{StaticResource TextColorGold}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Height" Value="40"></Setter>
     </Style>
 
     <Style x:Key="MainTabItemPanel" TargetType="StackPanel">
@@ -189,28 +196,11 @@
 
 
     <Style x:Key="CleanDataGrid" TargetType="DataGrid">
-        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource BkDark}" />
-        <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{StaticResource BkDarkest}" />
-        <Setter Property="Background" Value="{StaticResource BkLight}" />
-    </Style>
-
-    <Style x:Key="CleanDataGridRowFocusColor" TargetType="{x:Type DataGridRow}">
-        <Style.Triggers>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsFocused" Value="False" />
-                    <Condition Property="IsSelected" Value="True" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation Storyboard.TargetProperty="(DataGridRow.Foreground)" To="Khaki" Duration="0:0:1"></ColorAnimation>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </MultiTrigger.EnterActions>
-            </MultiTrigger>
-        </Style.Triggers>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource WindowBkColorLight}" />
+        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource BkLight}" />
+        <Setter Property="BorderBrush" Value="{StaticResource WindowBkColorLight}" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="RowHeight" Value="30" />
     </Style>
 
     <Style x:Key="CleanDataGridCenterVAlign" TargetType="{x:Type DataGridCell}">
