@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ProductionMan.Desktop.Controls.MainParts
 {
     /// <summary>
-    /// Interaction logic for MaterialManager.xaml
+    /// Interaction logic for AboutPage.xaml
     /// </summary>
-    public partial class MaterialManager : UserControl
+    public partial class AboutPage : UserControl
     {
-        public MaterialManager()
+        public AboutPage()
         {
             InitializeComponent();
         }

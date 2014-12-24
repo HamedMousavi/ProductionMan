@@ -61,6 +61,60 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to © 2014 OrderedSoft. All rights reserved..
+        /// </summary>
+        public static string AboutAppCopyright {
+            get {
+                return ResourceManager.GetString("AboutAppCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HamedMosavi@gmail.com.
+        /// </summary>
+        public static string AboutAppEmailAddress {
+            get {
+                return ResourceManager.GetString("AboutAppEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact:.
+        /// </summary>
+        public static string AboutAppEmailAddressLabel {
+            get {
+                return ResourceManager.GetString("AboutAppEmailAddressLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProMan.
+        /// </summary>
+        public static string AboutAppName {
+            get {
+                return ResourceManager.GetString("AboutAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Name:.
+        /// </summary>
+        public static string AboutAppNameLabel {
+            get {
+                return ResourceManager.GetString("AboutAppNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string AboutAppVersionLabel {
+            get {
+                return ResourceManager.GetString("AboutAppVersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AddNewItem {

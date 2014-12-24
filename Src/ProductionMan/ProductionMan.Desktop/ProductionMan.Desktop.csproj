@@ -58,6 +58,7 @@
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LoginRetryCommand.cs" />
+    <Compile Include="Commands\NavigateToWebsiteCommand.cs" />
     <Compile Include="Controls\Authentication\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -68,8 +69,16 @@
     </Compile>
     <Compile Include="Controls\Authentication\StatusMessageViewModel.cs" />
     <Compile Include="Controls\BaseContentSelector.cs" />
+    <Compile Include="Controls\MainParts\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\AboutPageViewModel.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\AboutUsFactory.cs" />
     <Compile Include="Controls\MainParts\BaseListViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\IControlFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\MaterialManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\ProcessManagerFactory.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\UserManagerFactory.cs" />
     <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
       <DependentUpon>GenericListManager.xaml</DependentUpon>
@@ -79,13 +88,9 @@
       <DependentUpon>LogonBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainParts\LogonBoxViewModel.cs" />
-    <Compile Include="Controls\MainParts\MaterialManager.xaml.cs">
-      <DependentUpon>MaterialManager.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\MainParts\ControlFactories\SettingsManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\StoreManagerFactory.cs" />
     <Compile Include="Controls\MainParts\TabItemViewModel.cs" />
-    <Compile Include="Controls\MainParts\UserManager.xaml.cs">
-      <DependentUpon>UserManager.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MainParts\UserManagerViewModel.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
@@ -108,19 +113,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\MainParts\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MainParts\GenericListManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainParts\LogonBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MainParts\MaterialManager.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MainParts\UserManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,10 +238,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Theme\Dark\Pictures\cross-circle.png" />
-    <Resource Include="Theme\Dark\Pictures\exclamation.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Theme\Dark\Pictures\Password.png" />
     <Resource Include="Theme\Dark\Pictures\Username.png" />
   </ItemGroup>
@@ -258,6 +255,18 @@
     <Resource Include="Theme\Dark\Pictures\stores_on.png" />
     <Resource Include="Theme\Dark\Pictures\user_off.png" />
     <Resource Include="Theme\Dark\Pictures\user_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\info_off.png" />
+    <Resource Include="Theme\Dark\Pictures\tick_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\info_on.png" />
+    <Resource Include="Theme\Dark\Pictures\tick_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\error_large.png" />
+    <Resource Include="Theme\Dark\Pictures\exclamation_large.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

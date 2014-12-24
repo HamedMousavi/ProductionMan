@@ -11,6 +11,7 @@ namespace ProductionMan.Desktop.Controls.MainParts
 
     public class MainWindowSelector : BaseContentSelector<TabItemViewModel>
     {
+
         private ObservableCollection<TabItemViewModel> _tabs;
         private readonly Membership _membershipService;
         private Dictionary<string, IControlFactory> _controlFactories;
@@ -30,22 +31,15 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             _controlFactories = new Dictionary<string, IControlFactory>
             {
-                {"Users", new UserManagerFactory(_membershipService, _commandFactory)}
+                {"Users", new UserManagerFactory(_membershipService, _commandFactory)},
+                {"Permissions", new PermissionManagerFactory(_membershipService, _commandFactory)},
+                {"Materials", new MaterialManagerFactory(_membershipService, _commandFactory)},
+                {"Processes", new ProcessManagerFactory(_membershipService, _commandFactory)},
+                {"Stores", new StoreManagerFactory(_membershipService, _commandFactory)},
+                {"Settings", new SettingsManagerFactory(_membershipService, _commandFactory)},
+                {"About", new AboutUsFactory(_commandFactory)}
             };
         }
-
-        //private Dictionary<string, TabItemViewModel> CreateViewModels()
-        //{
-        //    var vireModelProtoTypes = new Dictionary<string, TabItemViewModel>();
-        //    vireModelProtoTypes.Add("Users", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitleUsers, HeaderIcon = "User", PageTitle = Localized.Resources.PageTitleUsers });
-        //    vireModelProtoTypes.Add("Permissions", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitlePermissions, HeaderIcon = "User", PageTitle = Localized.Resources.PageTitlePermissions });
-        //    vireModelProtoTypes.Add("Materials", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitleMaterials, HeaderIcon = "Package", PageTitle = Localized.Resources.PageTitleMaterials });
-        //    vireModelProtoTypes.Add("Processes", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitleProcesses, HeaderIcon = "Process", PageTitle = Localized.Resources.PageTitleProcesses });
-        //    vireModelProtoTypes.Add("Stores", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitleStores, HeaderIcon = "Stores", PageTitle = Localized.Resources.PageTitleStores });
-        //    vireModelProtoTypes.Add("Settings", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitleSettings, HeaderIcon = "Settings", PageTitle = Localized.Resources.PageTitleSettings });
-        //    vireModelProtoTypes.Add("About", new TabItemViewModel { HeaderLabel = Localized.Resources.TabTitleAbout, HeaderIcon = "User", PageTitle = Localized.Resources.PageTitleAbout });
-        //    return vireModelProtoTypes;
-        //}
 
 
         public ObservableCollection<TabItemViewModel> Tabs

@@ -11,7 +11,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Style="{StaticResource ListManagerToolbar}">
             <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.AddNewItem}" Command="{Binding AddCommand}" />
             <Button Style="{StaticResource DeleteButton}" Content="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" />
         </StackPanel>
@@ -34,5 +34,3 @@
         </DataGrid>
     </Grid>
 </UserControl>
-
-<!--Style="{StaticResource ListManagerToolbar}"-->

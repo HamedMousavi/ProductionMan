@@ -225,4 +225,9 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="ListManagerToolbar" TargetType="{x:Type StackPanel}">
+        <Setter Property="Margin" Value="8" />
+    </Style>
+
 </ResourceDictionary>

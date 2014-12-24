@@ -20,10 +20,17 @@
         </Grid.RowDefinitions>
         <TextBlock Margin="10" Style="{StaticResource LogoText}" Text="{x:Static localized:Resources.AppTitle}" />
         <Border Grid.Row="1" Background="{StaticResource WindowBkColorLight}" BorderThickness="1" BorderBrush="White">
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <Image Source="{Binding Path=LoginStatus, Converter={StaticResource LoginStatusIconConverter}}" Style="{StaticResource NonScaledImage}" VerticalAlignment="Top" />
-                <TextBlock Text="{Binding Path=LoginStatusMessage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-            </StackPanel>
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Path=LoginStatus, Converter={StaticResource LoginStatusIconConverter}}" Style="{StaticResource NonScaledImage}" VerticalAlignment="Top" />
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=LoginStatusMessage}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            </Grid>
         </Border>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,10,5,10">
             <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.LoginRetry}" Command="{Binding RetryLoginCommand}" />

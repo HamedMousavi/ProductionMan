@@ -26,12 +26,12 @@
     <!-- Buttons -->
     <SolidColorBrush x:Key="TextColorButton" Color="{StaticResource TextColorWhite}" />
     <LinearGradientBrush x:Key="ButtonAcceptColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#94d242" Offset="0" />
-        <GradientStop Color="#89c639" Offset="1" />
+        <GradientStop Color="#70c020" Offset="0" />
+        <GradientStop Color="#40a010" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="ButtonAcceptBorderColor" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#c4fb7b" Offset="0" />
-        <GradientStop Color="#89c639" Offset="1" />
+        <GradientStop Color="#b0e070" Offset="0" />
+        <GradientStop Color="#40a010" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="ButtonCancelColor" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#4e80c1" Offset="0" />

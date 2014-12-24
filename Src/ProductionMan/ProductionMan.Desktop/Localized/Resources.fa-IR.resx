@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAppCopyright" xml:space="preserve">
+    <value>زمستان 1393</value>
+  </data>
+  <data name="AboutAppEmailAddress" xml:space="preserve">
+    <value>HamedMosavi@gmail.com</value>
+  </data>
+  <data name="AboutAppEmailAddressLabel" xml:space="preserve">
+    <value>تماس:</value>
+  </data>
+  <data name="AboutAppName" xml:space="preserve">
+    <value>ProMan</value>
+  </data>
+  <data name="AboutAppNameLabel" xml:space="preserve">
+    <value>نام برنامه:</value>
+  </data>
+  <data name="AboutAppVersionLabel" xml:space="preserve">
+    <value>نسخه:</value>
+  </data>
   <data name="AddNewItem" xml:space="preserve">
     <value>افزودن</value>
   </data>
