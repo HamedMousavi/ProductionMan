@@ -1,12 +1,13 @@
 ﻿using log4net;
 using log4net.Config;
+using ProductionMan.Desktop.Services;
+using ProductionMan.Domain.Globalization;
+using ProductionMan.Domain.WebServices;
 using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
-using System.Windows.Markup;
 using System.Windows.Threading;
-using ProductionMan.Domain.WebServices;
 
 
 namespace ProductionMan.Desktop
@@ -19,6 +20,7 @@ namespace ProductionMan.Desktop
     {
 
         private ILog _logger;
+        private ILanguageService _languageService;
 
 
         private void StartApplication(object sender, StartupEventArgs e)
@@ -27,6 +29,8 @@ namespace ProductionMan.Desktop
             SetupLogger();
 
             SetupGlobalExceptionHandlers();
+
+            SharedApplicationServices.Instanse.SynchronizationContext = SynchronizationContext.Current;
 
             SetupLanguage();
 
@@ -49,6 +53,7 @@ namespace ProductionMan.Desktop
         }
 
 
+        #region GlobalExceptions
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             _logger.Error("Unhandled global", e.Exception);
@@ -60,18 +65,19 @@ namespace ProductionMan.Desktop
         {
             _logger.Error(e.ToString());
         }
+        #endregion GlobalExceptions
 
 
         private void SetupLanguage()
         {
-            var culture = new CultureInfo("en-US");
-            //var culture = new CultureInfo("fa-IR");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
+            var languages = new List<Language>
+            {
+                new Language {Id = 0, LocaleName = "en-US", Name = "English"},
+                new Language {Id = 1, LocaleName = "fa-IR", Name = "فارسی"},
+            };
 
-            FrameworkElement.LanguageProperty.OverrideMetadata(
-                typeof(FrameworkElement), new FrameworkPropertyMetadata(
-                XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+            _languageService = new DefaultLanguageService {Languages = languages};
+            _languageService.LoadDefaultLanguage(languages[1], languages[0]);
         }
 
 
@@ -79,7 +85,7 @@ namespace ProductionMan.Desktop
         {
             var membershipService = new Membership();
 
-            new WindowManager(new CommandFactory(), membershipService).
+            new WindowManager(new CommandFactory(), membershipService, _languageService).
                 DisplayLoginWindow(new Domain.Security.User(membershipService));
         }
     }

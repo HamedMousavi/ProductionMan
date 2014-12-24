@@ -21,11 +21,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="25" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  Content="{x:Static localized:Resources.AboutAppNameLabel}" />
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TitleLabel}"  Content="{x:Static localized:Resources.AboutAppNameLabel}" />
         <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"  FontWeight="Bold" FontSize="24" Content="{x:Static localized:Resources.AboutAppName}" />
-        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"  Content="{x:Static localized:Resources.AboutAppVersionLabel}" />
+        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TitleLabel}"  Content="{x:Static localized:Resources.AboutAppVersionLabel}" />
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  FontSize="12" Content="{Binding ApplicationVersion}"/>
-        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"  Content="{x:Static localized:Resources.AboutAppEmailAddressLabel}" />
+        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TitleLabel}"  Content="{x:Static localized:Resources.AboutAppEmailAddressLabel}" />
         <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  FontSize="12" Content="{x:Static localized:Resources.AboutAppEmailAddress}"/>
 
         <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="{x:Static localized:Resources.AboutAppCopyright}"></TextBlock>

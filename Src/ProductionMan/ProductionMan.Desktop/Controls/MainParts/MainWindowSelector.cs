@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
+using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace ProductionMan.Desktop.Controls.MainParts
         private readonly Membership _membershipService;
         private Dictionary<string, IControlFactory> _controlFactories;
         private readonly CommandFactory _commandFactory;
+        private readonly ILanguageService _languageService;
 
 
-        public MainWindowSelector(Membership membershipService, CommandFactory commandFactory)
+        public MainWindowSelector(Membership membershipService, CommandFactory commandFactory, ILanguageService languageService)
         {
             _membershipService = membershipService;
             _commandFactory = commandFactory;
+            _languageService = languageService;
 
             CreateControlFactories();
         }
@@ -36,7 +39,7 @@ namespace ProductionMan.Desktop.Controls.MainParts
                 {"Materials", new MaterialManagerFactory(_membershipService, _commandFactory)},
                 {"Processes", new ProcessManagerFactory(_membershipService, _commandFactory)},
                 {"Stores", new StoreManagerFactory(_membershipService, _commandFactory)},
-                {"Settings", new SettingsManagerFactory(_membershipService, _commandFactory)},
+                {"Settings", new SettingsManagerFactory(_languageService, _commandFactory)},
                 {"About", new AboutUsFactory(_commandFactory)}
             };
         }

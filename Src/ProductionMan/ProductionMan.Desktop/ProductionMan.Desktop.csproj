@@ -83,6 +83,8 @@
     <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
       <DependentUpon>GenericListManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\DefaultLanguageService.cs" />
+    <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Controls\MainParts\MainWindowSelector.cs" />
     <Compile Include="Controls\MainParts\LogonBox.xaml.cs">
       <DependentUpon>LogonBox.xaml</DependentUpon>
@@ -90,6 +92,10 @@
     <Compile Include="Controls\MainParts\LogonBoxViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\SettingsManagerFactory.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\StoreManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\SettingsPageViewModel.cs" />
     <Compile Include="Controls\MainParts\TabItemViewModel.cs" />
     <Compile Include="Controls\MainParts\UserManagerViewModel.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
@@ -104,6 +110,7 @@
     <Compile Include="Converters\TabControlHeaderIconConverter.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Services\SharedApplicationServices.cs" />
     <Compile Include="WindowManager.cs" />
     <Page Include="Controls\Authentication\Login.xaml">
       <SubType>Designer</SubType>
@@ -122,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainParts\LogonBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainParts\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

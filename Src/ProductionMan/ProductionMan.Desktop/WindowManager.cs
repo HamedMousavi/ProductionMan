@@ -7,6 +7,7 @@ using ProductionMan.Desktop.Controls.MainParts;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.WebServices;
 
 
@@ -18,13 +19,15 @@ namespace ProductionMan.Desktop
 
         private readonly CommandFactory _commandFactory;
         private readonly Membership _membershipService;
+        private readonly ILanguageService _languageService;
         private Window _loginWindow;
 
 
-        public WindowManager(CommandFactory commandFactory, Membership membershipService)
+        public WindowManager(CommandFactory commandFactory, Membership membershipService, ILanguageService languageService)
         {
             _commandFactory = commandFactory;
             _membershipService = membershipService;
+            _languageService = languageService;
         }
 
 
@@ -84,7 +87,7 @@ namespace ProductionMan.Desktop
         private async Task DisplayMainWindow(Domain.Security.User user)
         {
             var windowSelector = 
-                new MainWindowSelector(_membershipService, _commandFactory);
+                new MainWindowSelector(_membershipService, _commandFactory, _languageService);
 
             var result = await windowSelector.CreateContent();
 

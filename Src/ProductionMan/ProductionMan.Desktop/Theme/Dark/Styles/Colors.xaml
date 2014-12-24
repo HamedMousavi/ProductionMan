@@ -10,7 +10,8 @@
     <SolidColorBrush x:Key="BkDarkest" Color="#1c262c" />
     <SolidColorBrush x:Key="BkDarker" Color="#3c464d" />
     <SolidColorBrush x:Key="BkDark" Color="#657077" />
-    <SolidColorBrush x:Key="BkLight" Color="#e3e3e3" />
+    <!--<SolidColorBrush x:Key="BkLight" Color="#e3e3e3" />-->
+    <SolidColorBrush x:Key="BkLight" Color="#ece9d8" />
 
     <SolidColorBrush x:Key="BorderLight" Color="#73828b" />
 

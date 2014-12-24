@@ -150,6 +150,9 @@
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="LoadinMessage" xml:space="preserve">
     <value>Loading, please wait...</value>
   </data>

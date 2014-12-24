@@ -150,6 +150,9 @@
   <data name="Exit" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>زبان</value>
+  </data>
   <data name="LoadinMessage" xml:space="preserve">
     <value>در حال آماده سازی برنامه، لطفا صبر کنید...</value>
   </data>
