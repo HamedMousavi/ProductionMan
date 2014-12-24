@@ -14,7 +14,7 @@ namespace ProductionMan.Desktop.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value != null)
+            if (value is User.LoginStates)
             {
                 var status = (User.LoginStates) value;
                 switch (status)

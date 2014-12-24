@@ -150,6 +150,24 @@
   <data name="Exit" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="GoodAfternoon" xml:space="preserve">
+    <value>بعدازظهر بخیر!</value>
+  </data>
+  <data name="GoodDay" xml:space="preserve">
+    <value>روز بخیر!</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>عصر بخیر!</value>
+  </data>
+  <data name="GoodMidDay" xml:space="preserve">
+    <value>روز بخیر!</value>
+  </data>
+  <data name="GoodMorning" xml:space="preserve">
+    <value>صبح بخیر!</value>
+  </data>
+  <data name="GoodNight" xml:space="preserve">
+    <value>شب بخیر!</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
   </data>
@@ -188,6 +206,9 @@
   </data>
   <data name="SigningInMessage" xml:space="preserve">
     <value>در حال ورود، لطفا صبر کنید...</value>
+  </data>
+  <data name="StatusLanguageChanged" xml:space="preserve">
+    <value>زبان تغییر کرد ولی تغییرات دفعه بعد که برنامه را اجرا کنید اعمال میگردد.</value>
   </data>
   <data name="TabTitleAbout" xml:space="preserve">
     <value>درباره...</value>

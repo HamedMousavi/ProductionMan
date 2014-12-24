@@ -83,7 +83,10 @@
     <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
       <DependentUpon>GenericListManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StatusLevelColorConverter.cs" />
+    <Compile Include="Converters\StatusLevelIconConverter.cs" />
     <Compile Include="Services\DefaultLanguageService.cs" />
+    <Compile Include="Services\DefaultStatusService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Controls\MainParts\MainWindowSelector.cs" />
     <Compile Include="Controls\MainParts\LogonBox.xaml.cs">
@@ -110,7 +113,9 @@
     <Compile Include="Converters\TabControlHeaderIconConverter.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Services\IStatusService.cs" />
     <Compile Include="Services\SharedApplicationServices.cs" />
+    <Compile Include="Services\Status.cs" />
     <Compile Include="WindowManager.cs" />
     <Page Include="Controls\Authentication\Login.xaml">
       <SubType>Designer</SubType>
@@ -278,6 +283,12 @@
   <ItemGroup>
     <Resource Include="Theme\Dark\Pictures\error_large.png" />
     <Resource Include="Theme\Dark\Pictures\exclamation_large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\cross.png" />
+    <Resource Include="Theme\Dark\Pictures\exclamation.png" />
+    <Resource Include="Theme\Dark\Pictures\information-white.png" />
+    <Resource Include="Theme\Dark\Pictures\tick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:ProductionMan.Desktop.Converters"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:mainParts="clr-namespace:ProductionMan.Desktop.Controls.MainParts"
-        mc:Ignorable="d"
+        xmlns:desktop="clr-namespace:ProductionMan.Desktop"
         Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     
     <Window.Resources>
@@ -13,6 +13,8 @@
             <converters:FlowDirectionConverter x:Key="FlowDirectionConverter" />
             <converters:TabControlHeaderIconConverter x:Key="TabControlHeaderIconConverter" />
             <converters:TabControlHeaderForegroundConverter x:Key="TabControlHeaderForegroundConverter" />
+            <converters:StatusLevelIconConverter x:Key="StatusLevelIconConverter" />
+            <converters:StatusLevelColorConverter x:Key="StatusLevelColorConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <Border Style="{StaticResource MainBorder}">
@@ -72,9 +74,9 @@
                 </Border>
             </Border>
 
-            <StatusBar Grid.Row="3" Style="{StaticResource MainStatusBar}">
-                <Image></Image>
-                <Label Margin="0" Padding="0" Foreground="{StaticResource TextColorWhite}">Welcome dear user! :-)</Label>
+            <StatusBar Grid.Row="3" Style="{StaticResource MainStatusBar}" d:DataContext="{d:DesignInstance desktop:MainWindowViewModel}">
+                <Image Source="{Binding Path=Status.Level, Converter={StaticResource StatusLevelIconConverter}}" />
+                <Label Margin="0" Padding="0" VerticalContentAlignment="Center" Content="{Binding Status.Message}" Foreground="{Binding Path=Status.Level, Converter={StaticResource StatusLevelColorConverter}}" />
             </StatusBar>
         </Grid>
     </Border>

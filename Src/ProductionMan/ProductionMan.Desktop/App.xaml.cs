@@ -84,9 +84,33 @@ namespace ProductionMan.Desktop
         private void StartApplicationWindow()
         {
             var membershipService = new Membership();
+            var statusService = new DefaultStatusService(_languageService);
 
-            new WindowManager(new CommandFactory(), membershipService, _languageService).
-                DisplayLoginWindow(new Domain.Security.User(membershipService));
+            new WindowManager(
+                new CommandFactory(), 
+                membershipService, 
+                _languageService, 
+                statusService).
+                    DisplayLoginWindow(new Domain.Security.User(membershipService));
+
+            SetStatus(statusService);
+        }
+
+
+        private void SetStatus(IStatusService statusService)
+        {
+            var message = string.Empty;
+            var now = DateTime.Now.Hour;
+
+            if (now >= 5 && now < 10) message = Localized.Resources.GoodMorning;
+            else if (now >= 10 && now < 12) message = Localized.Resources.GoodDay;
+            else if (now >= 12 && now < 13) message = Localized.Resources.GoodMidDay;
+            else if (now >= 13 && now < 18) message = Localized.Resources.GoodAfternoon;
+            else if (now >= 18 && now < 20) message = Localized.Resources.GoodEvening;
+            else if (now >= 20 && now < 24) message = Localized.Resources.GoodNight;
+            else if (now >= 24 || now < 5) message = Localized.Resources.GoodMorning;
+
+            statusService.SetStatus(Status.Levels.Info, message);
         }
     }
 }

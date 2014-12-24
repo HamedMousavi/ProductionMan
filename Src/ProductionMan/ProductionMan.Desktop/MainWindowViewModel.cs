@@ -3,6 +3,7 @@ using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.MainParts;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using ProductionMan.Desktop.Services;
 
 
 namespace ProductionMan.Desktop
@@ -10,6 +11,7 @@ namespace ProductionMan.Desktop
 
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly IStatusService _statusService;
 
         private object _activeContent;
         private BaseContentSelector<TabItemViewModel> _activeContentSelector;
@@ -73,7 +75,10 @@ namespace ProductionMan.Desktop
         }
 
 
-        public MainWindowViewModel()
+        public Status Status { get { return _statusService.Status; } }
+
+
+        public MainWindowViewModel(IStatusService statusService)
         {
             PropertyChanged += delegate(object sender, PropertyChangedEventArgs args)
             {
@@ -88,6 +93,16 @@ namespace ProductionMan.Desktop
                     }
                 }
             };
+
+            _statusService = statusService;
+            statusService.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
+            {
+                if (e.NameIs("Status"))
+                {
+                    FirePropertyChanged(this, "Status");
+                }
+            };
+
         }
     }
 }

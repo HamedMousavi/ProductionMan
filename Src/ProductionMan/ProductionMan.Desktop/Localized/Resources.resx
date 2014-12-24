@@ -150,6 +150,24 @@
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="GoodAfternoon" xml:space="preserve">
+    <value>Good afternoon!</value>
+  </data>
+  <data name="GoodDay" xml:space="preserve">
+    <value>Good day!</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>Good evening!</value>
+  </data>
+  <data name="GoodMidDay" xml:space="preserve">
+    <value>Good day!</value>
+  </data>
+  <data name="GoodMorning" xml:space="preserve">
+    <value>Good morning!</value>
+  </data>
+  <data name="GoodNight" xml:space="preserve">
+    <value>Good evening!</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -188,6 +206,9 @@
   </data>
   <data name="SigningInMessage" xml:space="preserve">
     <value>Signing in, please wait...</value>
+  </data>
+  <data name="StatusLanguageChanged" xml:space="preserve">
+    <value>Language changed. Changes will take effect next time you open the application.</value>
   </data>
   <data name="TabTitleAbout" xml:space="preserve">
     <value>About</value>

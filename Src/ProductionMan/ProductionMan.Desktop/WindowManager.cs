@@ -20,14 +20,16 @@ namespace ProductionMan.Desktop
         private readonly CommandFactory _commandFactory;
         private readonly Membership _membershipService;
         private readonly ILanguageService _languageService;
+        private readonly IStatusService _statusService;
         private Window _loginWindow;
 
 
-        public WindowManager(CommandFactory commandFactory, Membership membershipService, ILanguageService languageService)
+        public WindowManager(CommandFactory commandFactory, Membership membershipService, ILanguageService languageService, IStatusService statusService)
         {
             _commandFactory = commandFactory;
             _membershipService = membershipService;
             _languageService = languageService;
+            _statusService = statusService;
         }
 
 
@@ -104,7 +106,7 @@ namespace ProductionMan.Desktop
         {
             var wnd = new MainWindow
             {
-                DataContext = new MainWindowViewModel
+                DataContext = new MainWindowViewModel(_statusService)
                 {
                     Tabs = tabsViewModel,
                     LogonBoxModel = logonBoxViewModel,

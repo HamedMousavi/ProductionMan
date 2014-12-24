@@ -160,6 +160,60 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Good afternoon!.
+        /// </summary>
+        public static string GoodAfternoon {
+            get {
+                return ResourceManager.GetString("GoodAfternoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good day!.
+        /// </summary>
+        public static string GoodDay {
+            get {
+                return ResourceManager.GetString("GoodDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good evening!.
+        /// </summary>
+        public static string GoodEvening {
+            get {
+                return ResourceManager.GetString("GoodEvening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good day!.
+        /// </summary>
+        public static string GoodMidDay {
+            get {
+                return ResourceManager.GetString("GoodMidDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good morning!.
+        /// </summary>
+        public static string GoodMorning {
+            get {
+                return ResourceManager.GetString("GoodMorning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good evening!.
+        /// </summary>
+        public static string GoodNight {
+            get {
+                return ResourceManager.GetString("GoodNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -273,6 +327,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string SigningInMessage {
             get {
                 return ResourceManager.GetString("SigningInMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language changed. Changes will take effect next time you open the application..
+        /// </summary>
+        public static string StatusLanguageChanged {
+            get {
+                return ResourceManager.GetString("StatusLanguageChanged", resourceCulture);
             }
         }
         
