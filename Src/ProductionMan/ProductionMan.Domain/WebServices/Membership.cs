@@ -10,6 +10,7 @@ namespace ProductionMan.Domain.WebServices
     public class Membership : WebServiceBase
     {
 
+        private const string UserListUrl = "Users";
         private const string CurrentUserUrl = "Users/Current";
         private const string PermissionsUrl = "Permissions";
 
@@ -55,10 +56,24 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public Task<ServiceCallResult<List<User>>> GetUsers()
+        public async Task<ServiceCallResult<List<User>>> GetUsers()
         {
-            ServiceCallResult<List<User>> result = null;
-            return Task.FromResult(result);
+            var result = new ServiceCallResult<List<User>>();
+
+            using (var client = new HttpClient())
+            {
+                PrepareHeaders(client);
+
+                var response = await client.GetAsync(UserListUrl);
+                result.CallStatusCode = response.StatusCode;
+                result.CallStatusMessage = response.ReasonPhrase;
+                if (response.IsSuccessStatusCode)
+                {
+                    result.Results = response.Content.ReadAsAsync<List<User>>().Result;
+                }
+            }
+
+            return result;
         }
     }
 }

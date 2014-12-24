@@ -72,14 +72,14 @@ namespace ProductionMan.Desktop.Controls.MainParts
 
             foreach (var permission in permissions.Results)
             {
-                AddContent(permission);
+                await AddContent(permission);
             }
 
             return permissions;
         }
 
 
-        private async void AddContent(Permission permission)
+        private async Task AddContent(Permission permission)
         {
             if (_controlFactories.ContainsKey(permission.ResourceName))
             {
