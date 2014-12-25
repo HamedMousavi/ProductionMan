@@ -1,4 +1,5 @@
 ﻿using System.Web.Http.Tracing;
+using AutoMapper;
 using ProductionMan.Web.Api.Security;
 using ProductionMan.Web.Api.Services;
 using System.Web.Http;
@@ -18,6 +19,8 @@ namespace ProductionMan.Web.Api
 
             // Authentication & Authorization
             ConfigureSecurity(config);
+
+            ConfigureAutoMapper();
 
             // Web API routes
             ConfigureRoutes(config);
@@ -59,6 +62,12 @@ namespace ProductionMan.Web.Api
 
             // Error logging
             config.Services.Add(typeof(IExceptionLogger), new DefaultExceptionLogger());
+        }
+
+
+        private static void ConfigureAutoMapper()
+        {
+            //Mapper.CreateMap<>();
         }
     }
 }

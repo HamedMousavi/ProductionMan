@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Models\Depot.cs" />
     <Compile Include="Models\ILinkable.cs" />
     <Compile Include="Models\Link.cs" />

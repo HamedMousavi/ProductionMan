@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace ProductionMan.Data.Shared.Models
@@ -17,6 +18,7 @@ namespace ProductionMan.Data.Shared.Models
         }
 
 
+        [Key]
         public int Id { get; set; }
 
         

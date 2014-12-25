@@ -1,0 +1,2 @@
+GET	/Users		Load all users. (uses credentials provided to ensure permission)
+POST	/Users		Create a new user

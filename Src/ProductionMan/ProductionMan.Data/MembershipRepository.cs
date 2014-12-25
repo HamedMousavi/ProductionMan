@@ -86,5 +86,31 @@ namespace ProductionMan.Data
                 }
             };
         }
+
+        public void Insert(User newUser)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "INSERT INTO [USERS] ([Username], [Password], [DisplayName], [Culture], [RoleId], [IsEnabled]) VALUES (@Username, @Password, @DisplayName, @Culture, @RoleId, 1); SELECT SCOPE_IDENTITY();",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@username", newUser.Username),
+                    new SqlParameter("@password", newUser.Password),
+                    new SqlParameter("@DisplayName", newUser.Name),
+                    new SqlParameter("@Culture", newUser.Culture),
+                    new SqlParameter("@RoleId", newUser.Role.Id)
+                }
+                );
+
+            _context.Execute(reader =>
+            {
+                if (reader.Read())
+                {
+                    var user = MapUser(reader);
+                    newUser.Id = user.Id;
+                }
+            });
+        }
     }
 }

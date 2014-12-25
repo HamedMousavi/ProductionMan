@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
+using ProductionMan.Data;
 using ProductionMan.Data.MsAdo;
+using ProductionMan.Web.Api.ActionResults;
 using ProductionMan.Web.Api.Common.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -14,11 +17,20 @@ namespace ProductionMan.Web.Api.Controllers
     public class UsersController : ApiController
     {
 
+        private Data.MembershipRepository _repository;
+
+
+        public UsersController(MembershipRepository repository)
+        {
+            _repository = repository;
+        }
+
+
         public IEnumerable<User> GetUsers()
         {
-            var data = new Data.MembershipRepository(UnitOfWorkFactory.Create());
+//new Data.MembershipRepository(UnitOfWorkFactory.Create());
 
-            var list = data.GetUsers(string.Empty);
+            var list = _repository.GetUsers(string.Empty);
 
             return list.Select(item => new User
             {
@@ -40,6 +52,22 @@ namespace ProductionMan.Web.Api.Controllers
             }
 
             return null;
+        }
+
+
+        [HttpPost]
+        public IHttpActionResult AddUser(HttpRequestMessage requestMessage, Data.Shared.Models.User newUser)
+        {
+            _repository.Insert(newUser);
+            var user = new User
+            {
+                Culture = newUser.Culture,
+                Id = newUser.Id,
+                Name = newUser.Name,
+                Role = newUser.Role
+            };
+
+            return new CreatedActionResult<User>(requestMessage, user);
         }
     }
 }

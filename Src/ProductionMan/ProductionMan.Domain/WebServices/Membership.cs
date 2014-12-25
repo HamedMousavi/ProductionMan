@@ -76,15 +76,18 @@ namespace ProductionMan.Domain.WebServices
             return result;
         }
 
+
         public void CreateUser(User user)
         {
             throw new System.NotImplementedException();
         }
 
+
         public void UpdateUser(User user)
         {
             throw new System.NotImplementedException();
         }
+
 
         public void DeleteUser(User user)
         {
