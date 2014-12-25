@@ -1,6 +1,15 @@
-﻿namespace ProductionMan.Desktop
+﻿using System.Windows.Input;
+
+
+namespace ProductionMan.Desktop
 {
-    public class UserEditorWindowViewModel
+
+    public class UserEditorWindowViewModel : BaseViewModel
     {
+        public ICommand SaveCommand { get; set; }
+
+        public ICommand CancelCommand { get; set; }
+
+        public Web.Api.Common.Models.User User { get; set; }
     }
 }

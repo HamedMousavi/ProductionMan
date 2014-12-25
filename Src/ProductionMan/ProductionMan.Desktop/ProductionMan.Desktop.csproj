@@ -55,12 +55,17 @@
     </ApplicationDefinition>
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="CommandFactory.cs" />
+    <Compile Include="Commands\ConfirmDeleteWindowViewModel.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\GenericWindowCommands.cs" />
     <Compile Include="Commands\IUserWindowManager.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LoginRetryCommand.cs" />
     <Compile Include="Commands\NavigateToWebsiteCommand.cs" />
     <Compile Include="Commands\UsersCommands.cs" />
+    <Compile Include="ConfirmDeleteWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Authentication\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -132,6 +137,10 @@
     </Compile>
     <Compile Include="UserEditorWindowViewModel.cs" />
     <Compile Include="WindowManager.cs" />
+    <Page Include="ConfirmDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Authentication\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

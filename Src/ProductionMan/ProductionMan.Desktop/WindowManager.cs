@@ -122,17 +122,17 @@ namespace ProductionMan.Desktop
 
         public void DisplayUserEditorWindow(UserEditorWindowViewModel viewModel)
         {
-            
+            new UserEditorWindow { DataContext = viewModel }.ShowDialog();
         }
 
-        public bool RequestPermissionToDelete(UserEditorWindowViewModel viewModel)
+        public void RequestPermissionToDelete(ConfirmDeleteWindowViewModel viewModel)
         {
-            return true;
+            new ConfirmDeleteWindow {DataContext = viewModel}.ShowDialog();
         }
 
         public void DisplayUserAddWindow(UserEditorWindowViewModel viewModel)
         {
-            
+            new UserEditorWindow{DataContext = viewModel}.ShowDialog();
         }
     }
 }

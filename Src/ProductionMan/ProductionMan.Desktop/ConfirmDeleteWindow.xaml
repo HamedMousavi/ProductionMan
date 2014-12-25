@@ -1,0 +1,24 @@
+﻿<Window x:Class="ProductionMan.Desktop.ConfirmDeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
+        Title="ConfirmDeleteWindow" Style="{StaticResource ModalWindow}" 
+        WindowStartupLocation="CenterOwner"
+        Height="215" Width="330" x:Name="ThisWindow">
+    <Border Style="{StaticResource WindowContainerBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Text="{x:Static localized:Resources.AreYouSure}"/>
+            <Label Grid.Row="1" Content="{Binding MessageDetail}" />
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource DeleteButton}" Content="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" CommandParameter="{Binding User}"/>
+                <Button Style="{StaticResource CancelButton}"  Content="{x:Static localized:Resources.Cancel}" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWindow}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

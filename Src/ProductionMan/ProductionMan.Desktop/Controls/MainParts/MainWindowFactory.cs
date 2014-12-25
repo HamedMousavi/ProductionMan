@@ -29,9 +29,9 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             var viewModel = new UserManagerViewModel
             {
-                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager),
-                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager),
-                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager),
+                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService),
+                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
+                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService),
                 ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand()
             };
 
@@ -43,9 +43,9 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             var viewModel = new PermissionManagerViewModel
             {
-                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager),
-                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager),
-                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager)
+                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService),
+                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
+                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService)
             };
 
             return new PermissionManagerFactory(_membershipService, viewModel);
@@ -56,9 +56,9 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             var viewModel = new MaterialManagerViewModel
             {
-                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager),
-                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager),
-                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager)
+                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService),
+                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
+                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService)
             };
 
             return new MaterialManagerFactory(_membershipService, viewModel);
@@ -69,9 +69,9 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             var viewModel = new ProcessManagerViewModel
             {
-                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager),
-                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager),
-                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager)
+                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService),
+                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
+                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService)
             };
 
             return new ProcessManagerFactory(_membershipService, viewModel);
@@ -82,9 +82,9 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             var viewModel = new StoreManagerViewModel
             {
-                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager),
-                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager),
-                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager)
+                AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService),
+                DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
+                EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService)
             };
 
             return new StoreManagerFactory(_membershipService, viewModel);

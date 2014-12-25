@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using ProductionMan.Desktop.Commands;
 using ProductionMan.Domain.Security;
+using ProductionMan.Domain.WebServices;
 
 
 namespace ProductionMan.Desktop
@@ -67,15 +68,15 @@ namespace ProductionMan.Desktop
         }
 
 
-        internal ICommand CreateAddUserCommand(IUserWindowManager windowManager)
+        internal ICommand CreateAddUserCommand(IUserWindowManager windowManager, Membership membershipService)
         {
-            return new VisualAddUserCommands(windowManager);
+            return new VisualAddUserCommands(windowManager, membershipService);
         }
 
 
-        internal ICommand CreateDeleteUserCommand(IUserWindowManager windowManager)
+        internal ICommand CreateDeleteUserCommand(IUserWindowManager windowManager, Membership membershipService)
         {
-            return new VisualDeleteUserCommand(windowManager);
+            return new VisualDeleteUserCommand(windowManager, membershipService);
         }
 
 
@@ -85,9 +86,9 @@ namespace ProductionMan.Desktop
         }
 
 
-        internal ICommand CreateEditUserCommand(IUserWindowManager windowManager)
+        internal ICommand CreateEditUserCommand(IUserWindowManager windowManager, Membership membershipService)
         {
-            return new VisualEditUserCommand(windowManager);
+            return new VisualEditUserCommand(windowManager, membershipService);
         }
     }
 }

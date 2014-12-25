@@ -144,6 +144,12 @@
   <data name="AppTitle" xml:space="preserve">
     <value>ProMan</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>شما در حال حذف کامل اطلاعات زیر هستید. این اطلاعات بعد از حذف غیر قابل بازیابی هستند. آیا از حذف اطمینان دارید؟</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
   <data name="DeleteItem" xml:space="preserve">
     <value>حذف</value>
   </data>
@@ -183,6 +189,9 @@
   <data name="LoginRetry" xml:space="preserve">
     <value>تلاش برای ورود مجدد</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
   <data name="PageTitleAbout" xml:space="preserve">
     <value>دربار برنامه</value>
   </data>
@@ -206,6 +215,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ثبت</value>
   </data>
   <data name="SigningInMessage" xml:space="preserve">
     <value>در حال ورود، لطفا صبر کنید...</value>

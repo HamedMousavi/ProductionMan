@@ -6,7 +6,7 @@ namespace ProductionMan.Desktop.Commands
     {
         void DisplayUserEditorWindow(UserEditorWindowViewModel viewModel);
 
-        bool RequestPermissionToDelete(UserEditorWindowViewModel viewModel);
+        void RequestPermissionToDelete(ConfirmDeleteWindowViewModel viewModel);
 
         void DisplayUserAddWindow(UserEditorWindowViewModel viewModel);
     }

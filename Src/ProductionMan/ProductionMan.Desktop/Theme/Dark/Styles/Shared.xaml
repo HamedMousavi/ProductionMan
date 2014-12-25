@@ -1,5 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:ProductionMan.Desktop.Converters">
+
+    <Style TargetType="Label">
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
 
     <Style x:Key="AcceptButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Foreground" Value="{StaticResource TextColorWhite}" />
@@ -40,13 +45,19 @@
         <Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
-    
-    <Style x:Key="Form" TargetType="Window">
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="Background" Value="{StaticResource WindowBkColorDark}" />
-        <Setter Property="FontFamily" Value="Tahoma" />
-        <Setter Property="SizeToContent" Value="Manual" />
-        <Setter Property="FontSize" Value="12" />
+
+    <Style x:Key="WindowContainerBorder" TargetType="Border">
+        <Style.Resources>
+            <ResourceDictionary>
+                <converters:FlowDirectionConverter x:Key="FlowDirectionConverter" />
+            </ResourceDictionary>
+        </Style.Resources>
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="Background" Value="{StaticResource WindowBkColorLight}" />
+        <Setter Property="FlowDirection" Value="{Binding Path=FlowDirection, Converter={StaticResource FlowDirectionConverter}}" />
     </Style>
-    
+
 </ResourceDictionary>
