@@ -77,13 +77,13 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public void CreateUser(UserRead user)
+        public void CreateUser(UserWrite user)
         {
             throw new System.NotImplementedException();
         }
 
 
-        public void UpdateUser(UserRead user)
+        public void UpdateUser(UserWrite user)
         {
             throw new System.NotImplementedException();
         }

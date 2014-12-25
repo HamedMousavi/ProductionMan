@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using ProductionMan.Desktop.Commands;
+using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
 
@@ -68,9 +69,9 @@ namespace ProductionMan.Desktop
         }
 
 
-        internal ICommand CreateAddUserCommand(IUserWindowManager windowManager, Membership membershipService)
+        internal ICommand CreateAddUserCommand(IUserWindowManager windowManager, Membership membershipService, ILanguageService languageService)
         {
-            return new VisualAddUserCommands(windowManager, membershipService);
+            return new VisualAddUserCommands(windowManager, membershipService, languageService);
         }
 
 

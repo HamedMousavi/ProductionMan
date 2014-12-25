@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
@@ -8,16 +7,16 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
     class SettingsManagerFactory : IControlFactory
     {
 
-        private readonly SettingsPageViewModel _viewModel;
+        private SettingsPageViewModel _viewModel;
 
 
-        public SettingsManagerFactory(SettingsPageViewModel viewModel)
+        public void CreateViewModels(ViewModelFactory viewModelFactory)
         {
-            _viewModel = viewModel;
+            _viewModel = viewModelFactory.CreateSettingsViewModel();
         }
 
 
-        public async Task<UserControl> CreateUserControl()
+        public UserControl CreateUserControl()
         {
             return new SettingsPage {DataContext = _viewModel};
         }

@@ -1,15 +1,17 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using ProductionMan.Common;
+﻿using ProductionMan.Common;
 using ProductionMan.Desktop.Commands;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
+using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
+using ProductionMan.Desktop.Repositories;
+using ProductionMan.Desktop.Services;
+using ProductionMan.Domain.Security;
+using ProductionMan.Domain.WebServices;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
-using ProductionMan.Desktop.Services;
-using ProductionMan.Domain.WebServices;
 
 
 namespace ProductionMan.Desktop
@@ -34,7 +36,7 @@ namespace ProductionMan.Desktop
         }
 
 
-        public void DisplayLoginWindow(Domain.Security.User user)
+        public void DisplayLoginWindow(User user)
         {
             // register for user changes so to load main window if login succeeded
             WireupEvent(user);
@@ -51,7 +53,7 @@ namespace ProductionMan.Desktop
         #region Login
 
 
-        private Window CreateLoginWindow(Domain.Security.User user, BaseContentSelector<Domain.Security.User.LoginStates> contentSelector)
+        private Window CreateLoginWindow(User user, BaseContentSelector<User.LoginStates> contentSelector)
         {
             // Prepare view model
             var model = new LoginWindowViewModel { User = user, ActiveContentSelector = contentSelector };
@@ -60,7 +62,7 @@ namespace ProductionMan.Desktop
         }
 
 
-        private void WireupEvent(Domain.Security.User user)
+        private void WireupEvent(User user)
         {
             user.PropertyChanged -= UserOnPropertyChanged;
             user.PropertyChanged += UserOnPropertyChanged;
@@ -71,12 +73,13 @@ namespace ProductionMan.Desktop
         {
             if (e.NameIs("LoginStatus"))
             {
-                var user = sender as Domain.Security.User;
+                var user = sender as User;
                 if (user != null)
                 {
-                    if (user.LoginStatus == Domain.Security.User.LoginStates.SignedIn)
+                    if (user.LoginStatus == User.LoginStates.SignedIn)
                     {
-                        await DisplayMainWindow(user);
+                        var data = await LoadData();
+                        DisplayMainWindow(user, data);
                         _loginWindow.Close();
                     }
                 }
@@ -87,15 +90,29 @@ namespace ProductionMan.Desktop
         #endregion Login
 
 
-        private async Task DisplayMainWindow(Domain.Security.User user)
+        private async Task<MainWindowDataProvider> LoadData()
+        {
+            var dataProvider = 
+                new MainWindowDataProvider(
+                    new MembershipRepository(_membershipService));
+            await dataProvider.LoadData();
+
+            return dataProvider;
+        }
+
+
+        private void DisplayMainWindow(User user, MainWindowDataProvider dataProvider)
         {
             var windowSelector = 
-                new MainWindowSelector(_membershipService,
-                    new MainWindowFactory(_membershipService, _commandFactory, _languageService, this));
+                new MainWindowSelector(dataProvider,new MainWindowFactory(),
+                    new ViewModelFactory(
+                        _membershipService, 
+                        _commandFactory, 
+                        _languageService, 
+                        this, 
+                        dataProvider));
 
-            var result = await windowSelector.CreateContent();
-
-            if (result.CallStatusCode != HttpStatusCode.OK) return;
+            windowSelector.CreateContent();
 
             CreateMainWindow(
                 windowSelector,

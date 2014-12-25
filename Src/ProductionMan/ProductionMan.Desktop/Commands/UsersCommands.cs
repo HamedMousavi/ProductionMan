@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 using System.Windows.Input;
+using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 
@@ -12,12 +15,14 @@ namespace ProductionMan.Desktop.Commands
 
         private readonly IUserWindowManager _windowManager;
         private readonly Membership _membershipService;
+        private readonly ILanguageService _languageService;
 
 
-        public VisualAddUserCommands(IUserWindowManager windowManager, Membership membershipService)
+        public VisualAddUserCommands(IUserWindowManager windowManager, Membership membershipService, ILanguageService languageService)
         {
             _windowManager = windowManager;
             _membershipService = membershipService;
+            _languageService = languageService;
         }
 
 
@@ -36,7 +41,9 @@ namespace ProductionMan.Desktop.Commands
             {
                 SaveCommand = new CreateUserCommand(_membershipService),
                 CancelCommand = new CloseWindowCommand(),
-                User = new UserWrite()
+                User = new UserWrite(),
+                Roles = new List<UserRole>(),
+                Languages = _languageService.Languages
             });
         }
     }

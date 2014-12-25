@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
@@ -8,18 +7,16 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
     class AboutUsFactory : IControlFactory
     {
 
-        private readonly AboutPageViewModel _viewModel;
+        private AboutPageViewModel _viewModel;
 
 
-        public AboutUsFactory(AboutPageViewModel viewModel)
+        public void CreateViewModels(ViewModelFactory viewModelFactory)
         {
-            _viewModel = viewModel;
+            _viewModel = viewModelFactory.CreateAboutViewModel();
         }
 
 
-#pragma warning disable 1998
-        public async Task<UserControl> CreateUserControl()
-#pragma warning restore 1998
+        public UserControl CreateUserControl()
         {
             return new AboutPage {DataContext = _viewModel};
         }

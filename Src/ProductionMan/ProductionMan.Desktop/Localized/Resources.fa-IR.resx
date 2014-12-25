@@ -219,6 +219,9 @@
   <data name="Password" xml:space="preserve">
     <value>رمز عبور</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>سطح امنیتی</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>ثبت</value>
   </data>

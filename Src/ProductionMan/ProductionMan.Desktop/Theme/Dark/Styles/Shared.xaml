@@ -4,6 +4,20 @@
 
     <Style TargetType="Label">
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="3" />
+    </Style>
+
+    <Style TargetType="PasswordBox">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="3" />
     </Style>
 
     <Style x:Key="AcceptButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -47,16 +61,19 @@
     </Style>
 
     <Style x:Key="WindowContainerBorder" TargetType="Border">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="Background" Value="{StaticResource WindowBkColorLight}" />
+    </Style>
+
+    <Style x:Key="WindowContainerGrid" TargetType="Grid">
         <Style.Resources>
             <ResourceDictionary>
                 <converters:FlowDirectionConverter x:Key="FlowDirectionConverter" />
             </ResourceDictionary>
         </Style.Resources>
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="White" />
-        <Setter Property="Background" Value="{StaticResource WindowBkColorLight}" />
         <Setter Property="FlowDirection" Value="{Binding Path=FlowDirection, Converter={StaticResource FlowDirectionConverter}}" />
     </Style>
 

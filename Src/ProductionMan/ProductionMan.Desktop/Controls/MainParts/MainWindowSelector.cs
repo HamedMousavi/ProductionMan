@@ -1,9 +1,7 @@
 ﻿using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
-using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts
@@ -13,15 +11,17 @@ namespace ProductionMan.Desktop.Controls.MainParts
     {
 
         private ObservableCollection<TabItemViewModel> _tabs;
-        private readonly Membership _membershipService;
+        private readonly MainWindowDataProvider _dataProvider;
         private readonly MainWindowFactory _windowFactory;
         private Dictionary<string, IControlFactory> _controlFactories;
+        private readonly ViewModelFactory _viewModelFactory;
 
 
-        public MainWindowSelector(Membership membershipService, MainWindowFactory windowFactory)
+        public MainWindowSelector(MainWindowDataProvider dataProvider, MainWindowFactory windowFactory, ViewModelFactory viewModelFactory)
         {
-            _membershipService = membershipService;
+            _dataProvider = dataProvider;
             _windowFactory = windowFactory;
+            _viewModelFactory = viewModelFactory;
 
             CreateControlFactories();
         }
@@ -31,11 +31,11 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             _controlFactories = new Dictionary<string, IControlFactory>
             {
-                {"Users",       _windowFactory.CreateUserManagerFactory()       },
-                {"Permissions", _windowFactory.CreatePermissionManagerFactory() },
-                {"Materials",   _windowFactory.CreateMaterialManagerFactory()   },
-                {"Processes",   _windowFactory.CreateProcessManagerFactory()    },
-                {"Stores",      _windowFactory.CreateStoreManagerFactory()      },
+                {"Users",       _windowFactory.CreateUsersFactory()             },
+                {"Permissions", _windowFactory.CreateFPermissionsactory()       },
+                {"Materials",   _windowFactory.CreateMaterialsFactory()         },
+                {"Processes",   _windowFactory.CreateProcessesFactory()         },
+                {"Stores",      _windowFactory.CreateStoresFactory()            },
                 {"Settings",    _windowFactory.CreateSettingsManagerFactory()   },
                 {"About",       _windowFactory.CreateAboutUsFactory()           },
             };
@@ -63,25 +63,26 @@ namespace ProductionMan.Desktop.Controls.MainParts
         }
 
 
-        internal async Task<ServiceCallResult<List<Permission>>> CreateContent()
+        internal void CreateContent()
         {
-            var permissions = await _membershipService.GetPermissions();
-
-            foreach (var permission in permissions.Results)
+            var permissions = _dataProvider.Get<IEnumerable<Permission>>("UserPermissions");
+            foreach (var permission in permissions)
             {
-                await AddContent(permission);
+                CreateContent(permission);
             }
-
-            return permissions;
         }
 
 
-        private async Task AddContent(Permission permission)
+        private void CreateContent(Permission permission)
         {
             if (_controlFactories.ContainsKey(permission.ResourceName))
             {
                 var factory = _controlFactories[permission.ResourceName];
-                AddContent(factory.CreateTabItemViewModel(), await factory.CreateUserControl());
+                if (factory != null)
+                {
+                    factory.CreateViewModels(_viewModelFactory);
+                    AddContent(factory.CreateTabItemViewModel(), factory.CreateUserControl());
+                }
             }
         }
     }

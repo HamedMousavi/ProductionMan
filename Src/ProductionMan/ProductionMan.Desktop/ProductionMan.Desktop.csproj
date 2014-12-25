@@ -88,25 +88,27 @@
     <Compile Include="Controls\MainParts\AboutPageViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\AboutUsFactory.cs" />
     <Compile Include="Controls\MainParts\BaseListViewModel.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\BaseControlFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\UserManagerViewModelFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\ViewModelFactory.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerViewModel.cs" />
     <Compile Include="Controls\MainParts\GenericListToolbarViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\IControlFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\MaterialManagerFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\ProcessManagerFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\UserManagerFactory.cs" />
     <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
       <DependentUpon>GenericListManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainParts\GenericListToolbar.xaml.cs">
       <DependentUpon>GenericListToolbar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainParts\InMemoryDataStore.cs" />
+    <Compile Include="Controls\MainParts\MainWindowDataProvider.cs" />
     <Compile Include="Controls\MainParts\MainWindowFactory.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\MaterialManagerViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\ProcessManagerViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\StoreManagerViewModel.cs" />
     <Compile Include="Converters\StatusLevelColorConverter.cs" />
     <Compile Include="Converters\StatusLevelIconConverter.cs" />
+    <Compile Include="Repositories\MembershipRepository.cs" />
     <Compile Include="Services\DefaultLanguageService.cs" />
     <Compile Include="Services\DefaultStatusService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
@@ -116,7 +118,6 @@
     </Compile>
     <Compile Include="Controls\MainParts\LogonBoxViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\SettingsManagerFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\StoreManagerFactory.cs" />
     <Compile Include="Controls\MainParts\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>

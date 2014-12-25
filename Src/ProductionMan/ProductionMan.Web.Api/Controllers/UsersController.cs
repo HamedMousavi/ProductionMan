@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Net.Http;
-using System.Threading;
-using AutoMapper;
-using ProductionMan.Data;
+﻿using AutoMapper;
 using ProductionMan.Data.MsAdo;
 using ProductionMan.Web.Api.ActionResults;
 using ProductionMan.Web.Api.Common.Models;
-using System.Collections.Generic;
-using System.Web.Http;
 using ProductionMan.Web.Api.Security;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading;
+using System.Web.Http;
 
 
 namespace ProductionMan.Web.Api.Controllers
@@ -18,7 +17,7 @@ namespace ProductionMan.Web.Api.Controllers
     public class UsersController : ApiController
     {
 
-        private Data.MembershipRepository _repository;
+        private readonly Data.MembershipRepository _repository;
 
 
         public UsersController()
