@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Reflection;
+using System.Resources;
 using System.Threading;
-using System.Threading.Tasks;
 
 
 namespace ProductionMan.Desktop.Services
@@ -14,6 +11,7 @@ namespace ProductionMan.Desktop.Services
 
         private static readonly object _syncLock = new object();
         private static SharedApplicationServices _instance;
+        private ResourceManager _resMan;
 
 
         public static SharedApplicationServices Instanse
@@ -34,5 +32,23 @@ namespace ProductionMan.Desktop.Services
 
 
         public SynchronizationContext SynchronizationContext { get; set; }
+
+
+        internal string GetTextResource(string resourceName)
+        {
+            //return ResMan.GetString(resourceName);
+            var result = string.Empty;
+
+            SynchronizationContext.Send(state =>
+                result = ResMan.GetString(resourceName), null);
+
+            return result;
+        }
+
+
+        private ResourceManager ResMan
+        {
+            get { return _resMan ?? (_resMan = new ResourceManager("ProductionMan.Desktop.Localized.Resources", Assembly.GetExecutingAssembly())); }
+        }
     }
 }

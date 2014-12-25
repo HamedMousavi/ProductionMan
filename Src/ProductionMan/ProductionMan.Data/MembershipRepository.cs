@@ -76,13 +76,13 @@ namespace ProductionMan.Data
         {
             return new User
             {
-                Id = AdoConverter.Read<Int64>(reader, "UserId", -1),
-                Name = AdoConverter.Read(reader, "DisplayName", string.Empty),
+                UserId = AdoConverter.Read<Int64>(reader, "UserId", -1),
+                DisplayName = AdoConverter.Read(reader, "DisplayName", string.Empty),
                 Culture = AdoConverter.Read(reader, "Culture", string.Empty),
-                Role = new UserRole
+                Role = new Role
                 {
-                    Name = AdoConverter.Read(reader, "RoleName", string.Empty),
-                    Id = AdoConverter.Read(reader, "RoleId", -1)
+                    RoleName = AdoConverter.Read(reader, "RoleName", string.Empty),
+                    RoleId = AdoConverter.Read(reader, "RoleId", -1)
                 }
             };
         }
@@ -97,9 +97,9 @@ namespace ProductionMan.Data
                 {
                     new SqlParameter("@username", newUser.Username),
                     new SqlParameter("@password", newUser.Password),
-                    new SqlParameter("@DisplayName", newUser.Name),
+                    new SqlParameter("@DisplayName", newUser.DisplayName),
                     new SqlParameter("@Culture", newUser.Culture),
-                    new SqlParameter("@RoleId", newUser.Role.Id)
+                    new SqlParameter("@RoleId", newUser.Role.RoleId)
                 }
                 );
 
@@ -108,7 +108,7 @@ namespace ProductionMan.Data
                 if (reader.Read())
                 {
                     var user = MapUser(reader);
-                    newUser.Id = user.Id;
+                    newUser.UserId = user.UserId;
                 }
             });
         }

@@ -25,7 +25,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
         public async Task<UserControl> CreateUserControl()
         {
             var response = await _membershipService.GetUsers();
-            var users = new ObservableCollection<User>();
+            var users = new ObservableCollection<UserRead>();
             if (response != null)
             {
                 foreach (var user in response.Results)

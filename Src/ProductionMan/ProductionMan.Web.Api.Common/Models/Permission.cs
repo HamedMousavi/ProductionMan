@@ -1,20 +1,24 @@
-﻿namespace ProductionMan.Web.Api.Common.Models
+﻿using System;
+
+namespace ProductionMan.Web.Api.Common.Models
 {
-    public class Permission : Data.Shared.Models.Permission, ILinkable
+    public class Permission : Linkable
     {
-        #region Links
-        
-        
-        private LinkList _links;
-
-
-        public LinkList Links
+        [Flags]
+        public enum OperationType
         {
-            get { return _links ?? (_links = new LinkList()); }
-            set { _links = value; }
+            Create = 1,
+            Read = 2,
+            Update = 4,
+            Delete = 8
         }
+        
+        public int PermissionId { get; set; }
 
 
-        #endregion Links
+        public string ResourceName { get; set; }
+
+
+        public OperationType Operation { get; set; }
     }
 }

@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\Lib\AutoMapper.3.3.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\Lib\AutoMapper.3.3.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\Lib\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -272,10 +278,6 @@
       <Project>{33b2185e-ec7e-4407-85c7-4504c5573633}</Project>
       <Name>ProductionMan.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj">
-      <Project>{9879d6ff-5a77-4e0e-914f-b24e80521091}</Project>
-      <Name>ProductionMan.Data.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProductionMan.Domain\ProductionMan.Domain.csproj">
       <Project>{85041feb-d27a-4dc6-97ae-fb5a77b1eb77}</Project>
       <Name>ProductionMan.Domain</Name>
@@ -323,6 +325,7 @@
     <Resource Include="Theme\Dark\Pictures\tick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\Lib\AutoMapper.3.3.0\tools\AutoMapper.targets" Condition="Exists('..\..\Lib\AutoMapper.3.3.0\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

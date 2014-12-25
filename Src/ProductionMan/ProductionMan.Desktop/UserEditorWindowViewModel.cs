@@ -10,6 +10,6 @@ namespace ProductionMan.Desktop
 
         public ICommand CancelCommand { get; set; }
 
-        public Web.Api.Common.Models.User User { get; set; }
+        public Web.Api.Common.Models.UserWrite User { get; set; }
     }
 }

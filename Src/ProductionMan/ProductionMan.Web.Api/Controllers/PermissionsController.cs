@@ -23,13 +23,13 @@ namespace ProductionMan.Web.Api.Controllers
 
             return new List<Permission>
             {
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "Users" },
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "Permissions" },
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "Materials" },
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "Processes" },
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "Stores" },
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "Settings" },
-                new Permission {Operation = Data.Shared.Models.Permission.OperationType.Read | Data.Shared.Models.Permission.OperationType.Create, ResourceName = "About" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Users" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Permissions" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Materials" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Processes" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Stores" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Settings" },
+                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "About" },
             };
         }
     }

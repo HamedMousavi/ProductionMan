@@ -1,8 +1,10 @@
-﻿using log4net;
+﻿using AutoMapper;
+using log4net;
 using log4net.Config;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Globalization;
 using ProductionMan.Domain.WebServices;
+using ProductionMan.Web.Api.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -30,7 +32,11 @@ namespace ProductionMan.Desktop
 
             SetupGlobalExceptionHandlers();
 
-            SharedApplicationServices.Instanse.SynchronizationContext = SynchronizationContext.Current;
+            SetupAutoMapper();
+
+            // Setup GUI helpers
+            SharedApplicationServices.Instanse.SynchronizationContext = 
+                SynchronizationContext.Current;
 
             SetupLanguage();
 
@@ -50,6 +56,12 @@ namespace ProductionMan.Desktop
         {
             AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
             Current.DispatcherUnhandledException += OnDispatcherUnhandledException;
+        }
+
+
+        private void SetupAutoMapper()
+        {
+            Mapper.CreateMap<UserRead, UserRole>();
         }
 
 

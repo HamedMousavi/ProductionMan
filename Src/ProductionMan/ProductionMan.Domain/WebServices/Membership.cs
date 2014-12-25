@@ -36,9 +36,9 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public async Task<ServiceCallResult<User>> GetUserDetails()
+        public async Task<ServiceCallResult<UserRead>> GetUserDetails()
         {
-            var result = new ServiceCallResult<User>();
+            var result = new ServiceCallResult<UserRead>();
             using (var client = new HttpClient())
             {
                 PrepareHeaders(client);
@@ -48,7 +48,7 @@ namespace ProductionMan.Domain.WebServices
                 result.CallStatusMessage = response.ReasonPhrase;
                 if (response.IsSuccessStatusCode)
                 {
-                    result.Results = response.Content.ReadAsAsync<User>().Result;
+                    result.Results = response.Content.ReadAsAsync<UserRead>().Result;
                 }
             }
 
@@ -56,9 +56,9 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public async Task<ServiceCallResult<List<User>>> GetUsers()
+        public async Task<ServiceCallResult<List<UserRead>>> GetUsers()
         {
-            var result = new ServiceCallResult<List<User>>();
+            var result = new ServiceCallResult<List<UserRead>>();
 
             using (var client = new HttpClient())
             {
@@ -69,7 +69,7 @@ namespace ProductionMan.Domain.WebServices
                 result.CallStatusMessage = response.ReasonPhrase;
                 if (response.IsSuccessStatusCode)
                 {
-                    result.Results = response.Content.ReadAsAsync<List<User>>().Result;
+                    result.Results = response.Content.ReadAsAsync<List<UserRead>>().Result;
                 }
             }
 
@@ -77,19 +77,19 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public void CreateUser(User user)
+        public void CreateUser(UserRead user)
         {
             throw new System.NotImplementedException();
         }
 
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserRead user)
         {
             throw new System.NotImplementedException();
         }
 
 
-        public void DeleteUser(User user)
+        public void DeleteUser(UserRead user)
         {
             throw new System.NotImplementedException();
         }

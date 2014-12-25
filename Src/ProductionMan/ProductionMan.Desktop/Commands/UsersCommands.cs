@@ -36,7 +36,7 @@ namespace ProductionMan.Desktop.Commands
             {
                 SaveCommand = new CreateUserCommand(_membershipService),
                 CancelCommand = new CloseWindowCommand(),
-                User = new User()
+                User = new UserWrite()
             });
         }
     }
@@ -70,11 +70,14 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
+            var userWrite = new UserWrite();
+            // UNDONE: MAP FROM USER READ parameter as UserRead
+
             _windowManager.DisplayUserEditorWindow(new UserEditorWindowViewModel
             {
                 SaveCommand = new UpdateUserCommand(_membershipService),
                 CancelCommand = new CloseWindowCommand(),
-                User = parameter as User
+                User = userWrite
             });
         }
     }
@@ -105,13 +108,13 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            var user = parameter as User;
+            var user = parameter as UserRead;
             if (user != null)
             {
                 _windowManager.RequestPermissionToDelete(
                     new ConfirmDeleteWindowViewModel
                     {
-                        MessageDetail = string.Format("User, name= {0}", user.Name),
+                        MessageDetail = string.Format("User, name= {0}", user.DisplayName),
                         DeleteCommand = new DeleteUserCommand(_membershipService),
                         CancelCommand = new CloseWindowCommand(),
                         User = user
@@ -143,7 +146,7 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            _membershipService.CreateUser(parameter as User);
+            _membershipService.CreateUser(parameter as UserWrite);
         }
     }
 
@@ -168,7 +171,7 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            _membershipService.UpdateUser(parameter as User);
+            _membershipService.UpdateUser(parameter as UserWrite);
         }
     }
 
@@ -193,7 +196,9 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            _membershipService.DeleteUser(parameter as User);
+            var userWrite = new UserWrite();
+            // UNDONE: MAP FROM USER READ parameter as UserRead
+            _membershipService.DeleteUser(userWrite);
         }
     }
 

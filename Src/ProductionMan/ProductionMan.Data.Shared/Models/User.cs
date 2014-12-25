@@ -8,9 +8,9 @@ namespace ProductionMan.Data.Shared.Models
     {
 
         [Key]
-        public long Id { get; set; }
+        public long UserId { get; set; }
 
-        public string Name { get; set; }
+        public string DisplayName { get; set; }
 
         public string Username { get; set; }
 
@@ -18,11 +18,6 @@ namespace ProductionMan.Data.Shared.Models
 
         public string Culture { get; set; }
 
-        public UserRole Role { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("{0}", Name);
-        }
+        public Role Role { get; set; }
     }
 }

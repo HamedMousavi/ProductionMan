@@ -150,6 +150,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ColumnHeaderDisplayName" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="DeleteItem" xml:space="preserve">
     <value>Delete</value>
   </data>

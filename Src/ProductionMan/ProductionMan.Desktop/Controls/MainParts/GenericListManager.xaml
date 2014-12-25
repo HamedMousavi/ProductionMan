@@ -17,7 +17,8 @@
             SelectionMode="Single" SelectionUnit="FullRow" 
             AutoGenerateColumns="True" Margin="0"
             Style="{StaticResource CleanDataGrid}" CellStyle="{StaticResource CleanDataGridCenterVAlign}"
-            ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+            ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" AutoGeneratingColumn="OnGridGeneratingColumns">
             <DataGrid.Resources>
                 <ResourceDictionary>
                     <!--<SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="NavajoWhite"/>-->

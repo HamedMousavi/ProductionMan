@@ -53,7 +53,7 @@ namespace ProductionMan.Domain.Security
             if (response.CallStatusCode == HttpStatusCode.OK)
             {
                 // Set users name
-                Name = response.Results.Name;
+                Name = response.Results.DisplayName;
                 
                 //// Load list of user permissions
                 //var perms = await _membershipService.GetPermissions();

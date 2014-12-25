@@ -29,7 +29,7 @@ namespace ProductionMan.Web.Api.Security
             {
                 var claims = new ClaimList
                 {
-                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Name, user.DisplayName),
                     new Claim(ClaimTypes.Uri, "get:api/users")
                 };
 

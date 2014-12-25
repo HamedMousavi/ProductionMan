@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
+using AutoMapper;
 using ProductionMan.Data;
 using ProductionMan.Data.MsAdo;
 using ProductionMan.Web.Api.ActionResults;
@@ -20,34 +21,39 @@ namespace ProductionMan.Web.Api.Controllers
         private Data.MembershipRepository _repository;
 
 
-        public UsersController(MembershipRepository repository)
+        public UsersController()
         {
-            _repository = repository;
+            _repository = new Data.MembershipRepository(UnitOfWorkFactory.Create());
         }
 
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<UserRead> GetUsers()
         {
-//new Data.MembershipRepository(UnitOfWorkFactory.Create());
-
             var list = _repository.GetUsers(string.Empty);
 
-            return list.Select(item => new User
-            {
-                Id = item.Id, Name = item.Name, Links = new LinkList {new Link {Href = string.Format("/api/Users/{0}", item.Id), Method = "GET", Rel = "Self"}}
-            }).ToList();
+            return list.Select(Mapper.Map<UserRead>).ToList();
         }
+
+            //var result = new List<UserRead>();
+            //foreach (var user in list)
+            //{
+            //    result.Add(Mapper.Map<UserRead>(user));
+            //}
+            //return list.Select(item => new UserRead
+            //{
+            //    UserId = item.UserId, DisplayName = item.DisplayName, Links = new LinkList {new Link {Href = string.Format("/api/Users/{0}", item.UserId), Method = "GET", Rel = "Self"}}
+            //}).ToList();
 
 
         // Get: api/Users/Current (id=Current)
-        public User GetUser(string id)
+        public UserRead GetUser(string id)
         {
             if (string.Equals(id, "Current", StringComparison.InvariantCultureIgnoreCase))
             {
                 var principal = Thread.CurrentPrincipal as DefaultPrincipal;
                 if (principal != null)
                 {
-                    return new User {Name = principal.Name};
+                    return new UserRead {DisplayName = principal.Name};
                 }
             }
 
@@ -59,15 +65,19 @@ namespace ProductionMan.Web.Api.Controllers
         public IHttpActionResult AddUser(HttpRequestMessage requestMessage, Data.Shared.Models.User newUser)
         {
             _repository.Insert(newUser);
-            var user = new User
+            var user = new UserRead
             {
                 Culture = newUser.Culture,
-                Id = newUser.Id,
-                Name = newUser.Name,
-                Role = newUser.Role
+                UserId = newUser.UserId,
+                DisplayName = newUser.DisplayName,
+                Role = new UserRole
+                {
+                    RoleId = newUser.Role.RoleId,
+                    RoleName = newUser.Role.RoleName
+                }
             };
 
-            return new CreatedActionResult<User>(requestMessage, user);
+            return new CreatedActionResult<UserRead>(requestMessage, user);
         }
     }
 }

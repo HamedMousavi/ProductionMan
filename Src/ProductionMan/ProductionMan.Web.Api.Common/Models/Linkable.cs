@@ -1,7 +1,6 @@
-﻿
-namespace ProductionMan.Web.Api.Common.Models
+﻿namespace ProductionMan.Web.Api.Common.Models
 {
-    public class User : Data.Shared.Models.User, ILinkable
+    public class Linkable : ILinkable
     {
 
         private LinkList _links;
@@ -12,6 +11,5 @@ namespace ProductionMan.Web.Api.Common.Models
             get { return _links ?? (_links = new LinkList()); }
             set { _links = value; }
         }
-
     }
 }

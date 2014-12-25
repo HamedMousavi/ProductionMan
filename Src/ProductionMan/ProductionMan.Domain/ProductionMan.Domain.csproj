@@ -58,10 +58,6 @@
       <Project>{33b2185e-ec7e-4407-85c7-4504c5573633}</Project>
       <Name>ProductionMan.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj">
-      <Project>{9879d6ff-5a77-4e0e-914f-b24e80521091}</Project>
-      <Name>ProductionMan.Data.Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProductionMan.Web.Api.Common\ProductionMan.Web.Api.Common.csproj">
       <Project>{e95842d5-99af-4110-9399-82cf9b123a47}</Project>
       <Name>ProductionMan.Web.Api.Common</Name>

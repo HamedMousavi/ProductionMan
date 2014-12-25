@@ -1,5 +1,7 @@
 ﻿using System.Web.Http.Tracing;
 using AutoMapper;
+using ProductionMan.Data.Shared.Models;
+using ProductionMan.Web.Api.Common.Models;
 using ProductionMan.Web.Api.Security;
 using ProductionMan.Web.Api.Services;
 using System.Web.Http;
@@ -67,7 +69,9 @@ namespace ProductionMan.Web.Api
 
         private static void ConfigureAutoMapper()
         {
-            //Mapper.CreateMap<>();
+            Mapper.CreateMap<Role, UserRole>();
+            Mapper.CreateMap<User, UserRead>();
+            Mapper.CreateMap<User, UserWrite>();
         }
     }
 }

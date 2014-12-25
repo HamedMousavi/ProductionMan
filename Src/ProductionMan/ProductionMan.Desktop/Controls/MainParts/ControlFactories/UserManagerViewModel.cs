@@ -4,7 +4,7 @@ using ProductionMan.Web.Api.Common.Models;
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
 
-    public class UserManagerViewModel : BaseListViewModel<User>
+    public class UserManagerViewModel : BaseListViewModel<UserRead>
     {
         private ICommand _toggleUserEnabledStatusCommand;
 
