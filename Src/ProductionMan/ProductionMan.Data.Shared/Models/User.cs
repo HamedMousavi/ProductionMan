@@ -10,6 +10,8 @@ namespace ProductionMan.Data.Shared.Models
 
         public string Culture { get; set; }
 
+        public UserRole Role { get; set; }
+
         public override string ToString()
         {
             return string.Format("{0}", Name);

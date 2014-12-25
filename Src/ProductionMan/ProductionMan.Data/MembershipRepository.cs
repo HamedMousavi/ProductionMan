@@ -28,7 +28,7 @@ namespace ProductionMan.Data
             _context.CreateCommand(
                 false,
                 CommandType.Text,
-                "SELECT [UserId], [DisplayName],[Culture] FROM Users",
+                "SELECT [Users].[UserId], [Users].[DisplayName], [Users].[Culture], [Roles].[RoleId], [Roles].[RoleName] FROM Users, Roles WHERE [Users].[IsEnabled]=1 AND [Roles].[RoleId]=[Users].[RoleId]",
                 null
                 );
 
@@ -37,15 +37,7 @@ namespace ProductionMan.Data
                 {
                     while (reader.Read())
                     {
-                        var user = new User
-                        {
-                            Id = AdoConverter.Read<Int64>(reader, "UserId", -1),
-                            Name = AdoConverter.Read(reader, "DisplayName", string.Empty),
-                            Culture = AdoConverter.Read(reader, "Culture", string.Empty)
-                        };
-
-                        list.Add(user);
-
+                        list.Add(MapUser(reader));
                     }
                 });
 
@@ -60,7 +52,7 @@ namespace ProductionMan.Data
             _context.CreateCommand(
                 false,
                 CommandType.Text,
-                "SELECT [UserId], [DisplayName],[Culture] FROM Users WHERE [Username]=@username AND [Password]=@password",
+                "SELECT [Users].[UserId], [Users].[DisplayName], [Users].[Culture], [Roles].[RoleId], [Roles].[RoleName] FROM Users, Roles WHERE [Username]=@username AND [Password]=@password AND [Users].[IsEnabled]=1 AND [Roles].[RoleId]=[Users].[RoleId]",
                 new List<SqlParameter>
                 {
                     new SqlParameter("@username", username),
@@ -68,22 +60,31 @@ namespace ProductionMan.Data
                 }
                 );
 
-            _context.Execute(
-                reader =>
+            _context.Execute(reader =>
+            {
+                if (reader.Read())
                 {
-                    if (reader.Read())
-                    {
-                        user = new User
-                        {
-                            Id = AdoConverter.Read<Int64>(reader, "UserId", -1),
-                            Name = AdoConverter.Read(reader, "DisplayName", string.Empty),
-                            Culture = AdoConverter.Read(reader, "Culture", string.Empty)
-                        };
-
-                    }
-                });
+                    user = MapUser(reader);
+                }
+            });
 
             return user;
+        }
+
+
+        private User MapUser(IDataReader reader)
+        {
+            return new User
+            {
+                Id = AdoConverter.Read<Int64>(reader, "UserId", -1),
+                Name = AdoConverter.Read(reader, "DisplayName", string.Empty),
+                Culture = AdoConverter.Read(reader, "Culture", string.Empty),
+                Role = new UserRole
+                {
+                    Name = AdoConverter.Read(reader, "RoleName", string.Empty),
+                    Id = AdoConverter.Read(reader, "RoleId", -1)
+                }
+            };
         }
     }
 }
