@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
 using ProductionMan.Web.Api.Common.Models;
 
-namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
+namespace ProductionMan.Desktop.Controls.MainParts
 {
     public class PermissionManagerViewModel : BaseListViewModel<Permission>
     {

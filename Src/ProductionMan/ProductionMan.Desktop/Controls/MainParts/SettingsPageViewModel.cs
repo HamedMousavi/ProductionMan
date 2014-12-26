@@ -1,9 +1,8 @@
-﻿using ProductionMan.Common;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using ProductionMan.Common;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Globalization;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-
 
 namespace ProductionMan.Desktop.Controls.MainParts
 {

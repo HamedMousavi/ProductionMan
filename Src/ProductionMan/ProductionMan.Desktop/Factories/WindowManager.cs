@@ -1,7 +1,6 @@
-﻿using ProductionMan.Desktop.Commands;
-using System.Windows;
+﻿using System.Windows;
+using ProductionMan.Desktop.Commands;
 using ProductionMan.Web.Api.Common.Models;
-
 
 namespace ProductionMan.Desktop.Factories
 {

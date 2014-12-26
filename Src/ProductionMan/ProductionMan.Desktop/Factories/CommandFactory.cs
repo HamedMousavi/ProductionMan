@@ -5,7 +5,6 @@ using ProductionMan.Desktop.Commands;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
 
-
 namespace ProductionMan.Desktop.Factories
 {
 

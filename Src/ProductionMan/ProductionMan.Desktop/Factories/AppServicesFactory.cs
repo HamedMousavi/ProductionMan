@@ -2,7 +2,6 @@
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Globalization;
 
-
 namespace ProductionMan.Desktop.Factories
 {
 

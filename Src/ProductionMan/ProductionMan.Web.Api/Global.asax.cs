@@ -1,8 +1,7 @@
-﻿using log4net;
-using log4net.Config;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Web.Http;
-
+using log4net;
+using log4net.Config;
 
 namespace ProductionMan.Web.Api
 {

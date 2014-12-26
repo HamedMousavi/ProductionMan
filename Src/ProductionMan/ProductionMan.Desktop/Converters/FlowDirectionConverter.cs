@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Data;
 
-
 namespace ProductionMan.Desktop.Converters
 {
 

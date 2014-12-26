@@ -1,8 +1,7 @@
-﻿using ProductionMan.Web.Api.Common;
-using ProductionMan.Web.Api.Common.Models;
-using System;
+﻿using System;
 using System.Linq;
-
+using ProductionMan.Web.Api.Common;
+using ProductionMan.Web.Api.Common.Models;
 
 namespace ProductionMan.Web.Api.ActionResults
 {

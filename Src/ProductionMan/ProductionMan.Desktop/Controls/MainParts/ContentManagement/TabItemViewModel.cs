@@ -1,7 +1,6 @@
 ﻿using ProductionMan.Common;
 
-
-namespace ProductionMan.Desktop.Controls.MainParts
+namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 {
 
     public class TabItemViewModel : NotifyPropertyChanged

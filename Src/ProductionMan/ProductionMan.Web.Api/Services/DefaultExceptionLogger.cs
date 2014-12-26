@@ -1,6 +1,5 @@
-﻿using log4net;
-using System.Web.Http.ExceptionHandling;
-
+﻿using System.Web.Http.ExceptionHandling;
+using log4net;
 
 namespace ProductionMan.Web.Api.Services
 {

@@ -1,7 +1,6 @@
-﻿using ProductionMan.Web.Api.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-
+using ProductionMan.Web.Api.Common.Models;
 
 namespace ProductionMan.Web.Api.Controllers
 {

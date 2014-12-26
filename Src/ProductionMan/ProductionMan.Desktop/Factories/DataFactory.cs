@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Web.Api.Common.Models;
 
-
 namespace ProductionMan.Desktop.Factories
 {
 
-    public class DataFactory
+    public sealed class DataFactory
     {
 
         private readonly MembershipRepository _membershipRepository;
@@ -53,7 +52,7 @@ namespace ProductionMan.Desktop.Factories
         public event LoadCompletedEvent LoadCompleted;
 
 
-        protected virtual void OnLoadCompleted()
+        private void OnLoadCompleted()
         {
             var handler = LoadCompleted;
             if (handler != null) handler(this, EventArgs.Empty);

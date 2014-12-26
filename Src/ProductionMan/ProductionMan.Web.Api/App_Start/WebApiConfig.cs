@@ -1,12 +1,11 @@
-﻿using System.Web.Http.Tracing;
+﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using System.Web.Http.Tracing;
 using AutoMapper;
 using ProductionMan.Data.Shared.Models;
 using ProductionMan.Web.Api.Common.Models;
 using ProductionMan.Web.Api.Security;
 using ProductionMan.Web.Api.Services;
-using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
-
 
 namespace ProductionMan.Web.Api
 {
@@ -33,10 +32,7 @@ namespace ProductionMan.Web.Api
         {
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional }
             );
         }
 

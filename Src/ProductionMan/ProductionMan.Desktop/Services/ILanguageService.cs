@@ -1,7 +1,6 @@
-﻿using ProductionMan.Domain.Globalization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-
+using ProductionMan.Domain.Globalization;
 
 namespace ProductionMan.Desktop.Services
 {

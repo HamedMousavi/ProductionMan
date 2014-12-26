@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
 using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
-using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Domain.Security;
-
 
 namespace ProductionMan.Desktop
 {

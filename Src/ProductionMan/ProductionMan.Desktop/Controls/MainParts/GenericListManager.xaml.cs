@@ -1,13 +1,12 @@
 ﻿using System.Windows.Controls;
 
-
 namespace ProductionMan.Desktop.Controls.MainParts
 {
 
     /// <summary>
     /// Interaction logic for GenericListManager.xaml
     /// </summary>
-    public partial class GenericListManager : UserControl
+    public partial class GenericListManager
     {
 
         public GenericListManager()

@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using ProductionMan.Common;
-using ProductionMan.Domain.Globalization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Input;
-
+using ProductionMan.Common;
+using ProductionMan.Domain.Globalization;
 
 namespace ProductionMan.Desktop.Services
 {

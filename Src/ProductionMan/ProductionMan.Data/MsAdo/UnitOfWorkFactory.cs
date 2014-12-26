@@ -1,7 +1,7 @@
 ﻿namespace ProductionMan.Data.MsAdo
 {
 
-    public class UnitOfWorkFactory
+    public static class UnitOfWorkFactory
     {
 
         public static IUnitOfWork Create()

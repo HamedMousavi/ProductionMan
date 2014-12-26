@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 
-
 namespace ProductionMan.Web.Api.Security
 {
 
@@ -12,7 +11,7 @@ namespace ProductionMan.Web.Api.Security
         private readonly IEnumerable<Claim> _claims;
 
 
-        public DefaultPrincipal(IEnumerable<Claim> claims)
+        public DefaultPrincipal(IReadOnlyCollection<Claim> claims)
             : base(new[] { new ClaimsIdentity(claims, "Token") })
         {
             _claims = claims;

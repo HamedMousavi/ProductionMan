@@ -1,8 +1,7 @@
-﻿using ProductionMan.Common;
-using ProductionMan.Domain.Security;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
-
+using ProductionMan.Common;
+using ProductionMan.Domain.Security;
 
 namespace ProductionMan.Desktop.Controls.Authentication
 {

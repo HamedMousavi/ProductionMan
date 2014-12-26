@@ -4,7 +4,6 @@ using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
 using ProductionMan.Desktop.Factories;
 using ProductionMan.Web.Api.Common.Models;
 
-
 namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 {
 

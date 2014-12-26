@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security;
 
-
 namespace ProductionMan.Common
 {
 
@@ -19,21 +18,21 @@ namespace ProductionMan.Common
         }
 
 
-        public static string ToUnsecureString(this SecureString source)
-        {
-            if (source == null)
-                throw new ArgumentNullException("source");
+        //public static string ToUnsecureString(this SecureString source)
+        //{
+        //    if (source == null)
+        //        throw new ArgumentNullException("source");
 
-            var unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(source);
-                return Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        }
+        //    var unmanagedString = IntPtr.Zero;
+        //    try
+        //    {
+        //        unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(source);
+        //        return Marshal.PtrToStringUni(unmanagedString);
+        //    }
+        //    finally
+        //    {
+        //        Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+        //    }
+        //}
     }
 }

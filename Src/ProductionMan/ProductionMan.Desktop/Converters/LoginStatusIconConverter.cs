@@ -1,9 +1,8 @@
-﻿using ProductionMan.Domain.Security;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-
+using ProductionMan.Domain.Security;
 
 namespace ProductionMan.Desktop.Converters
 {

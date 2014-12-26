@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using ProductionMan.Common;
 
-
 namespace ProductionMan.Desktop.Services
 {
 

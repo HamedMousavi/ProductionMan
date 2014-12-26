@@ -1,4 +1,5 @@
-﻿using ProductionMan.Desktop.Factories;
+﻿using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
+using ProductionMan.Desktop.Factories;
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {

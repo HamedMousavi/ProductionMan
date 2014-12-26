@@ -1,8 +1,7 @@
-﻿using ProductionMan.Desktop.Controls.Authentication;
-using ProductionMan.Domain.Security;
-using System;
+﻿using System;
 using System.Windows.Input;
-
+using ProductionMan.Desktop.Controls.Authentication;
+using ProductionMan.Domain.Security;
 
 namespace ProductionMan.Desktop.Commands
 {

@@ -1,10 +1,9 @@
-﻿using ProductionMan.Data.MsAdo;
-using ProductionMan.Web.Api.Security.Models;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
-
+using ProductionMan.Data.MsAdo;
+using ProductionMan.Web.Api.Security.Models;
 
 namespace ProductionMan.Web.Api.Security
 {

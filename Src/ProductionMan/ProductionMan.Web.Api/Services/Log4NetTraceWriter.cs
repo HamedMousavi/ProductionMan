@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Reflection;
-using log4net;
 using System.Web.Http.Tracing;
-
+using log4net;
 
 namespace ProductionMan.Web.Api.Services
 {

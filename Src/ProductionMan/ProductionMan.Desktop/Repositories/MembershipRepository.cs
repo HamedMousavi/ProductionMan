@@ -1,9 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 
 namespace ProductionMan.Desktop.Repositories
 {

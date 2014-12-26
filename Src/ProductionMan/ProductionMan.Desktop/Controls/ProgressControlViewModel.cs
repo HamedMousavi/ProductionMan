@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using ProductionMan.Common;
 
-
 namespace ProductionMan.Desktop.Controls
 {
 

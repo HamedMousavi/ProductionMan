@@ -1,11 +1,10 @@
-﻿using ProductionMan.Desktop.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
-
+using ProductionMan.Desktop.Services;
 
 namespace ProductionMan.Desktop.Converters
 {

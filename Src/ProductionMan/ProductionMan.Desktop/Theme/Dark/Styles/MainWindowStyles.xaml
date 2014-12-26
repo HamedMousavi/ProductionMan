@@ -125,14 +125,14 @@
 
 
     <Style x:Key="MainTabItemLabel" TargetType="Label">
-        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontWeight" Value="Bold" />
         <!--<Setter Property="Foreground" Value="White"></Setter>-->
-        <Setter Property="FontSize" Value="12"></Setter>
-        <Setter Property="Margin" Value="0"></Setter>
-        <Setter Property="Padding" Value="0"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="MainTabPageToolbarBorder" TargetType="Border">
@@ -155,14 +155,14 @@
     </Style>
 
     <Style x:Key="MainTabItemPanel" TargetType="StackPanel">
-        <Setter Property="Orientation" Value="Horizontal"></Setter>
-        <Setter Property="Margin" Value="0"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
     </Style>
 
     <Style x:Key="MainTabItemImage" BasedOn="{StaticResource NonScaledImage}" TargetType="Image">
-        <Setter Property="Margin" Value="0"></Setter>
+        <Setter Property="Margin" Value="0" />
     </Style>
 
     <Style x:Key="MainContainerOuterBorder" TargetType="Border">
@@ -221,11 +221,11 @@
     </Style>
 
     <Style x:Key="TitleLabel" TargetType="Label">
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="Foreground" Value="Gray"></Setter>
-        <Setter Property="Margin" Value="0"></Setter>
-        <Setter Property="Padding" Value="0"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
 

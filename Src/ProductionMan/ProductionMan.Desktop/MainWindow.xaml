@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:mainParts="clr-namespace:ProductionMan.Desktop.Controls.MainParts"
         xmlns:desktop="clr-namespace:ProductionMan.Desktop"
+        xmlns:contentManagement="clr-namespace:ProductionMan.Desktop.Controls.MainParts.ContentManagement"
         Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     
     <Window.Resources>
@@ -44,7 +45,7 @@
                     </Style>
                 </TabControl.ItemContainerStyle>
                 <TabControl.ItemTemplate>
-                    <DataTemplate DataType="mainParts:TabItemViewModel">
+                    <DataTemplate DataType="contentManagement:TabItemViewModel">
                         <StackPanel Style="{StaticResource MainTabItemPanel}">
                             <Image  Style="{StaticResource MainTabItemImage}">
                                 <Image.Source>
@@ -59,7 +60,7 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
-                    <DataTemplate DataType="mainParts:TabItemViewModel">
+                    <DataTemplate DataType="contentManagement:TabItemViewModel">
                         <Border Style="{StaticResource MainTabPageToolbarBorder}">
                             <Grid>
                                 <Grid.ColumnDefinitions>

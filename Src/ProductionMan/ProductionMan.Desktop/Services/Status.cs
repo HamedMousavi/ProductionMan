@@ -1,6 +1,5 @@
 ﻿using ProductionMan.Common;
 
-
 namespace ProductionMan.Desktop.Services
 {
 

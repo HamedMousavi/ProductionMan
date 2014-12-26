@@ -1,6 +1,6 @@
 ﻿namespace ProductionMan.Web.Api.Common
 {
-    public class Constants
+    public static class Constants
     {
         public static class CommonLinkRelValues
         {

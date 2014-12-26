@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
+using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
 using ProductionMan.Desktop.Factories;
-
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {

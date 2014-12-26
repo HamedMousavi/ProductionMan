@@ -1,7 +1,5 @@
-﻿using ProductionMan.Web.Api.Common.Models;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-
 
 namespace ProductionMan.Desktop
 {
@@ -9,7 +7,7 @@ namespace ProductionMan.Desktop
     /// <summary>
     /// Interaction logic for UserEditorWindow.xaml
     /// </summary>
-    public partial class UserEditorWindow : Window
+    public partial class UserEditorWindow
     {
 
         public UserEditorWindow()

@@ -1,7 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-
 
 namespace ProductionMan.Desktop.Controls.Authentication
 {
@@ -9,7 +7,7 @@ namespace ProductionMan.Desktop.Controls.Authentication
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class Login
     {
         public Login()
         {

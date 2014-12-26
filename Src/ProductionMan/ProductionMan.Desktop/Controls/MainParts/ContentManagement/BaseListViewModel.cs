@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-
-namespace ProductionMan.Desktop.Controls.MainParts
+namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 {
 
     public abstract class BaseListViewModel<T> : GenericListToolbarViewModel

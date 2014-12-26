@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 
-
 namespace ProductionMan.Data.MsAdo
 {
 

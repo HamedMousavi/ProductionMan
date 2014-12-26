@@ -1,6 +1,7 @@
-﻿using ProductionMan.Web.Api.Common.Models;
+﻿using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
+using ProductionMan.Web.Api.Common.Models;
 
-namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
+namespace ProductionMan.Desktop.Controls.MainParts
 {
     public class StoreManagerViewModel : BaseListViewModel<Depot>
     {

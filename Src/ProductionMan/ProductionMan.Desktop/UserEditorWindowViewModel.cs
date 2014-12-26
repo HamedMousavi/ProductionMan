@@ -1,11 +1,10 @@
-﻿using ProductionMan.Common;
-using ProductionMan.Domain.Globalization;
-using ProductionMan.Web.Api.Common.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
-
+using ProductionMan.Common;
+using ProductionMan.Domain.Globalization;
+using ProductionMan.Web.Api.Common.Models;
 
 namespace ProductionMan.Desktop
 {

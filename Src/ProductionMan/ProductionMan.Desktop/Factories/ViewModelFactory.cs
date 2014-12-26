@@ -1,13 +1,11 @@
-﻿using ProductionMan.Desktop.Commands;
+﻿using System.Collections.Generic;
+using ProductionMan.Desktop.Commands;
 using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
 using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
-using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Security;
 using ProductionMan.Web.Api.Common.Models;
-using System.Collections.Generic;
-
 
 namespace ProductionMan.Desktop.Factories
 {

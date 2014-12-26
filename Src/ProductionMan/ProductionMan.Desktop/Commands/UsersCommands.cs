@@ -4,7 +4,6 @@ using AutoMapper;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 
-
 namespace ProductionMan.Desktop.Commands
 {
 

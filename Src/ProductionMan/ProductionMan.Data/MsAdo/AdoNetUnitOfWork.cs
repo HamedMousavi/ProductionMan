@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-
 namespace ProductionMan.Data.MsAdo
 {
 
@@ -22,7 +21,7 @@ namespace ProductionMan.Data.MsAdo
         }
 
 
-        public void CreateCommand(bool transactional, CommandType commandType, string query, IEnumerable<IDataParameter> parameters)
+        public void CreateCommand(bool transactional, CommandType commandType, string query, IReadOnlyCollection<IDataParameter> parameters)
         {
             if (_connection == null)
             {

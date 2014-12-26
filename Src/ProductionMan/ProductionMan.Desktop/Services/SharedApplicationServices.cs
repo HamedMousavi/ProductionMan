@@ -2,7 +2,6 @@
 using System.Resources;
 using System.Threading;
 
-
 namespace ProductionMan.Desktop.Services
 {
 

@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
+using AutoMapper;
 using log4net;
 using log4net.Config;
 using ProductionMan.Common;
@@ -9,12 +14,6 @@ using ProductionMan.Domain.Globalization;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Windows;
-using System.Windows.Threading;
-
 
 namespace ProductionMan.Desktop
 {
