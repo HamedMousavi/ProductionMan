@@ -20,7 +20,7 @@ namespace ProductionMan.Desktop.Controls.MainParts
 
         internal IControlFactory CreateUsersFactory()
         {
-            return new UserManagerViewModelFactory();
+            return new UserManagerFactory();
         }
 
         internal IControlFactory CreateFPermissionsactory()

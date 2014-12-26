@@ -1,26 +1,23 @@
-﻿using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
-using ProductionMan.Web.Api.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
+using ProductionMan.Desktop.Factories;
+using ProductionMan.Web.Api.Common.Models;
 
 
-namespace ProductionMan.Desktop.Controls.MainParts
+namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 {
 
     public class MainWindowSelector : BaseContentSelector<TabItemViewModel>
     {
 
         private ObservableCollection<TabItemViewModel> _tabs;
-        private readonly MainWindowDataProvider _dataProvider;
-        private readonly MainWindowFactory _windowFactory;
         private Dictionary<string, IControlFactory> _controlFactories;
         private readonly ViewModelFactory _viewModelFactory;
 
 
-        public MainWindowSelector(MainWindowDataProvider dataProvider, MainWindowFactory windowFactory, ViewModelFactory viewModelFactory)
+        public MainWindowSelector(ViewModelFactory viewModelFactory)
         {
-            _dataProvider = dataProvider;
-            _windowFactory = windowFactory;
             _viewModelFactory = viewModelFactory;
 
             CreateControlFactories();
@@ -31,13 +28,13 @@ namespace ProductionMan.Desktop.Controls.MainParts
         {
             _controlFactories = new Dictionary<string, IControlFactory>
             {
-                {"Users",       _windowFactory.CreateUsersFactory()             },
-                {"Permissions", _windowFactory.CreateFPermissionsactory()       },
-                {"Materials",   _windowFactory.CreateMaterialsFactory()         },
-                {"Processes",   _windowFactory.CreateProcessesFactory()         },
-                {"Stores",      _windowFactory.CreateStoresFactory()            },
-                {"Settings",    _windowFactory.CreateSettingsManagerFactory()   },
-                {"About",       _windowFactory.CreateAboutUsFactory()           },
+                {"Users", new UserManagerFactory()},
+                {"Permissions", null},
+                {"Materials", null},
+                {"Processes", null},
+                {"Stores", null},
+                {"Settings", new SettingsManagerFactory()},
+                {"About", new AboutUsFactory()},
             };
         }
 
@@ -63,9 +60,8 @@ namespace ProductionMan.Desktop.Controls.MainParts
         }
 
 
-        internal void CreateContent()
+        internal void CreateContent(IEnumerable<Permission> permissions)
         {
-            var permissions = _dataProvider.Get<IEnumerable<Permission>>("UserPermissions");
             foreach (var permission in permissions)
             {
                 CreateContent(permission);

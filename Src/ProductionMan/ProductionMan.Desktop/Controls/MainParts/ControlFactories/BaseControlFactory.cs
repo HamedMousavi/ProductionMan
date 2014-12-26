@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using ProductionMan.Desktop.Factories;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
@@ -19,13 +20,6 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
         }
 
 
-        //viewModelFactory.CreateTabItemViewModel
-        protected abstract TabItemViewModel CreateTabViewModel(ViewModelFactory viewModelFactory);
-
-        // viewModelFactory.CreateViewModel(ViewModelIndex);
-        protected abstract object CreateContentViewModel(ViewModelFactory viewModelFactory);
-
-
         public UserControl CreateUserControl()
         {
             var control = Activator.CreateInstance<T>() as UserControl;
@@ -42,5 +36,11 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
         {
             return TabItem;
         }
+
+
+        protected abstract TabItemViewModel CreateTabViewModel(ViewModelFactory viewModelFactory);
+
+
+        protected abstract object CreateContentViewModel(ViewModelFactory viewModelFactory);
     }
 }

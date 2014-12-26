@@ -1,7 +1,9 @@
-﻿namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
+﻿using ProductionMan.Desktop.Factories;
+
+namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
 
-    public class UserManagerViewModelFactory : BaseControlFactory<GenericListManager>
+    public class UserManagerFactory : BaseControlFactory<GenericListManager>
     {
 
         protected override TabItemViewModel CreateTabViewModel(ViewModelFactory viewModelFactory)

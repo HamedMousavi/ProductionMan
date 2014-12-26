@@ -1,8 +1,13 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel;
+using AutoMapper;
 using log4net;
 using log4net.Config;
+using ProductionMan.Common;
+using ProductionMan.Desktop.Factories;
+using ProductionMan.Desktop.Repositories;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Globalization;
+using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 using System;
@@ -22,21 +27,19 @@ namespace ProductionMan.Desktop
     {
 
         private ILog _logger;
-        private ILanguageService _languageService;
+        private AppServicesFactory _appServiceFactory;
+        private WindowManager _windowManager;
 
 
         private void StartApplication(object sender, StartupEventArgs e)
         {
-            // Configure logger
             SetupLogger();
 
             SetupGlobalExceptionHandlers();
 
             SetupAutoMapper();
 
-            // Setup GUI helpers
-            SharedApplicationServices.Instanse.SynchronizationContext = 
-                SynchronizationContext.Current;
+            SetupAppServices();
 
             SetupLanguage();
 
@@ -65,6 +68,16 @@ namespace ProductionMan.Desktop
         }
 
 
+        private void SetupAppServices()
+        {
+            // Setup GUI helpers
+            SharedApplicationServices.Instanse.SynchronizationContext =
+                SynchronizationContext.Current;
+
+            _appServiceFactory = new AppServicesFactory();
+        }
+
+
         #region GlobalExceptions
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
@@ -88,21 +101,53 @@ namespace ProductionMan.Desktop
                 new Language {Id = 1, LocaleName = "fa-IR", Name = "فارسی"},
             };
 
-            _languageService = new DefaultLanguageService {Languages = languages};
-            _languageService.LoadDefaultLanguage(languages[1], languages[0]);
+            _appServiceFactory.CreateLanguageService(languages).
+                LoadDefaultLanguage(languages[1], languages[0]);
         }
 
 
         private void StartApplicationWindow()
         {
             var membershipService = new Membership();
-            var statusService = new DefaultStatusService(_languageService);
+            var membershipRepository = new MembershipRepository(membershipService);
             var commandFactory = new CommandFactory();
+            
+            var dataFactory = new DataFactory(membershipRepository);
+            dataFactory.LoadCompleted += (sender, args) => _windowManager.DisplayMainWindow();
 
-            new WindowManager(commandFactory, membershipService, _languageService, statusService).
-                    DisplayLoginWindow(new Domain.Security.User(membershipService));
+            var user = CreateUser(membershipService, dataFactory);
+            
+            _windowManager = new WindowManager(
+                _appServiceFactory,
+                commandFactory, 
+                dataFactory, 
+                membershipService, 
+                user);
 
+            _windowManager.DisplayLoginWindow();
+
+            var statusService = _appServiceFactory.CreateStatusService();
             SetStatus(statusService);
+        }
+
+
+        private User CreateUser(Membership membershipService, DataFactory dataFactory)
+        {
+            var user = new User(membershipService);
+
+            user.PropertyChanged += async (sender, e) =>
+            {
+                if (e.NameIs("LoginStatus"))
+                {
+                    if (user.LoginStatus == User.LoginStates.SignedIn)
+                    {
+                        // Load data asyncronously
+                        await dataFactory.Load();
+                    }
+                }
+            };
+
+            return user;
         }
 
 

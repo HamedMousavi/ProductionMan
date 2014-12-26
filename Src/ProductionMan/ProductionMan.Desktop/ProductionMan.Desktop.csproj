@@ -60,7 +60,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BaseViewModel.cs" />
-    <Compile Include="CommandFactory.cs" />
+    <Compile Include="Factories\AppServicesFactory.cs" />
+    <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="Commands\ConfirmDeleteWindowViewModel.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\GenericWindowCommands.cs" />
@@ -87,11 +88,12 @@
     </Compile>
     <Compile Include="Controls\MainParts\AboutPageViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\AboutUsFactory.cs" />
-    <Compile Include="Controls\MainParts\BaseListViewModel.cs" />
+    <Compile Include="Controls\MainParts\ContentManagement\BaseListViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\BaseControlFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\UserManagerViewModelFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\ViewModelFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerViewModel.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\UserManagerFactory.cs" />
+    <Compile Include="Factories\DataFactory.cs" />
+    <Compile Include="Factories\ViewModelFactory.cs" />
+    <Compile Include="Controls\MainParts\PermissionManagerViewModel.cs" />
     <Compile Include="Controls\MainParts\GenericListToolbarViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\IControlFactory.cs" />
     <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
@@ -100,19 +102,19 @@
     <Compile Include="Controls\MainParts\GenericListToolbar.xaml.cs">
       <DependentUpon>GenericListToolbar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainParts\InMemoryDataStore.cs" />
-    <Compile Include="Controls\MainParts\MainWindowDataProvider.cs" />
-    <Compile Include="Controls\MainParts\MainWindowFactory.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\MaterialManagerViewModel.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\ProcessManagerViewModel.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\StoreManagerViewModel.cs" />
+    <Compile Include="Controls\MainParts\ContentManagement\InMemoryDataStore.cs" />
+    <Compile Include="Controls\MainParts\ContentManagement\MainWindowFactory.cs" />
+    <Compile Include="Controls\MainParts\MaterialManagerViewModel.cs" />
+    <Compile Include="Controls\MainParts\ProcessManagerViewModel.cs" />
+    <Compile Include="Controls\MainParts\StoreManagerViewModel.cs" />
     <Compile Include="Converters\StatusLevelColorConverter.cs" />
     <Compile Include="Converters\StatusLevelIconConverter.cs" />
     <Compile Include="Repositories\MembershipRepository.cs" />
+    <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="Services\DefaultLanguageService.cs" />
     <Compile Include="Services\DefaultStatusService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
-    <Compile Include="Controls\MainParts\MainWindowSelector.cs" />
+    <Compile Include="Controls\MainParts\ContentManagement\MainWindowSelector.cs" />
     <Compile Include="Controls\MainParts\LogonBox.xaml.cs">
       <DependentUpon>LogonBox.xaml</DependentUpon>
     </Compile>
@@ -122,8 +124,8 @@
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainParts\SettingsPageViewModel.cs" />
-    <Compile Include="Controls\MainParts\TabItemViewModel.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\UserManagerViewModel.cs" />
+    <Compile Include="Controls\MainParts\ContentManagement\TabItemViewModel.cs" />
+    <Compile Include="Controls\MainParts\UserManagerViewModel.cs" />
     <Compile Include="Controls\ProgressControl.xaml.cs">
       <DependentUpon>ProgressControl.xaml</DependentUpon>
     </Compile>
@@ -143,7 +145,7 @@
       <DependentUpon>UserEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserEditorWindowViewModel.cs" />
-    <Compile Include="WindowManager.cs" />
+    <Compile Include="Factories\WindowManager.cs" />
     <Page Include="ConfirmDeleteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,25 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using ProductionMan.Desktop.Commands;
+﻿using ProductionMan.Desktop.Commands;
+using ProductionMan.Desktop.Controls.Authentication;
+using ProductionMan.Desktop.Controls.MainParts;
+using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
+using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
 using ProductionMan.Desktop.Services;
+using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
-using ProductionMan.Web.Api.Common.Models;
+using System.Collections.Generic;
 
-namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
+
+namespace ProductionMan.Desktop.Factories
 {
+
     public class ViewModelFactory
     {
 
-        private Dictionary<string, object> _viewModels;
+        private readonly Dictionary<string, object> _viewModels;
 
         private readonly Membership _membershipService;
         private readonly CommandFactory _commandFactory;
         private readonly ILanguageService _languageService;
         private readonly WindowManager _windowManager;
-        private MainWindowDataProvider _dataProvider;
+        
+        private readonly User _user;
+        private readonly AppServicesFactory _appServiceFactory;
+        private readonly DataFactory _dataFactory;
+
 
         public ViewModelFactory(Membership membershipService, CommandFactory commandFactory,
-            ILanguageService languageService, WindowManager windowManager, MainWindowDataProvider dataProvider)
+            ILanguageService languageService, WindowManager windowManager, User user, AppServicesFactory appServiceFactory, DataFactory dataFactory)
         {
             _viewModels = new Dictionary<string, object>();
 
@@ -27,7 +36,9 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
             _commandFactory = commandFactory;
             _languageService = languageService;
             _windowManager = windowManager;
-            _dataProvider = dataProvider;
+            _user = user;
+            _appServiceFactory = appServiceFactory;
+            _dataFactory = dataFactory;
         }
 
 
@@ -37,12 +48,11 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
             {
                 _viewModels.Add("Users", new UserManagerViewModel
                 {
-                    AddCommand =
-                        _commandFactory.CreateAddUserCommand(_windowManager, _membershipService, _languageService),
+                    AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService, _languageService),
                     DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
                     EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService),
                     ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand(),
-                    Items = _dataProvider.Get<ObservableCollection<UserRead>>("Users")
+                    Items = _dataFactory.Users
                 });
             }
 
@@ -71,6 +81,36 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
         internal AboutPageViewModel CreateAboutViewModel()
         {
             return new AboutPageViewModel { OpenUrlCommand = new NavigateToWebsiteCommand() };
+        }
+
+
+        internal LoginWindowViewModel CreateLoginWindowViewModel()
+        {
+            var windowSelector =
+                new LoginWindowSelector(
+                    new LoginWindowFactory(_commandFactory, _user));
+
+            return new LoginWindowViewModel { User = _user, ActiveContentSelector = windowSelector };
+        }
+
+
+        internal MainWindowViewModel CreateMainWindowViewModel()
+        {
+            var contentSelector = new MainWindowSelector(this);
+            contentSelector.CreateContent(_dataFactory.Permissions);
+            return new MainWindowViewModel(_appServiceFactory.CreateStatusService())
+            {
+                Tabs = contentSelector.Tabs,
+                LogonBoxModel = CreateLogonBoxViewModel(),
+                ActiveContentSelector = contentSelector,
+                SelectedItem = contentSelector.Tabs[0]
+            };
+        }
+
+
+        private LogonBoxViewModel CreateLogonBoxViewModel()
+        {
+            return new LogonBoxViewModel {User = _user};
         }
     }
 }

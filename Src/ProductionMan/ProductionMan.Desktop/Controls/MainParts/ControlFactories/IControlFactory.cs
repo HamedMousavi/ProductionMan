@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using ProductionMan.Desktop.Factories;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
