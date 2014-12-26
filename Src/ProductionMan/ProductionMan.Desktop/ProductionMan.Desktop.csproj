@@ -102,7 +102,6 @@
     <Compile Include="Controls\MainParts\GenericListToolbar.xaml.cs">
       <DependentUpon>GenericListToolbar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainParts\ContentManagement\InMemoryDataStore.cs" />
     <Compile Include="Controls\MainParts\ContentManagement\MainWindowFactory.cs" />
     <Compile Include="Controls\MainParts\MaterialManagerViewModel.cs" />
     <Compile Include="Controls\MainParts\ProcessManagerViewModel.cs" />

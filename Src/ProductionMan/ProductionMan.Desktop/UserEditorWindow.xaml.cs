@@ -21,10 +21,10 @@ namespace ProductionMan.Desktop
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            var model = DataContext as UserWrite;
-            if (model != null)
+            var model = DataContext as UserEditorWindowViewModel;
+            if (model != null && model.User != null)
             {
-                model.Password = PasswordCtrl.Password;
+                model.User.Password = PasswordCtrl.Password;
             }
         }
     }

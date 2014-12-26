@@ -36,7 +36,7 @@ namespace ProductionMan.Desktop
                         }
                     }
                 }
-                else if (e.NameIs("User"))
+                else if (e.NameIs("User") || e.NameIs("Languages"))
                 {
                     if (User != null && Languages != null)
                     {

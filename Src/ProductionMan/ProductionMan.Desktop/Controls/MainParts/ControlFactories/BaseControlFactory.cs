@@ -8,15 +8,14 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 
     public abstract class BaseControlFactory<T> : IControlFactory where T : class
     {
-
-        protected object ViewModel;
-        protected TabItemViewModel TabItem;
+        private object _viewModel;
+        private TabItemViewModel _tabItem;
 
 
         public virtual void CreateViewModels(ViewModelFactory viewModelFactory)
         {
-            ViewModel = CreateContentViewModel(viewModelFactory);
-            TabItem = CreateTabViewModel(viewModelFactory);
+            _viewModel = CreateContentViewModel(viewModelFactory);
+            _tabItem = CreateTabViewModel(viewModelFactory);
         }
 
 
@@ -25,7 +24,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
             var control = Activator.CreateInstance<T>() as UserControl;
             if (control != null)
             {
-                control.DataContext = ViewModel;
+                control.DataContext = _viewModel;
             }
 
             return control;
@@ -34,7 +33,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 
         public TabItemViewModel CreateTabItemViewModel()
         {
-            return TabItem;
+            return _tabItem;
         }
 
 

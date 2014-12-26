@@ -18,7 +18,17 @@ namespace ProductionMan.Data.MsAdo
 
                     if (value != null)
                     {
-                        return (T) Convert.ChangeType(value, typeof (T));
+                        var result = (T) Convert.ChangeType(value, typeof (T));
+                        if (result is string)
+                        {
+                            var txt = result as string;
+                            if (!string.IsNullOrWhiteSpace(txt))
+                            {
+                                result = (T)Convert.ChangeType(txt.Trim(), typeof(T));
+                            }
+                        }
+
+                        return result;
                     }
                 }
             }

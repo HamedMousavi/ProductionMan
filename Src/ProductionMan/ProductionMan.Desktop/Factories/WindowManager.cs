@@ -1,7 +1,6 @@
 ﻿using ProductionMan.Desktop.Commands;
-using ProductionMan.Domain.Security;
-using ProductionMan.Domain.WebServices;
 using System.Windows;
+using ProductionMan.Web.Api.Common.Models;
 
 
 namespace ProductionMan.Desktop.Factories
@@ -11,23 +10,16 @@ namespace ProductionMan.Desktop.Factories
     {
 
         //private readonly AppServicesFactory _appServiceFactory;
-        private readonly ViewFactory _viewFactory;
+        private ViewFactory _viewFactory;
         private Window _loginWindow;
 
 
-        public WindowManager(AppServicesFactory appServiceFactory, CommandFactory commandFactory, DataFactory dataFactory, Membership membershipService, User user)
+        public void Setup(ViewModelFactory viewModelFactory)
         {
             // Create ViewFactory
-            _viewFactory =
-                new ViewFactory(
-                    new ViewModelFactory(
-                        membershipService,
-                        commandFactory,
-                        appServiceFactory.CreateLanguageService(),
-                        null, user, appServiceFactory, dataFactory));
-
-            // Register for login completion event in order to show main window
+            _viewFactory = new ViewFactory(viewModelFactory);
         }
+
 
 
         public void DisplayLoginWindow()
@@ -45,21 +37,21 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        public void DisplayUserEditorWindow(UserEditorWindowViewModel viewModel)
+        public void DisplayUserEditWindow(UserWrite user)
         {
-            throw new System.NotImplementedException();
+            _viewFactory.CreateUserEditView(user).Show();
         }
 
 
-        public void RequestPermissionToDelete(ConfirmDeleteWindowViewModel viewModel)
+        public void RequestPermissionToDelete(UserRead user)
         {
-            throw new System.NotImplementedException();
+            _viewFactory.CreateUserDeleteView(user).Show();
         }
 
 
-        public void DisplayUserAddWindow(UserEditorWindowViewModel viewModel)
+        public void DisplayUserAddWindow(UserWrite user)
         {
-            throw new System.NotImplementedException();
+            _viewFactory.CreateUserAddView(user).Show();
         }
 
     }

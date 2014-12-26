@@ -58,5 +58,7 @@ namespace ProductionMan.Desktop.Factories
             var handler = LoadCompleted;
             if (handler != null) handler(this, EventArgs.Empty);
         }
+
+        public List<UserRole> Roles { get; set; }
     }
 }

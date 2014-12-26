@@ -160,11 +160,29 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string ColumnHeaderCulture {
+            get {
+                return ResourceManager.GetString("ColumnHeaderCulture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string ColumnHeaderDisplayName {
             get {
                 return ResourceManager.GetString("ColumnHeaderDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string ColumnHeaderRole {
+            get {
+                return ResourceManager.GetString("ColumnHeaderRole", resourceCulture);
             }
         }
         

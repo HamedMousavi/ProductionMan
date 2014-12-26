@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using ProductionMan.Desktop.Commands;
-using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
 
 
-namespace ProductionMan.Desktop
+namespace ProductionMan.Desktop.Factories
 {
 
     public class CommandFactory
     {
+
+        private readonly IUserWindowManager _windowManager;
+
 
         private enum CommandKey
         {
@@ -21,10 +23,13 @@ namespace ProductionMan.Desktop
         }
 
         private readonly Dictionary<CommandKey, ICommand> _commands;
+        private readonly Membership _membershipService;
 
 
-        public CommandFactory()
+        public CommandFactory(WindowManager windowManager, Membership membershipService)
         {
+            _windowManager = windowManager;
+            _membershipService = membershipService;
             _commands = new Dictionary<CommandKey, ICommand>();
         }
 
@@ -69,15 +74,15 @@ namespace ProductionMan.Desktop
         }
 
 
-        internal ICommand CreateAddUserCommand(IUserWindowManager windowManager, Membership membershipService, ILanguageService languageService)
+        internal ICommand AddUserWindowCommand()
         {
-            return new VisualAddUserCommands(windowManager, membershipService, languageService);
+            return new VisualAddUserCommand(_windowManager);
         }
 
 
-        internal ICommand CreateDeleteUserCommand(IUserWindowManager windowManager, Membership membershipService)
+        internal ICommand DeleteUserConfirmWindowCommand()
         {
-            return new VisualDeleteUserCommand(windowManager, membershipService);
+            return new VisualDeleteUserCommand(_windowManager);
         }
 
 
@@ -87,9 +92,34 @@ namespace ProductionMan.Desktop
         }
 
 
-        internal ICommand CreateEditUserCommand(IUserWindowManager windowManager, Membership membershipService)
+        internal ICommand EditUserWindowCommand()
         {
-            return new VisualEditUserCommand(windowManager, membershipService);
+            return new VisualEditUserCommand(_windowManager);
+        }
+
+        internal ICommand NavigateToWebsiteCommand()
+        {
+            return new NavigateToWebsiteCommand();
+        }
+
+        internal ICommand UpdateUserCommand()
+        {
+            return new UpdateUserCommand(_membershipService);
+        }
+
+        internal ICommand CloseWindowCommand()
+        {
+            return new CloseWindowCommand();
+        }
+
+        internal ICommand DeleteUserCommand()
+        {
+            return new DeleteUserCommand(_membershipService);
+        }
+
+        internal ICommand CreateUserCommand()
+        {
+            return new CreateUserCommand(_membershipService);
         }
     }
 }

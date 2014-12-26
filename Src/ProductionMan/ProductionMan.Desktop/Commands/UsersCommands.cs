@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Documents;
 using System.Windows.Input;
-using ProductionMan.Desktop.Services;
+using AutoMapper;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 
@@ -10,19 +8,15 @@ using ProductionMan.Web.Api.Common.Models;
 namespace ProductionMan.Desktop.Commands
 {
 
-    public class VisualAddUserCommands : ICommand
+    public class VisualAddUserCommand : ICommand
     {
 
         private readonly IUserWindowManager _windowManager;
-        private readonly Membership _membershipService;
-        private readonly ILanguageService _languageService;
 
 
-        public VisualAddUserCommands(IUserWindowManager windowManager, Membership membershipService, ILanguageService languageService)
+        public VisualAddUserCommand(IUserWindowManager windowManager)
         {
             _windowManager = windowManager;
-            _membershipService = membershipService;
-            _languageService = languageService;
         }
 
 
@@ -37,14 +31,7 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            _windowManager.DisplayUserAddWindow(new UserEditorWindowViewModel
-            {
-                SaveCommand = new CreateUserCommand(_membershipService),
-                CancelCommand = new CloseWindowCommand(),
-                User = new UserWrite(),
-                Roles = new List<UserRole>(),
-                Languages = _languageService.Languages
-            });
+            _windowManager.DisplayUserAddWindow(new UserWrite());
         }
     }
 
@@ -56,13 +43,11 @@ namespace ProductionMan.Desktop.Commands
     {
  
         private readonly IUserWindowManager _windowManager;
-        private readonly Membership _membershipService;
 
 
-        public VisualEditUserCommand(IUserWindowManager windowManager, Membership membershipService)
+        public VisualEditUserCommand(IUserWindowManager windowManager)
         {
             _windowManager = windowManager;
-            _membershipService = membershipService;
         }
 
 
@@ -77,15 +62,11 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            var userWrite = new UserWrite();
-            // UNDONE: MAP FROM USER READ parameter as UserRead
-
-            _windowManager.DisplayUserEditorWindow(new UserEditorWindowViewModel
+            var userRead = parameter as UserRead;
+            if (userRead != null)
             {
-                SaveCommand = new UpdateUserCommand(_membershipService),
-                CancelCommand = new CloseWindowCommand(),
-                User = userWrite
-            });
+                _windowManager.DisplayUserEditWindow(Mapper.Map<UserWrite>(userRead));
+            }
         }
     }
 
@@ -94,13 +75,11 @@ namespace ProductionMan.Desktop.Commands
     {
  
         private readonly IUserWindowManager _windowManager;
-        private readonly Membership _membershipService;
 
 
-        public VisualDeleteUserCommand(IUserWindowManager windowManager, Membership membershipService)
+        public VisualDeleteUserCommand(IUserWindowManager windowManager)
         {
             _windowManager = windowManager;
-            _membershipService = membershipService;
         }
 
 
@@ -118,14 +97,7 @@ namespace ProductionMan.Desktop.Commands
             var user = parameter as UserRead;
             if (user != null)
             {
-                _windowManager.RequestPermissionToDelete(
-                    new ConfirmDeleteWindowViewModel
-                    {
-                        MessageDetail = string.Format("User, name= {0}", user.DisplayName),
-                        DeleteCommand = new DeleteUserCommand(_membershipService),
-                        CancelCommand = new CloseWindowCommand(),
-                        User = user
-                    });
+                _windowManager.RequestPermissionToDelete(user);
             }
         }
     }

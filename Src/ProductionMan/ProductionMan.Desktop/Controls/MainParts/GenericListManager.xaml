@@ -40,7 +40,7 @@
             </DataGrid.RowStyle>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="{x:Static localized:Resources.AddNewItem}" Command="{Binding AddCommand}" />
+                    <!--<MenuItem Header="{x:Static localized:Resources.AddNewItem}" Command="{Binding AddCommand}" />-->
                     <MenuItem Header="{x:Static localized:Resources.EditItem}" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedItem}" />
                     <MenuItem Header="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}" />
                 </ContextMenu>

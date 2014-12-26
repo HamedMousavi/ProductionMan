@@ -150,8 +150,14 @@
   <data name="Cancel" xml:space="preserve">
     <value>انصراف</value>
   </data>
+  <data name="ColumnHeaderCulture" xml:space="preserve">
+    <value>زبان</value>
+  </data>
   <data name="ColumnHeaderDisplayName" xml:space="preserve">
     <value>نام</value>
+  </data>
+  <data name="ColumnHeaderRole" xml:space="preserve">
+    <value>سطح امنیتی</value>
   </data>
   <data name="DeleteItem" xml:space="preserve">
     <value>حذف</value>

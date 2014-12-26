@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using AutoMapper;
+﻿using AutoMapper;
 using log4net;
 using log4net.Config;
 using ProductionMan.Common;
@@ -28,7 +27,6 @@ namespace ProductionMan.Desktop
 
         private ILog _logger;
         private AppServicesFactory _appServiceFactory;
-        private WindowManager _windowManager;
 
 
         private void StartApplication(object sender, StartupEventArgs e)
@@ -64,7 +62,7 @@ namespace ProductionMan.Desktop
 
         private void SetupAutoMapper()
         {
-            Mapper.CreateMap<UserRead, UserRole>();
+            Mapper.CreateMap<UserRead, UserWrite>();
         }
 
 
@@ -108,26 +106,29 @@ namespace ProductionMan.Desktop
 
         private void StartApplicationWindow()
         {
+            var windowManager = new WindowManager();
             var membershipService = new Membership();
             var membershipRepository = new MembershipRepository(membershipService);
-            var commandFactory = new CommandFactory();
-            
-            var dataFactory = new DataFactory(membershipRepository);
-            dataFactory.LoadCompleted += (sender, args) => _windowManager.DisplayMainWindow();
-
+            var commandFactory = new CommandFactory(windowManager, membershipService);
+            var dataFactory = CreateDataFactory(windowManager, membershipRepository);
             var user = CreateUser(membershipService, dataFactory);
+
+            var viewModelFactory = new ViewModelFactory(commandFactory,
+                _appServiceFactory.CreateLanguageService(), user, _appServiceFactory, dataFactory);
             
-            _windowManager = new WindowManager(
-                _appServiceFactory,
-                commandFactory, 
-                dataFactory, 
-                membershipService, 
-                user);
+            windowManager.Setup(viewModelFactory);
+            windowManager.DisplayLoginWindow();
 
-            _windowManager.DisplayLoginWindow();
+            GreetUser();
+        }
 
-            var statusService = _appServiceFactory.CreateStatusService();
-            SetStatus(statusService);
+
+        private DataFactory CreateDataFactory(WindowManager windowManager, MembershipRepository membershipRepository)
+        {
+            var dataFactory = new DataFactory(membershipRepository);
+            dataFactory.LoadCompleted += (sender, args) => windowManager.DisplayMainWindow();
+
+            return dataFactory;
         }
 
 
@@ -151,7 +152,7 @@ namespace ProductionMan.Desktop
         }
 
 
-        private void SetStatus(IStatusService statusService)
+        private void GreetUser()
         {
             var message = string.Empty;
             var now = DateTime.Now.Hour;
@@ -164,7 +165,8 @@ namespace ProductionMan.Desktop
             else if (now >= 20 && now < 24) message = Localized.Resources.GoodNight;
             else if (now >= 24 || now < 5) message = Localized.Resources.GoodMorning;
 
-            statusService.SetStatus(Status.Levels.Info, message);
+            _appServiceFactory.CreateStatusService().SetStatus(Status.Levels.Info, message);
         }
+
     }
 }

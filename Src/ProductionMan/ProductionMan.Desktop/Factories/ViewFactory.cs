@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using ProductionMan.Desktop.Controls;
-using ProductionMan.Domain.Security;
+using ProductionMan.Web.Api.Common.Models;
 
 
 namespace ProductionMan.Desktop.Factories
@@ -29,6 +28,32 @@ namespace ProductionMan.Desktop.Factories
             return new MainWindow
             {
                 DataContext = _viewModelFactory.CreateMainWindowViewModel()
+            };
+        }
+
+
+        public Window CreateUserEditView(UserWrite user)
+        {
+            return new UserEditorWindow
+            {
+                DataContext = _viewModelFactory.CreateUserEditViewModel(user)
+            };
+        }
+
+
+        public Window CreateUserDeleteView(UserRead user)
+        {
+            return new ConfirmDeleteWindow
+            {
+                DataContext = _viewModelFactory.CreateConfirmDeleteViewModel(user)
+            };
+        }
+
+        public Window CreateUserAddView(UserWrite user)
+        {
+            return new UserEditorWindow
+            {
+                DataContext = _viewModelFactory.CreateUserAddViewModel(user)
             };
         }
     }

@@ -4,10 +4,10 @@ namespace ProductionMan.Desktop.Commands
 {
     public interface IUserWindowManager
     {
-        void DisplayUserEditorWindow(UserEditorWindowViewModel viewModel);
+        void DisplayUserEditWindow(UserWrite user);
 
-        void RequestPermissionToDelete(ConfirmDeleteWindowViewModel viewModel);
+        void RequestPermissionToDelete(UserRead user);
 
-        void DisplayUserAddWindow(UserEditorWindowViewModel viewModel);
+        void DisplayUserAddWindow(UserWrite user);
     }
 }

@@ -11,13 +11,13 @@ namespace ProductionMan.Desktop.Controls
         protected readonly Dictionary<T, UserControl> Registry;
 
 
-        public BaseContentSelector()
+        protected BaseContentSelector()
         {
             Registry = new Dictionary<T, UserControl>();
         }
 
 
-        public void AddContent(T state, UserControl content)
+        protected void AddContent(T state, UserControl content)
         {
             if (Registry.ContainsKey(state))
             {

@@ -5,7 +5,7 @@ using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
 using ProductionMan.Desktop.Controls.MainParts.ControlFactories;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Security;
-using ProductionMan.Domain.WebServices;
+using ProductionMan.Web.Api.Common.Models;
 using System.Collections.Generic;
 
 
@@ -17,25 +17,21 @@ namespace ProductionMan.Desktop.Factories
 
         private readonly Dictionary<string, object> _viewModels;
 
-        private readonly Membership _membershipService;
         private readonly CommandFactory _commandFactory;
         private readonly ILanguageService _languageService;
-        private readonly WindowManager _windowManager;
-        
+
         private readonly User _user;
         private readonly AppServicesFactory _appServiceFactory;
         private readonly DataFactory _dataFactory;
 
 
-        public ViewModelFactory(Membership membershipService, CommandFactory commandFactory,
-            ILanguageService languageService, WindowManager windowManager, User user, AppServicesFactory appServiceFactory, DataFactory dataFactory)
+        public ViewModelFactory(CommandFactory commandFactory,
+            ILanguageService languageService, User user, AppServicesFactory appServiceFactory, DataFactory dataFactory)
         {
             _viewModels = new Dictionary<string, object>();
 
-            _membershipService = membershipService;
             _commandFactory = commandFactory;
             _languageService = languageService;
-            _windowManager = windowManager;
             _user = user;
             _appServiceFactory = appServiceFactory;
             _dataFactory = dataFactory;
@@ -48,9 +44,9 @@ namespace ProductionMan.Desktop.Factories
             {
                 _viewModels.Add("Users", new UserManagerViewModel
                 {
-                    AddCommand = _commandFactory.CreateAddUserCommand(_windowManager, _membershipService, _languageService),
-                    DeleteCommand = _commandFactory.CreateDeleteUserCommand(_windowManager, _membershipService),
-                    EditCommand = _commandFactory.CreateEditUserCommand(_windowManager, _membershipService),
+                    AddCommand = _commandFactory.AddUserWindowCommand(),
+                    DeleteCommand = _commandFactory.DeleteUserConfirmWindowCommand(),
+                    EditCommand = _commandFactory.EditUserWindowCommand(),
                     ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand(),
                     Items = _dataFactory.Users
                 });
@@ -80,7 +76,7 @@ namespace ProductionMan.Desktop.Factories
 
         internal AboutPageViewModel CreateAboutViewModel()
         {
-            return new AboutPageViewModel { OpenUrlCommand = new NavigateToWebsiteCommand() };
+            return new AboutPageViewModel { OpenUrlCommand = _commandFactory.NavigateToWebsiteCommand() };
         }
 
 
@@ -111,6 +107,44 @@ namespace ProductionMan.Desktop.Factories
         private LogonBoxViewModel CreateLogonBoxViewModel()
         {
             return new LogonBoxViewModel {User = _user};
+        }
+
+
+        public UserEditorWindowViewModel CreateUserEditViewModel(UserWrite user)
+        {
+            return new UserEditorWindowViewModel
+            {
+                SaveCommand = _commandFactory.UpdateUserCommand(),
+                CancelCommand = _commandFactory.CloseWindowCommand(),
+                User = user,
+                Roles = _dataFactory.Roles,
+                Languages = _languageService.Languages
+            };
+        }
+
+
+        public object CreateConfirmDeleteViewModel(UserRead user)
+        {
+            return new ConfirmDeleteWindowViewModel
+            {
+                MessageDetail = string.Format("User: {0}", user.DisplayName),
+                DeleteCommand = _commandFactory.DeleteUserCommand(),
+                CancelCommand = _commandFactory.CloseWindowCommand(),
+                User = user
+            };
+        }
+
+
+        public object CreateUserAddViewModel(UserWrite user)
+        {
+            return new UserEditorWindowViewModel
+            {
+                SaveCommand = _commandFactory.CreateUserCommand(),
+                CancelCommand = _commandFactory.CloseWindowCommand(),
+                User = user,
+                Roles = _dataFactory.Roles,
+                Languages = _languageService.Languages
+            };
         }
     }
 }
