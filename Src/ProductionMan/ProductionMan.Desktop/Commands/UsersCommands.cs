@@ -122,9 +122,9 @@ namespace ProductionMan.Desktop.Commands
         public event EventHandler CanExecuteChanged;
 
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            _membershipService.CreateUser(parameter as UserWrite);
+            await _membershipService.CreateUser(parameter as UserWrite);
         }
     }
 

@@ -20,7 +20,6 @@ namespace ProductionMan.Data.MsAdo
             _connectionString = connectionString;
         }
 
-
         public void CreateCommand(bool transactional, CommandType commandType, string query, IReadOnlyCollection<IDataParameter> parameters)
         {
             if (_connection == null)
@@ -51,20 +50,29 @@ namespace ProductionMan.Data.MsAdo
                 {
                     if (_command == null)
                     {
-                        CloseTransaction();
                         CloseConnection();
                         throw new InvalidOperationException("No command to execute. Call CreateCommand first!");
                     }
 
-                    func(_command.ExecuteReader());
+                    using (var reader = _command.ExecuteReader())
+                    {
+                        func(reader);
+                        reader.Close();
+                    }
                 }
                 else
                 {
                     _transaction.Commit();
-                    func(_command.ExecuteReader());
+
+                    using (var reader = _command.ExecuteReader())
+                    {
+                        func(reader);
+                        reader.Close();
+                    }
+
+                    _transaction = null;
                 }
 
-                _transaction = null;
                 CloseConnection();
             }
             catch (Exception)
@@ -81,6 +89,84 @@ namespace ProductionMan.Data.MsAdo
             }
 
         }
+
+
+        public object ExecuteScalar()
+        {
+            object result;
+            try
+            {
+                if (_transaction == null)
+                {
+                    if (_command == null)
+                    {
+                        CloseConnection();
+                        throw new InvalidOperationException("No command to execute. Call CreateCommand first!");
+                    }
+
+                    result = _command.ExecuteScalar();
+                }
+                else
+                {
+                    _transaction.Commit();
+                    result = _command.ExecuteScalar();
+                    _transaction = null;
+                }
+
+                CloseConnection();
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    CloseTransaction();
+                    CloseConnection();
+                }
+                // ReSharper disable once EmptyGeneralCatchClause
+                catch { }
+
+                throw;
+            }
+
+            return result;
+        }
+
+        //public void ExecuteNonQuery()
+        //{
+        //    try
+        //    {
+        //        if (_transaction == null)
+        //        {
+        //            if (_command == null)
+        //            {
+        //                CloseConnection();
+        //                throw new InvalidOperationException("No command to execute. Call CreateCommand first!");
+        //            }
+
+        //            _command.ExecuteNonQuery();
+        //        }
+        //        else
+        //        {
+        //            _transaction.Commit();
+        //            _command.ExecuteNonQuery();
+        //            _transaction = null;
+        //        }
+
+        //        CloseConnection();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        try
+        //        {
+        //            CloseTransaction();
+        //            CloseConnection();
+        //        }
+        //        // ReSharper disable once EmptyGeneralCatchClause
+        //        catch { }
+
+        //        throw;
+        //    }
+        //}
 
 
         public void SaveChanges()
@@ -114,6 +200,12 @@ namespace ProductionMan.Data.MsAdo
 
         private void CloseConnection()
         {
+            if (_command != null)
+            {
+                _command.Dispose();
+                _command = null;
+            }
+
             if (_connection != null)
             {
                 _connection.Close();

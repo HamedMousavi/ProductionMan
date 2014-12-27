@@ -32,7 +32,7 @@
                 <Label Content="{x:Static localized:Resources.Password}" Grid.Row="2" Grid.Column="0" Margin="0,7,0,6" />
                 <Label Content="{x:Static localized:Resources.Role}" Grid.Row="3" Grid.Column="0" Margin="0,6,0,5" />
                 <PasswordBox Grid.Column="2" Grid.Row="2" x:Name="PasswordCtrl" PasswordChanged="OnPasswordChanged" Margin="0,5,0,0"/>
-                <ComboBox Grid.Column="2" Grid.Row="3" ItemsSource="{Binding Roles}" Margin="0,5,0,0"/>
+                <ComboBox Grid.Column="2" Grid.Row="3" ItemsSource="{Binding Roles}" SelectedItem="{Binding Path=User.Role, Mode=TwoWay}" Margin="0,5,0,0"/>
                 <Label Content="{x:Static localized:Resources.Language}" Grid.Row="4" Grid.Column="0" Margin="0,5,0,6" />
                 <ComboBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding Languages}" SelectedItem="{Binding Path=SelectedLanguage, Mode=TwoWay}" Margin="0,5,0,0"/>
             </Grid>

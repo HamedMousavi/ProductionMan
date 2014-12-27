@@ -66,8 +66,11 @@ namespace ProductionMan.Web.Api
         private static void ConfigureAutoMapper()
         {
             Mapper.CreateMap<Role, UserRole>();
+            Mapper.CreateMap<UserRole, Role>();
+
             Mapper.CreateMap<User, UserRead>();
             Mapper.CreateMap<User, UserWrite>();
+            Mapper.CreateMap<UserWrite, User>();
         }
     }
 }

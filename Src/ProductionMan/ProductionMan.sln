@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionMan.Web.Api.Local
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionMan.Data.Shared", "ProductionMan.Data.Shared\ProductionMan.Data.Shared.csproj", "{9879D6FF-5A77-4E0E-914F-B24E80521091}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionMan.Data.Tests", "Tests\ProductionMan.Data.Tests\ProductionMan.Data.Tests.csproj", "{80479111-2F0B-477C-AD29-A881475F8AA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,8 +61,15 @@ Global
 		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9879D6FF-5A77-4E0E-914F-B24E80521091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80479111-2F0B-477C-AD29-A881475F8AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80479111-2F0B-477C-AD29-A881475F8AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80479111-2F0B-477C-AD29-A881475F8AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80479111-2F0B-477C-AD29-A881475F8AA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{80479111-2F0B-477C-AD29-A881475F8AA2} = {4B19FA0C-77EC-4A47-9665-8EFF7122F92C}
 	EndGlobalSection
 EndGlobal

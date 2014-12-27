@@ -21,7 +21,13 @@ namespace ProductionMan.Domain.WebServices
 
         private List<StringWithQualityHeaderValue> _languages;
 
+
         public IServiceCredentialProvider ServiceCredentialProvider { get; set; }
+
+        public Uri BaseUri
+        {
+            get { return _baseAddress; }
+        }
 
 
         public WebServiceBase()

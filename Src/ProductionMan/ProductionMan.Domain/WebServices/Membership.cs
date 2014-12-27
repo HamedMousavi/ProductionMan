@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using ProductionMan.Web.Api.Common.Models;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ProductionMan.Web.Api.Common.Models;
+
 
 namespace ProductionMan.Domain.WebServices
 {
@@ -10,6 +11,8 @@ namespace ProductionMan.Domain.WebServices
     {
 
         private const string UserListUrl = "Users";
+        private const string UserCreateUrl = "Users";
+        private const string RoleListUrl = "Roles";
         private const string CurrentUserUrl = "Users/Current";
         private const string PermissionsUrl = "Permissions";
 
@@ -76,9 +79,24 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public void CreateUser(UserWrite user)
+        public async Task<bool> CreateUser(UserWrite user)
         {
-            throw new System.NotImplementedException();
+            var result = new ServiceCallResult<List<UserRead>>();
+
+            using (var client = new HttpClient())
+            {
+                PrepareHeaders(client);
+
+                var response = await client.PostAsJsonAsync(UserCreateUrl, user);
+                result.CallStatusCode = response.StatusCode;
+                result.CallStatusMessage = response.ReasonPhrase;
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
 
@@ -91,6 +109,27 @@ namespace ProductionMan.Domain.WebServices
         public void DeleteUser(UserRead user)
         {
             throw new System.NotImplementedException();
+        }
+
+
+        public async Task<ServiceCallResult<List<UserRole>>> GetRoles()
+        {
+            var result = new ServiceCallResult<List<UserRole>>();
+
+            using (var client = new HttpClient())
+            {
+                PrepareHeaders(client);
+
+                var response = await client.GetAsync(RoleListUrl);
+                result.CallStatusCode = response.StatusCode;
+                result.CallStatusMessage = response.ReasonPhrase;
+                if (response.IsSuccessStatusCode)
+                {
+                    result.Results = response.Content.ReadAsAsync<List<UserRole>>().Result;
+                }
+            }
+
+            return result;
         }
     }
 }

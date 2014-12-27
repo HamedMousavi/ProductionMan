@@ -8,6 +8,7 @@ namespace ProductionMan.Data.MsAdo
     {
         //void SaveChanges();
         void Execute(Action<IDataReader> func);
+        object ExecuteScalar();
         void CreateCommand(bool transactional, CommandType commandType, string query, IReadOnlyCollection<IDataParameter> parameters);
     }
 }

@@ -70,6 +70,60 @@ namespace ProductionMan.Data
             return user;
         }
 
+        public void Insert(User newUser)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "INSERT INTO [USERS] ([Username], [Password], [DisplayName], [Culture], [RoleId], [IsEnabled]) OUTPUT INSERTED.UserId VALUES (@Username, @Password, @DisplayName, @Culture, @RoleId, 1);",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@username", newUser.Username),
+                    new SqlParameter("@password", newUser.Password),
+                    new SqlParameter("@DisplayName", newUser.DisplayName),
+                    new SqlParameter("@Culture", newUser.Culture),
+                    new SqlParameter("@RoleId", newUser.Role.RoleId)
+                }
+                );
+
+            var output = _context.ExecuteScalar();
+            newUser.UserId = AdoConverter.ReadResult<Int64>(output, -1); //output.Value as int? ?? default(int);
+        }
+
+
+        public IEnumerable<Role> GetRoles(string filter)
+        {
+            var list = new List<Role>();
+
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "SELECT [RoleId],[RoleName] FROM Roles WHERE [IsEnabled]=1",
+                null
+                );
+
+            _context.Execute(
+                reader =>
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(MapRole(reader));
+                    }
+                });
+
+            return list;
+        }
+        
+
+        private Role MapRole(IDataReader reader)
+        {
+            return new Role
+            {
+                RoleId = AdoConverter.Read(reader, "RoleId", -1),
+                RoleName = AdoConverter.Read(reader, "RoleName", string.Empty)
+            };
+        }
+
 
         private User MapUser(IDataReader reader)
         {
@@ -84,32 +138,6 @@ namespace ProductionMan.Data
                     RoleId = AdoConverter.Read(reader, "RoleId", -1)
                 }
             };
-        }
-
-        public void Insert(User newUser)
-        {
-            _context.CreateCommand(
-                false,
-                CommandType.Text,
-                "INSERT INTO [USERS] ([Username], [Password], [DisplayName], [Culture], [RoleId], [IsEnabled]) VALUES (@Username, @Password, @DisplayName, @Culture, @RoleId, 1); SELECT SCOPE_IDENTITY();",
-                new List<SqlParameter>
-                {
-                    new SqlParameter("@username", newUser.Username),
-                    new SqlParameter("@password", newUser.Password),
-                    new SqlParameter("@DisplayName", newUser.DisplayName),
-                    new SqlParameter("@Culture", newUser.Culture),
-                    new SqlParameter("@RoleId", newUser.Role.RoleId)
-                }
-                );
-
-            _context.Execute(reader =>
-            {
-                if (reader.Read())
-                {
-                    var user = MapUser(reader);
-                    newUser.UserId = user.UserId;
-                }
-            });
         }
     }
 }

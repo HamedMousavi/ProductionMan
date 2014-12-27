@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Input;
-using ProductionMan.Common;
+﻿using ProductionMan.Common;
 using ProductionMan.Domain.Globalization;
 using ProductionMan.Web.Api.Common.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Input;
+
 
 namespace ProductionMan.Desktop
 {
@@ -14,7 +16,7 @@ namespace ProductionMan.Desktop
 
         private Language _selectedLanguage;
         private IEnumerable<Language> _languages;
-        private List<UserRole> _roles;
+        private ObservableCollection<UserRole> _roles;
         private UserWrite _user;
         private ICommand _cancelCommand;
         private ICommand _saveCommand;
@@ -86,7 +88,7 @@ namespace ProductionMan.Desktop
         }
 
 
-        public List<UserRole> Roles
+        public ObservableCollection<UserRole> Roles
         {
             get { return _roles; }
             set

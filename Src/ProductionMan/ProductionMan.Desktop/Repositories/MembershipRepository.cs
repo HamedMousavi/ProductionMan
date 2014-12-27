@@ -13,6 +13,7 @@ namespace ProductionMan.Desktop.Repositories
         private readonly Membership _membershipService;
         private List<Permission> _permissions;
         private ObservableCollection<UserRead> _users;
+        private ObservableCollection<UserRole> _roles;
 
 
         public MembershipRepository(Membership membershipService)
@@ -41,6 +42,22 @@ namespace ProductionMan.Desktop.Repositories
             }
 
             return _users;
+        }
+
+        internal async Task<ObservableCollection<UserRole>> LoadRoles()
+        {
+            if (_roles == null)
+            {
+                var roles = (await _membershipService.GetRoles()).Results;
+
+                _roles = new ObservableCollection<UserRole>();
+                foreach (var role in roles)
+                {
+                    _roles.Add(role);
+                }
+            }
+
+            return _roles;
         }
     }
 }

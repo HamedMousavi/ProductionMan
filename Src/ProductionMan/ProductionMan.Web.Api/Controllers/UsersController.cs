@@ -1,14 +1,17 @@
-﻿using System;
+﻿using AutoMapper;
+using log4net;
+using ProductionMan.Data.MsAdo;
+using ProductionMan.Data.Shared.Models;
+using ProductionMan.Web.Api.ActionResults;
+using ProductionMan.Web.Api.Common.Models;
+using ProductionMan.Web.Api.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
-using AutoMapper;
-using ProductionMan.Data.MsAdo;
-using ProductionMan.Web.Api.ActionResults;
-using ProductionMan.Web.Api.Common.Models;
-using ProductionMan.Web.Api.Security;
+
 
 namespace ProductionMan.Web.Api.Controllers
 {
@@ -60,22 +63,15 @@ namespace ProductionMan.Web.Api.Controllers
 
 
         [HttpPost]
-        public IHttpActionResult AddUser(HttpRequestMessage requestMessage, Data.Shared.Models.User newUser)
+        public IHttpActionResult AddUser(HttpRequestMessage requestMessage, UserWrite newUser)
         {
-            _repository.Insert(newUser);
-            var user = new UserRead
-            {
-                Culture = newUser.Culture,
-                UserId = newUser.UserId,
-                DisplayName = newUser.DisplayName,
-                Role = new UserRole
-                {
-                    RoleId = newUser.Role.RoleId,
-                    RoleName = newUser.Role.RoleName
-                }
-            };
+            var user = Mapper.Map<User>(newUser);
 
-            return new CreatedActionResult<UserRead>(requestMessage, user);
+            _repository.Insert(user);
+
+            var userRead = Mapper.Map<UserRead>(user);
+
+            return new CreatedActionResult<UserRead>(requestMessage, userRead);
         }
     }
 }

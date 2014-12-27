@@ -36,6 +36,7 @@ namespace ProductionMan.Desktop.Factories
         {
             if (permission.ResourceName == "Users")
             {
+                Roles = await _membershipRepository.LoadRoles();
                 Users = await _membershipRepository.LoadUsers();
             }
         }
@@ -43,9 +44,12 @@ namespace ProductionMan.Desktop.Factories
 
         public IEnumerable<Permission> Permissions { get; set; }
 
-
         public ObservableCollection<UserRead> Users { get; set; }
 
+        public ObservableCollection<UserRole> Roles { get; set; }
+
+
+        #region events
 
         public delegate void LoadCompletedEvent(object sender, EventArgs e);
 
@@ -57,7 +61,7 @@ namespace ProductionMan.Desktop.Factories
             var handler = LoadCompleted;
             if (handler != null) handler(this, EventArgs.Empty);
         }
-
-        public List<UserRole> Roles { get; set; }
+        
+        #endregion events
     }
 }

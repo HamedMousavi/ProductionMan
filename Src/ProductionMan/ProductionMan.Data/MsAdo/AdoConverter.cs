@@ -15,7 +15,7 @@ namespace ProductionMan.Data.MsAdo
                 {
                     var value = reader[fieldName];
 
-                    if (value != null)
+                    if (value != null && value != DBNull.Value)
                     {
                         var result = (T) Convert.ChangeType(value, typeof (T));
                         if (result is string)
@@ -23,7 +23,7 @@ namespace ProductionMan.Data.MsAdo
                             var txt = result as string;
                             if (!string.IsNullOrWhiteSpace(txt))
                             {
-                                result = (T)Convert.ChangeType(txt.Trim(), typeof(T));
+                                result = (T) Convert.ChangeType(txt.Trim(), typeof (T));
                             }
                         }
 
@@ -34,6 +34,25 @@ namespace ProductionMan.Data.MsAdo
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Exception:{0}", ex);
+            }
+
+            return defaultValue;
+        }
+
+
+        internal static T ReadResult<T>(object value, T defaultValue) where T : IConvertible
+        {
+            try
+            {
+                if (value != null && value != DBNull.Value)
+                {
+                    return (T) Convert.ChangeType(value, typeof (T));
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception:{0}", ex);
+                throw;
             }
 
             return defaultValue;
