@@ -1,11 +1,9 @@
-﻿using System.Web.Http;
+﻿using ProductionMan.Web.Api.Security;
+using ProductionMan.Web.Api.Services;
+using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Tracing;
-using AutoMapper;
-using ProductionMan.Data.Shared.Models;
-using ProductionMan.Web.Api.Common.Models;
-using ProductionMan.Web.Api.Security;
-using ProductionMan.Web.Api.Services;
+
 
 namespace ProductionMan.Web.Api
 {
@@ -15,13 +13,14 @@ namespace ProductionMan.Web.Api
 
         public static void Register(HttpConfiguration config)
         {
+            //// http://stackoverflow.com/questions/12976352/asp-net-web-api-model-binding-not-working-with-xml-data-on-post
+            //config.Formatters.XmlFormatter.UseXmlSerializer = true;
+            
             // Tracing, logging, and error handling
             ConfigureAppServices(config);
 
             // Authentication & Authorization
             ConfigureSecurity(config);
-
-            ConfigureAutoMapper();
 
             // Web API routes
             ConfigureRoutes(config);
@@ -32,8 +31,9 @@ namespace ProductionMan.Web.Api
         {
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional }
-            );
+            config.Routes.MapHttpRoute(
+                "DefaultApi", "api/{controller}/{id}",
+                new {id = RouteParameter.Optional});
         }
 
 
@@ -60,17 +60,9 @@ namespace ProductionMan.Web.Api
 
             // Error logging
             config.Services.Add(typeof(IExceptionLogger), new DefaultExceptionLogger());
-        }
 
-
-        private static void ConfigureAutoMapper()
-        {
-            Mapper.CreateMap<Role, UserRole>();
-            Mapper.CreateMap<UserRole, Role>();
-
-            Mapper.CreateMap<User, UserRead>();
-            Mapper.CreateMap<User, UserWrite>();
-            Mapper.CreateMap<UserWrite, User>();
+            // Error handling
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
         }
     }
 }

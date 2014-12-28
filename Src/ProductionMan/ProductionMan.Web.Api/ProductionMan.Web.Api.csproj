@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http.Formatting">
@@ -77,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionResults\CreatedActionResult.cs" />
+    <Compile Include="ActionResults\DefaultErrorActionResult.cs" />
     <Compile Include="ActionResults\LocationLinkCalculator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Security\Models\ClaimList.cs" />
     <Compile Include="Security\Models\Credentials.cs" />
     <Compile Include="Services\DefaultExceptionLogger.cs" />
+    <Compile Include="Services\GlobalExceptionHandler.cs" />
     <Compile Include="Services\Log4NetTraceWriter.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,11 @@
-﻿using System.Configuration;
-using System.Web.Http;
+﻿using AutoMapper;
 using log4net;
 using log4net.Config;
+using ProductionMan.Data.Shared.Models;
+using ProductionMan.Web.Api.Common.Models;
+using System.Configuration;
+using System.Web.Http;
+
 
 namespace ProductionMan.Web.Api
 {
@@ -19,6 +23,9 @@ namespace ProductionMan.Web.Api
 
             // Configure database
             ConfigureDatabase();
+
+            // Auto Mapper object mapping
+            ConfigureAutoMapper();
 
             // Configure app
             GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -39,6 +46,7 @@ namespace ProductionMan.Web.Api
         }
 
 
+        // Errors that occur before error handler is installed in configuration
         protected void Application_Error()
         {
             var exception = Server.GetLastError();
@@ -46,6 +54,17 @@ namespace ProductionMan.Web.Api
             {
                 Log.Error("Unhandled exception.", exception);
             }
+        }
+
+
+        private static void ConfigureAutoMapper()
+        {
+            Mapper.CreateMap<Role, UserRole>();
+            Mapper.CreateMap<UserRole, Role>();
+
+            Mapper.CreateMap<User, UserRead>();
+            Mapper.CreateMap<User, UserWrite>();
+            Mapper.CreateMap<UserWrite, User>();
         }
 
 
