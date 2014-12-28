@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using log4net;
 using ProductionMan.Data.MsAdo;
 using ProductionMan.Data.Shared.Models;
 using ProductionMan.Web.Api.ActionResults;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using ProductionMan.Web.Api.Security.Validation;
 
 
 namespace ProductionMan.Web.Api.Controllers
@@ -62,6 +62,7 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
+        [ValidateModel]
         [HttpPost]
         public IHttpActionResult AddUser(HttpRequestMessage requestMessage, UserWrite newUser)
         {
