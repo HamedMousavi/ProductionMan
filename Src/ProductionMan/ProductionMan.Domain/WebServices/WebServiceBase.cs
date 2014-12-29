@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
+using System.Threading.Tasks;
+
 
 namespace ProductionMan.Domain.WebServices
 {
@@ -14,15 +16,14 @@ namespace ProductionMan.Domain.WebServices
         //private readonly Uri _baseAddress = new Uri("http://localhost/ProductionMan/api/");
         private readonly MediaTypeWithQualityHeaderValue _mediaType = new MediaTypeWithQualityHeaderValue("application/json");
         private readonly StringWithQualityHeaderValue _defaultCharset = new StringWithQualityHeaderValue("utf-8");
-
         private const string ApiVersionString = "1.0";
         private const string VersionHeaderName = "Accept-Version";
         private const string EnglishLanguageName = "en-US";
-
         private List<StringWithQualityHeaderValue> _languages;
 
 
         public IServiceCredentialProvider ServiceCredentialProvider { get; set; }
+
 
         public Uri BaseUri
         {
@@ -52,7 +53,7 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        protected void PrepareHeaders(HttpClient client)
+        private void PrepareHeaders(HttpClient client)
         {
             client.BaseAddress = _baseAddress;
 
@@ -79,6 +80,79 @@ namespace ProductionMan.Domain.WebServices
             {
                 ServiceCredentialProvider.AttachCredentials(client);
             }
+        }
+
+
+        protected HttpClient CreateClient()
+        {
+            var client = new HttpClient();
+            PrepareHeaders(client);
+            return client;
+        }
+
+
+        //protected async Task<HttpResponseMessage> RequestGet(HttpClient client, string url)
+        //{
+        //    return await client.GetAsync(url);
+        //}
+
+        protected async Task<ServiceCallResult<T>> RequestGet<T>(string url)
+        {
+            using (var client = CreateClient())
+            {
+                var response = await client.GetAsync(url);
+                return ReadAndMap<T>(response);
+            }
+        }
+
+
+        protected async Task<ServiceCallResult<TOut>> RequestCreate<TOut, TIn>(string url, TIn tIn)
+        {
+            using (var client = CreateClient())
+            {
+                var response = await client.PostAsJsonAsync(url, tIn);
+                return ReadAndMap<TOut>(response);
+            }
+        }
+
+
+        protected async Task<bool> RequestDelete(string url)
+        {
+            using (var client = CreateClient())
+            {
+                var response = await client.DeleteAsync(url);
+                return Map(response);
+            }
+        }
+
+
+        private ServiceCallResult<T> ReadAndMap<T>(HttpResponseMessage response)
+        {
+            var result = new ServiceCallResult<T>
+            {
+                CallStatusCode = response.StatusCode,
+                CallStatusMessage = response.ReasonPhrase
+            };
+
+            if (response.IsSuccessStatusCode)
+            {
+                result.Results = response.Content.ReadAsAsync<T>().Result;
+            }
+
+            return result;
+        }
+
+
+        private bool Map(HttpResponseMessage response)
+        {
+            var result = new ServiceCallResult<bool>
+            {
+                CallStatusCode = response.StatusCode,
+                CallStatusMessage = response.ReasonPhrase,
+                Results = response.IsSuccessStatusCode
+            };
+
+            return result.Results;
         }
 
 

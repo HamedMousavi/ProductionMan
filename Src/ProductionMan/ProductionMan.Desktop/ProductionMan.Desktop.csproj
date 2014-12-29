@@ -62,7 +62,7 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Factories\AppServicesFactory.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
-    <Compile Include="Commands\ConfirmDeleteWindowViewModel.cs" />
+    <Compile Include="ConfirmDeleteWindowViewModel.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\GenericWindowCommands.cs" />
     <Compile Include="Commands\IUserWindowManager.cs" />

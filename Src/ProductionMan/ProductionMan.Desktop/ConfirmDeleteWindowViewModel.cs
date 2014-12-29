@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace ProductionMan.Desktop.Commands
+namespace ProductionMan.Desktop
 {
     public class ConfirmDeleteWindowViewModel : BaseViewModel
     {

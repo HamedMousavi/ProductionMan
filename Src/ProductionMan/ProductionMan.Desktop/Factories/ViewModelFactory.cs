@@ -126,7 +126,7 @@ namespace ProductionMan.Desktop.Factories
             return new ConfirmDeleteWindowViewModel
             {
                 MessageDetail = string.Format("User: {0}", user.DisplayName),
-                DeleteCommand = _commandFactory.DeleteUserCommand(),
+                DeleteCommand = _commandFactory.DeleteUserCommand(user),
                 CancelCommand = _commandFactory.CloseWindowCommand(),
                 DeletingItem = user
             };

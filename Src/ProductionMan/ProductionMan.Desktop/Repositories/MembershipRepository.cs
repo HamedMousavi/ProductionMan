@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 
+
 namespace ProductionMan.Desktop.Repositories
 {
 
@@ -70,13 +71,16 @@ namespace ProductionMan.Desktop.Repositories
             }
         }
 
-        internal async Task DeleteUser(UserRead userRead)
+        internal async Task<bool> DeleteUser(UserRead userRead)
         {
             var successful = await _membershipService.DeleteUser(userRead);
             if (successful)
             {
                 _users.Remove(userRead);
+                return true;
             }
+
+            return false;
         }
     }
 }

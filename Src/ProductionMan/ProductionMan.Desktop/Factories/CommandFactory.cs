@@ -5,6 +5,7 @@ using ProductionMan.Desktop.Commands;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
+using ProductionMan.Web.Api.Common.Models;
 
 namespace ProductionMan.Desktop.Factories
 {
@@ -114,9 +115,9 @@ namespace ProductionMan.Desktop.Factories
             return new CloseWindowCommand();
         }
 
-        internal ICommand DeleteUserCommand()
+        internal ICommand DeleteUserCommand(UserRead user)
         {
-            return new DeleteUserCommand(_membershipRepository);
+            return new DeleteUserCommand(_membershipRepository, user);
         }
 
         internal ICommand CreateUserCommand()

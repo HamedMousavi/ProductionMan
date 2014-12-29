@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using AutoMapper;
 using ProductionMan.Desktop.Repositories;
@@ -160,10 +161,12 @@ namespace ProductionMan.Desktop.Commands
     public class DeleteUserCommand : ICommand
     {
         private readonly MembershipRepository _repository;
+        private readonly UserRead _user;
 
-        public DeleteUserCommand(MembershipRepository repository)
+        public DeleteUserCommand(MembershipRepository repository, UserRead user)
         {
             _repository = repository;
+            _user = user;
         }
 
         public bool CanExecute(object parameter)
@@ -177,7 +180,11 @@ namespace ProductionMan.Desktop.Commands
 
         public async void Execute(object parameter)
         {
-            await _repository.DeleteUser(parameter as UserRead);
+            if (await _repository.DeleteUser(_user))
+            {
+                var window = parameter as Window;
+                if (window != null) window.Close();
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿using ProductionMan.Web.Api.Common.Models;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 
@@ -20,133 +20,49 @@ namespace ProductionMan.Domain.WebServices
 
         public async Task<ServiceCallResult<List<Permission>>> GetPermissions()
         {
-            var result = new ServiceCallResult<List<Permission>>();
-
-            using (var client = new HttpClient())
-            {
-                PrepareHeaders(client);
-
-                var response = await client.GetAsync(PermissionsUrl);
-                result.CallStatusCode = response.StatusCode;
-                result.CallStatusMessage = response.ReasonPhrase;
-                if (response.IsSuccessStatusCode)
-                {
-                    result.Results = response.Content.ReadAsAsync<List<Permission>>().Result;
-                }
-            }
-
-            return result;
+            return await RequestGet<List<Permission>>(PermissionsUrl);
         }
 
 
         public async Task<ServiceCallResult<UserRead>> GetUserDetails()
         {
-            var result = new ServiceCallResult<UserRead>();
-            using (var client = new HttpClient())
-            {
-                PrepareHeaders(client);
-
-                var response = await client.GetAsync(CurrentUserUrl);
-                result.CallStatusCode = response.StatusCode;
-                result.CallStatusMessage = response.ReasonPhrase;
-                if (response.IsSuccessStatusCode)
-                {
-                    result.Results = response.Content.ReadAsAsync<UserRead>().Result;
-                }
-            }
-
-            return result;
+            return await RequestGet<UserRead>(CurrentUserUrl);
         }
 
 
         public async Task<ServiceCallResult<List<UserRead>>> GetUsers()
         {
-            var result = new ServiceCallResult<List<UserRead>>();
-
-            using (var client = new HttpClient())
-            {
-                PrepareHeaders(client);
-
-                var response = await client.GetAsync(UserListUrl);
-                result.CallStatusCode = response.StatusCode;
-                result.CallStatusMessage = response.ReasonPhrase;
-                if (response.IsSuccessStatusCode)
-                {
-                    result.Results = response.Content.ReadAsAsync<List<UserRead>>().Result;
-                }
-            }
-
-            return result;
-        }
-
-
-        public async Task<bool> CreateUser(UserWrite user)
-        {
-            var result = new ServiceCallResult<List<UserRead>>();
-
-            using (var client = new HttpClient())
-            {
-                PrepareHeaders(client);
-
-                var response = await client.PostAsJsonAsync(UserCreateUrl, user);
-                result.CallStatusCode = response.StatusCode;
-                result.CallStatusMessage = response.ReasonPhrase;
-                if (response.IsSuccessStatusCode)
-                {
-                    user.UserId = response.Content.ReadAsAsync<UserRead>().Result.UserId;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-
-        public void UpdateUser(UserWrite user)
-        {
-            throw new System.NotImplementedException();
-        }
-
-
-        public async Task<bool> DeleteUser(UserRead user)
-        {
-            var result = new ServiceCallResult<List<UserRead>>();
-
-            using (var client = new HttpClient())
-            {
-                PrepareHeaders(client);
-
-                var response = await client.DeleteAsync(UserDeleteUrl + string.Format("/{0}", user.UserId));
-                result.CallStatusCode = response.StatusCode;
-                result.CallStatusMessage = response.ReasonPhrase;
-                if (response.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return await RequestGet<List<UserRead>>(UserListUrl);
         }
 
 
         public async Task<ServiceCallResult<List<UserRole>>> GetRoles()
         {
-            var result = new ServiceCallResult<List<UserRole>>();
+            return await RequestGet<List<UserRole>>(RoleListUrl);
+        }
 
-            using (var client = new HttpClient())
+
+        public async Task<bool> CreateUser(UserWrite user)
+        {
+            var response = await RequestCreate<UserRead, UserWrite>(UserCreateUrl, user);
+            if (response != null)
             {
-                PrepareHeaders(client);
-
-                var response = await client.GetAsync(RoleListUrl);
-                result.CallStatusCode = response.StatusCode;
-                result.CallStatusMessage = response.ReasonPhrase;
-                if (response.IsSuccessStatusCode)
-                {
-                    result.Results = response.Content.ReadAsAsync<List<UserRole>>().Result;
-                }
+                user.UserId = response.Results.UserId;
             }
 
-            return result;
+            return response != null;
+        }
+
+
+        public async Task<bool> DeleteUser(UserRead user)
+        {
+            return await RequestDelete(UserDeleteUrl + string.Format("/{0}", user.UserId));
+        }
+
+
+        public void UpdateUser(UserWrite user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

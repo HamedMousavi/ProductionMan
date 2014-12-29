@@ -16,7 +16,7 @@
             <TextBlock FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Text="{x:Static localized:Resources.AreYouSure}"/>
             <Label Grid.Row="1" Content="{Binding MessageDetail}" />
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource DeleteButton}" Content="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" CommandParameter="{Binding DeletingItem}"/>
+                <Button Style="{StaticResource DeleteButton}" Content="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=ThisWindow}"/>
                 <Button Style="{StaticResource CancelButton}"  Content="{x:Static localized:Resources.Cancel}" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWindow}"/>
             </StackPanel>
         </Grid>
