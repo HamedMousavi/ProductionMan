@@ -53,8 +53,8 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
-        [ValidateModel]
         [HttpPost]
+        [ValidateModel]
         public IHttpActionResult AddUser(HttpRequestMessage requestMessage, UserWrite newUser)
         {
             var user = Mapper.Map<User>(newUser);
@@ -64,6 +64,14 @@ namespace ProductionMan.Web.Api.Controllers
             var userRead = Mapper.Map<UserRead>(user);
 
             return new CreatedActionResult<UserRead>(requestMessage, userRead);
+        }
+
+
+        [HttpDelete]
+        public IHttpActionResult DeleteUser(long id)
+        {
+            DataProxy.Instance.MembershipRepository.DeleteUser(id);
+            return Ok();
         }
     }
 }

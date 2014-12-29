@@ -1,9 +1,8 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using log4net;
-using log4net.Repository.Hierarchy;
 
 
 namespace ProductionMan.Web.Api.Security
@@ -17,29 +16,25 @@ namespace ProductionMan.Web.Api.Security
 
         protected override bool IsAuthorized(HttpActionContext context)
         {
-            Log.Info(">> In IsAuthorized");
+            //Log.Info(">> In IsAuthorized");
             var principal = Thread.CurrentPrincipal as DefaultPrincipal;
 
             if (principal != null && context != null && context.Request != null && context.Request.RequestUri != null)
             {
-                var url = context.Request.RequestUri.AbsolutePath;
-                var permission = 
-                    string.Format("{0}:{1}", 
-                    context.Request.Method.Method.ToLower(),
-                    context.Request.RequestUri.AbsoluteUri.Substring(
-                    context.Request.RequestUri.AbsoluteUri.IndexOf("/api/", StringComparison.Ordinal))).ToLower();
+                var url = "/api/" + context.ControllerContext.ControllerDescriptor.ControllerName;
+                var permission = string.Format("{0}:{1}", context.Request.Method.Method.ToLower(), url);
 
-                Log.Info(string.Format(">> Checking claim Uri={0}, permission={1}", url, permission));
+                //Log.Info(string.Format(">> Checking claim Uri={0}, permission={1}", url, permission));
 
                 foreach (var claim in principal.Claims)
                 {
                     if (string.Equals(claim.Value, permission, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        Log.Info(string.Format(">> Claim FOUND! {0}", claim.Value));
+                        //Log.Info(string.Format(">> Claim FOUND! {0}", claim.Value));
                         return true;
                     }
                 }
-                Log.Info(string.Format(">> Claim not found"));
+                //Log.Info(string.Format(">> Claim not found"));
             }
 
             return false;
@@ -47,10 +42,10 @@ namespace ProductionMan.Web.Api.Security
 
 
         // If 401 – Unauthorized is okay for you, no need to override
-        protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
-        {
-            base.HandleUnauthorizedRequest(actionContext);
-        }
+        //protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
+        //{
+        //    base.HandleUnauthorizedRequest(actionContext);
+        //}
 
 
         private ILog Log

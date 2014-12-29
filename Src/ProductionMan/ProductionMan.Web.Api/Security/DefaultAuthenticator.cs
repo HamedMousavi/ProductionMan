@@ -29,7 +29,9 @@ namespace ProductionMan.Web.Api.Security
 
             if (user != null)
             {
-                var permissions = DataProxy.Instance.MembershipRepository.GetPermissions(user);
+                var permissions = DataProxy.Instance.
+                    MembershipRepository.GetPermissions(user);
+
                 var claims = new ClaimList();
                 claims.AddRange(permissions.Select(CreateClaim));
 
@@ -44,7 +46,8 @@ namespace ProductionMan.Web.Api.Security
         {
             // get:/api/users
             var url = string.Format("{0}:{1}", 
-                DataProxy.Instance.GetMethodByPermission(permission.Operation), permission.ResourceName);
+                DataProxy.Instance.GetMethodByPermission(permission.Operation), 
+                permission.ResourceName);
 
             return new Claim(ClaimTypes.Uri, url);
         }
