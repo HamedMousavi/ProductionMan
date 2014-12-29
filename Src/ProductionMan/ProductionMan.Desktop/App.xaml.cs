@@ -108,7 +108,7 @@ namespace ProductionMan.Desktop
             var windowManager = new WindowManager();
             var membershipService = new Membership();
             var membershipRepository = new MembershipRepository(membershipService);
-            var commandFactory = new CommandFactory(windowManager, membershipService);
+            var commandFactory = new CommandFactory(windowManager, membershipService, membershipRepository);
             var dataFactory = CreateDataFactory(windowManager, membershipRepository);
             var user = CreateUser(membershipService, dataFactory);
 

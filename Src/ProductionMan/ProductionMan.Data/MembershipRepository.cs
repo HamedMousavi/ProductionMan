@@ -92,6 +92,22 @@ namespace ProductionMan.Data
         }
 
 
+        public void DeleteUser(long id)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "UPDATE [USERS] SET [IsEnabled] = 0 WHERE [UserId] = @UserId",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@UserId", id)
+                }
+                );
+
+            _context.ExecuteScalar();
+        }
+
+
         public IEnumerable<Role> GetRoles(string filter)
         {
             var list = new List<Role>();

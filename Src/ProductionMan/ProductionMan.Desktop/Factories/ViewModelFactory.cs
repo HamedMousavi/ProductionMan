@@ -128,7 +128,7 @@ namespace ProductionMan.Desktop.Factories
                 MessageDetail = string.Format("User: {0}", user.DisplayName),
                 DeleteCommand = _commandFactory.DeleteUserCommand(),
                 CancelCommand = _commandFactory.CloseWindowCommand(),
-                User = user
+                DeletingItem = user
             };
         }
 

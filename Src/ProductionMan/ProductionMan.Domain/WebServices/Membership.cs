@@ -12,6 +12,7 @@ namespace ProductionMan.Domain.WebServices
 
         private const string UserListUrl = "Users";
         private const string UserCreateUrl = "Users";
+        private const string UserDeleteUrl = "Users";
         private const string RoleListUrl = "Roles";
         private const string CurrentUserUrl = "Users/Current";
         private const string PermissionsUrl = "Permissions";
@@ -92,6 +93,7 @@ namespace ProductionMan.Domain.WebServices
                 result.CallStatusMessage = response.ReasonPhrase;
                 if (response.IsSuccessStatusCode)
                 {
+                    user.UserId = response.Content.ReadAsAsync<UserRead>().Result.UserId;
                     return true;
                 }
             }
@@ -106,9 +108,24 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public void DeleteUser(UserRead user)
+        public async Task<bool> DeleteUser(UserRead user)
         {
-            throw new System.NotImplementedException();
+            var result = new ServiceCallResult<List<UserRead>>();
+
+            using (var client = new HttpClient())
+            {
+                PrepareHeaders(client);
+
+                var response = await client.DeleteAsync(UserDeleteUrl + string.Format("/{0}", user.UserId));
+                result.CallStatusCode = response.StatusCode;
+                result.CallStatusMessage = response.ReasonPhrase;
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
 

@@ -59,5 +59,24 @@ namespace ProductionMan.Desktop.Repositories
 
             return _roles;
         }
+
+
+        internal async Task CreateUser(UserWrite userWrite)
+        {
+            var successful = await _membershipService.CreateUser(userWrite);
+            if (successful)
+            {
+                _users.Add(userWrite);
+            }
+        }
+
+        internal async Task DeleteUser(UserRead userRead)
+        {
+            var successful = await _membershipService.DeleteUser(userRead);
+            if (successful)
+            {
+                _users.Remove(userRead);
+            }
+        }
     }
 }

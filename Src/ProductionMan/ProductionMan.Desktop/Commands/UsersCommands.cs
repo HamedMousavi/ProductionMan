@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using AutoMapper;
+using ProductionMan.Desktop.Repositories;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 
@@ -105,11 +106,13 @@ namespace ProductionMan.Desktop.Commands
 
     public class CreateUserCommand : ICommand
     {
-        private readonly Membership _membershipService;
 
-        public CreateUserCommand(Membership membershipService)
+        private readonly MembershipRepository _repository;
+
+
+        public CreateUserCommand(MembershipRepository repository)
         {
-            _membershipService = membershipService;
+            _repository = repository;
         }
 
 
@@ -124,7 +127,7 @@ namespace ProductionMan.Desktop.Commands
 
         public async void Execute(object parameter)
         {
-            await _membershipService.CreateUser(parameter as UserWrite);
+            await _repository.CreateUser(parameter as UserWrite);
         }
     }
 
@@ -156,11 +159,11 @@ namespace ProductionMan.Desktop.Commands
 
     public class DeleteUserCommand : ICommand
     {
-        private readonly Membership _membershipService;
+        private readonly MembershipRepository _repository;
 
-        public DeleteUserCommand(Membership membershipService)
+        public DeleteUserCommand(MembershipRepository repository)
         {
-            _membershipService = membershipService;
+            _repository = repository;
         }
 
         public bool CanExecute(object parameter)
@@ -172,11 +175,9 @@ namespace ProductionMan.Desktop.Commands
         public event EventHandler CanExecuteChanged;
 
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            var userWrite = new UserWrite();
-            // UNDONE: MAP FROM USER READ parameter as UserRead
-            _membershipService.DeleteUser(userWrite);
+            await _repository.DeleteUser(parameter as UserRead);
         }
     }
 
