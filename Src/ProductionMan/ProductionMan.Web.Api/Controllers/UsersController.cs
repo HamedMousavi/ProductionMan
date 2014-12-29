@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using ProductionMan.Data.MsAdo;
 using ProductionMan.Data.Shared.Models;
 using ProductionMan.Web.Api.ActionResults;
 using ProductionMan.Web.Api.Common.Models;
+using ProductionMan.Web.Api.Logic;
 using ProductionMan.Web.Api.Security;
+using ProductionMan.Web.Api.Security.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
-using ProductionMan.Web.Api.Security.Validation;
 
 
 namespace ProductionMan.Web.Api.Controllers
@@ -19,18 +19,9 @@ namespace ProductionMan.Web.Api.Controllers
     public class UsersController : ApiController
     {
 
-        private readonly Data.MembershipRepository _repository;
-
-
-        public UsersController()
-        {
-            _repository = new Data.MembershipRepository(UnitOfWorkFactory.Create());
-        }
-
-
         public IEnumerable<UserRead> GetUsers()
         {
-            var list = _repository.GetUsers(string.Empty);
+            var list = DataProxy.Instance.MembershipRepository.GetUsers(string.Empty);
 
             return list.Select(Mapper.Map<UserRead>).ToList();
         }
@@ -68,7 +59,7 @@ namespace ProductionMan.Web.Api.Controllers
         {
             var user = Mapper.Map<User>(newUser);
 
-            _repository.Insert(user);
+            DataProxy.Instance.MembershipRepository.Insert(user);
 
             var userRead = Mapper.Map<UserRead>(user);
 

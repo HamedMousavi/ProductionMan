@@ -1,9 +1,12 @@
-﻿using System.Security.Claims;
+﻿using ProductionMan.Data.Shared.Models;
+using ProductionMan.Web.Api.Logic;
+using ProductionMan.Web.Api.Security.Models;
+using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
-using ProductionMan.Data.MsAdo;
-using ProductionMan.Web.Api.Security.Models;
+
 
 namespace ProductionMan.Web.Api.Security
 {
@@ -21,21 +24,29 @@ namespace ProductionMan.Web.Api.Security
 
         private static Task<ClaimList> LoadPermissions(Credentials credentials, CancellationToken cancellationToken)
         {
-            var data = new Data.MembershipRepository(UnitOfWorkFactory.Create());
+            var data = DataProxy.Instance.MembershipRepository;
             var user = data.Find(credentials.Username, credentials.Password);
 
             if (user != null)
             {
-                var claims = new ClaimList
-                {
-                    new Claim(ClaimTypes.Name, user.DisplayName),
-                    new Claim(ClaimTypes.Uri, "get:api/users")
-                };
+                var permissions = DataProxy.Instance.MembershipRepository.GetPermissions(user);
+                var claims = new ClaimList();
+                claims.AddRange(permissions.Select(CreateClaim));
 
                 return Task.FromResult(claims);
             }
 
             return Task.FromResult<ClaimList>(null);
+        }
+
+
+        private static Claim CreateClaim(Permission permission)
+        {
+            // get:/api/users
+            var url = string.Format("{0}:{1}", 
+                DataProxy.Instance.GetMethodByPermission(permission.Operation), permission.ResourceName);
+
+            return new Claim(ClaimTypes.Uri, url);
         }
     }
 }

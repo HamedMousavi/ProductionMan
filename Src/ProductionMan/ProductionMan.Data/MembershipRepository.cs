@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ProductionMan.Data.MsAdo;
+using ProductionMan.Data.Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using ProductionMan.Data.MsAdo;
-using ProductionMan.Data.Shared.Models;
+
 
 namespace ProductionMan.Data
 {
@@ -112,6 +113,44 @@ namespace ProductionMan.Data
                 });
 
             return list;
+        }
+
+
+        public List<Permission> GetPermissions(User user)
+        {
+            var list = new List<Permission>();
+
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "SELECT [Permissions].[PermissionId],[PermissionResource],[PermissionTypeId] FROM [Permissions], [RolePermissions] WHERE [RoleId] = @RoleId AND [RolePermissions].[PermissionId] = [Permissions].[PermissionId]",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleId", user.Role.RoleId)
+                }
+                );
+
+            _context.Execute(
+                reader =>
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(MapPermission(reader));
+                    }
+                });
+
+            return list;
+        }
+
+
+        private Permission MapPermission(IDataReader reader)
+        {
+            return new Permission
+            {
+                PermissionId = AdoConverter.Read(reader, "PermissionId", -1),
+                ResourceName = AdoConverter.Read(reader, "PermissionResource", string.Empty),
+                Operation = (Permission.OperationType)AdoConverter.Read(reader, "PermissionTypeId", 0)
+            };
         }
         
 

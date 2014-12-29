@@ -14,7 +14,7 @@ namespace ProductionMan.Web.Api
         public static void Register(HttpConfiguration config)
         {
             //// http://stackoverflow.com/questions/12976352/asp-net-web-api-model-binding-not-working-with-xml-data-on-post
-            //config.Formatters.XmlFormatter.UseXmlSerializer = true;
+            config.Formatters.XmlFormatter.UseXmlSerializer = true;
             
             // Tracing, logging, and error handling
             ConfigureAppServices(config);
@@ -48,7 +48,7 @@ namespace ProductionMan.Web.Api
             config.Filters.Add(new DefaultAuthenticator());
 
             // Authorization
-            //config.Filters.Add(new DefaultIAuthorizer());
+            config.Filters.Add(new DefaultIAuthorizer());
         }
 
 
