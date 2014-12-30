@@ -92,6 +92,27 @@ namespace ProductionMan.Data
         }
 
 
+        public void Update(User user)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "UPDATE [USERS] SET [Username]=@Username, [Password]=@Password, [DisplayName]=@DisplayName, [Culture]=@Culture, [RoleId]=@RoleId WHERE [UserId]=@UserId;",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@username", user.Username),
+                    new SqlParameter("@password", user.Password),
+                    new SqlParameter("@DisplayName", user.DisplayName),
+                    new SqlParameter("@Culture", user.Culture),
+                    new SqlParameter("@RoleId", user.Role.RoleId),
+                    new SqlParameter("@UserId", user.UserId),
+                }
+                );
+
+            _context.ExecuteScalar();
+        }
+
+
         public void DeleteUser(long id)
         {
             _context.CreateCommand(

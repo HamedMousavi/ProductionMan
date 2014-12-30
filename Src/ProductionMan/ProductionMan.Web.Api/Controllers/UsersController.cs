@@ -19,6 +19,7 @@ namespace ProductionMan.Web.Api.Controllers
     public class UsersController : ApiController
     {
 
+        [HttpGet]
         public IEnumerable<UserRead> GetUsers()
         {
             var list = DataProxy.Instance.MembershipRepository.GetUsers(string.Empty);
@@ -64,6 +65,18 @@ namespace ProductionMan.Web.Api.Controllers
             var userRead = Mapper.Map<UserRead>(user);
 
             return new CreatedActionResult<UserRead>(requestMessage, userRead);
+        }
+
+
+        [HttpPut]
+        [ValidateModel]
+        public UserRead UpdateUser(HttpRequestMessage requestMessage, UserWrite newUser)
+        {
+            var user = Mapper.Map<User>(newUser);
+
+            DataProxy.Instance.MembershipRepository.Update(user);
+
+            return Mapper.Map<UserRead>(user);
         }
 
 

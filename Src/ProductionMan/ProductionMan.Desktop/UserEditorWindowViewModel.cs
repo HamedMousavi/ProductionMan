@@ -37,7 +37,7 @@ namespace ProductionMan.Desktop
                         }
                     }
                 }
-                else if (e.NameIs("User") || e.NameIs("Languages"))
+                else if (e.NameIs("User") || e.NameIs("Languages") || e.NameIs("Roles"))
                 {
                     if (User != null && Languages != null)
                     {
@@ -47,6 +47,18 @@ namespace ProductionMan.Desktop
                                 StringComparison.InvariantCultureIgnoreCase))
                             {
                                 SelectedLanguage = language;
+                            }
+                        }
+                    }
+                    else if (User != null && User.Role != null && Roles != null)
+                    {
+                        foreach (var role in Roles)
+                        {
+                            if (role.RoleId == User.Role.RoleId)
+                            {
+                                // FORCE SELECTED ROLE BINDING IN USER EDITOR ROLE COMBO BOX
+                                // BY DEFAULT USERS DON'T HAVE A ROLE BUT ONLY A ROLE ID
+                                User.Role = role;
                             }
                         }
                     }

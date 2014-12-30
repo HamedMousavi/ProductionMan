@@ -439,7 +439,16 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item created successfuly.
+        ///   Looks up a localized string similar to Update operation cancelled due to an error. Please try again or contact administrator in case the issue didn&apos;t resolve itself..
+        /// </summary>
+        public static string StatusFailedToUpdatedItem {
+            get {
+                return ResourceManager.GetString("StatusFailedToUpdatedItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item created successfuly!.
         /// </summary>
         public static string StatusItemCreated {
             get {
@@ -453,6 +462,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string StatusItemDeleted {
             get {
                 return ResourceManager.GetString("StatusItemDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item modified successfuly!.
+        /// </summary>
+        public static string StatusItemUpdated {
+            get {
+                return ResourceManager.GetString("StatusItemUpdated", resourceCulture);
             }
         }
         

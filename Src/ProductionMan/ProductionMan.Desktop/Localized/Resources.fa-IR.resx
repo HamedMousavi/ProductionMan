@@ -243,11 +243,17 @@
   <data name="StatusFailedToDeleteItem" xml:space="preserve">
     <value>عملیات حذف به دلیل بروز خطا ناتمام متوقف شد. جزئیات خطا جهت بررسی مسئول برنامه ثبت گردید. لطفا مجددا سعی کنید.</value>
   </data>
+  <data name="StatusFailedToUpdatedItem" xml:space="preserve">
+    <value>متاسفانه تغییر رکورد به دلیل بروز خطا متوقف شد. لطفا مجددا سعی کنید و در صورت تکرار خطا با مسئول سیستم تماس بگیرید.</value>
+  </data>
   <data name="StatusItemCreated" xml:space="preserve">
     <value>رکورد مورد نظر با موفقیت ایجاد شد.</value>
   </data>
   <data name="StatusItemDeleted" xml:space="preserve">
     <value>رکورد مورد نظر با موفقیت حذف شد.</value>
+  </data>
+  <data name="StatusItemUpdated" xml:space="preserve">
+    <value>رکورد مورد نظر با موفقیت تغییر کرد.</value>
   </data>
   <data name="StatusLanguageChanged" xml:space="preserve">
     <value>زبان تغییر کرد ولی تغییرات دفعه بعد که برنامه را اجرا کنید اعمال میگردد.</value>

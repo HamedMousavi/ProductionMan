@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ProductionMan.Desktop.Repositories;
-using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 using System;
 using System.Windows;
@@ -155,9 +154,9 @@ namespace ProductionMan.Desktop.Commands
         public event EventHandler CanExecuteChanged;
 
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            _repository.UpdateUser(parameter as UserWrite);
+            await _repository.UpdateUser(parameter as UserWrite);
         }
     }
 

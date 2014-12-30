@@ -115,6 +115,16 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
+        protected async Task<bool> RequestUpdate<T>(string url, T item)
+        {
+            using (var client = CreateClient())
+            {
+                var response = await client.PutAsJsonAsync(url, item);
+                return Map(response);
+            }
+        }
+
+
         private ServiceCallResult<T> ReadAndMap<T>(HttpResponseMessage response)
         {
             var result = new ServiceCallResult<T>

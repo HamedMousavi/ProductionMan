@@ -243,11 +243,17 @@
   <data name="StatusFailedToDeleteItem" xml:space="preserve">
     <value>Delete operation cancelled due to an error. Please try again or contact administrator in case the issue didn't resolve itself.</value>
   </data>
+  <data name="StatusFailedToUpdatedItem" xml:space="preserve">
+    <value>Update operation cancelled due to an error. Please try again or contact administrator in case the issue didn't resolve itself.</value>
+  </data>
   <data name="StatusItemCreated" xml:space="preserve">
-    <value>Item created successfuly</value>
+    <value>Item created successfuly!</value>
   </data>
   <data name="StatusItemDeleted" xml:space="preserve">
     <value>Requested record deleted successfully!</value>
+  </data>
+  <data name="StatusItemUpdated" xml:space="preserve">
+    <value>Item modified successfuly!</value>
   </data>
   <data name="StatusLanguageChanged" xml:space="preserve">
     <value>Language changed. Changes will take effect next time you open the application.</value>

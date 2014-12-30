@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using AutoMapper;
 using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
@@ -97,11 +98,36 @@ namespace ProductionMan.Desktop.Repositories
         }
 
 
-        internal void UpdateUser(UserWrite userWrite)
+        internal async Task UpdateUser(UserWrite userWrite)
         {
-            throw new System.NotImplementedException();
+            LogWarning(Localized.Resources.StatusConnecting);
+
+            var successful = await _membershipService.UpdateUser(userWrite);
+            if (successful)
+            {
+                var index = IndexOfUserById(userWrite);
+                _users.RemoveAt(index);
+                _users.Insert(index, Mapper.Map<UserRead>(userWrite));
+
+                LogSuccess(Localized.Resources.StatusItemUpdated);
+            }
+            else
+            {
+                LogFailure(Localized.Resources.StatusFailedToUpdatedItem);
+            }
         }
 
+
+        private int IndexOfUserById(UserWrite userWrite)
+        {
+            for (var i = 0; i < _users.Count; i++)
+            {
+                var user = _users[i];
+                if (user.UserId == userWrite.UserId) return i;
+            }
+
+            return -1;
+        }
 
         #region StatusEvents
 
