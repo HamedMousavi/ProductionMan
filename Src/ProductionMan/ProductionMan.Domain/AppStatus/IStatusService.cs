@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace ProductionMan.Desktop.Services
+namespace ProductionMan.Domain.AppStatus
 {
-
-    public interface IStatusService : INotifyPropertyChanged
+    public interface IStatusService : INotifyPropertyChanged, IStatusObserver
     {
 
         void SetStatus(Status.Levels level, string message);

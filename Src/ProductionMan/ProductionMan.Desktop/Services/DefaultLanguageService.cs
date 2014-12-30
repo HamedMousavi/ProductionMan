@@ -1,11 +1,13 @@
-﻿using System;
+﻿using ProductionMan.Common;
+using ProductionMan.Domain.AppStatus;
+using ProductionMan.Domain.Globalization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Input;
-using ProductionMan.Common;
-using ProductionMan.Domain.Globalization;
+
 
 namespace ProductionMan.Desktop.Services
 {
@@ -20,6 +22,23 @@ namespace ProductionMan.Desktop.Services
         public DefaultLanguageService()
         {
             PropertyChanged += OnPropertyChanged;
+        }
+
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.NameIs("CurrentLanguage"))
+            {
+                SaveApplicationLanguage();
+                ChangeApplicationLanguage();
+
+                FireStatusChanged(
+                    new StatusChangedEventArgs(new Status
+                    {
+                        Level = Status.Levels.Success,
+                        Message = Localized.Resources.StatusLanguageChanged
+                    }));
+            }
         }
 
 
@@ -44,16 +63,6 @@ namespace ProductionMan.Desktop.Services
             {
                 _languages = value; 
                 FirePropertyChanged(this, "Languages");
-            }
-        }
-
-
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.NameIs("CurrentLanguage"))
-            {
-                SaveApplicationLanguage();
-                ChangeApplicationLanguage();
             }
         }
 
@@ -131,5 +140,12 @@ namespace ProductionMan.Desktop.Services
             return null;
         }
 
+
+        public event StatusChangedEvent StatusChanged;
+        protected virtual void FireStatusChanged(StatusChangedEventArgs e)
+        {
+            var handler = StatusChanged;
+            if (handler != null) handler(this, e);
+        }
     }
 }

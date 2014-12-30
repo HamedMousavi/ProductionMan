@@ -1,6 +1,6 @@
 ﻿using ProductionMan.Common;
 
-namespace ProductionMan.Desktop.Services
+namespace ProductionMan.Domain.AppStatus
 {
 
     public class Status : NotifyPropertyChanged

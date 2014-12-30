@@ -234,6 +234,21 @@
   <data name="SigningInMessage" xml:space="preserve">
     <value>در حال ورود، لطفا صبر کنید...</value>
   </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>در حال اتصال به سرویس دهنده...</value>
+  </data>
+  <data name="StatusFailedToCreateItem" xml:space="preserve">
+    <value>متاسفانه ایجاد رکورد به دلیل بروز خطا متوقف شد. لطفا مجددا سعی کنید و در صورت تکرار خطا با مسئول سیستم تماس بگیرید.</value>
+  </data>
+  <data name="StatusFailedToDeleteItem" xml:space="preserve">
+    <value>عملیات حذف به دلیل بروز خطا ناتمام متوقف شد. جزئیات خطا جهت بررسی مسئول برنامه ثبت گردید. لطفا مجددا سعی کنید.</value>
+  </data>
+  <data name="StatusItemCreated" xml:space="preserve">
+    <value>رکورد مورد نظر با موفقیت ایجاد شد.</value>
+  </data>
+  <data name="StatusItemDeleted" xml:space="preserve">
+    <value>رکورد مورد نظر با موفقیت حذف شد.</value>
+  </data>
   <data name="StatusLanguageChanged" xml:space="preserve">
     <value>زبان تغییر کرد ولی تغییرات دفعه بعد که برنامه را اجرا کنید اعمال میگردد.</value>
   </data>

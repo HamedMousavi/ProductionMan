@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using ProductionMan.Desktop.Services;
+using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.Globalization;
+
 
 namespace ProductionMan.Desktop.Factories
 {
@@ -14,7 +16,17 @@ namespace ProductionMan.Desktop.Factories
 
         internal IStatusService CreateStatusService()
         {
-            return _statusService ?? (_statusService = new DefaultStatusService(_languageService));
+            if (_statusService == null)
+            {
+                _statusService = new DefaultStatusService();
+            }
+
+            if (_languageService != null)
+            {
+                _statusService.Register(_languageService);
+            }
+
+            return _statusService;
         }
 
 

@@ -110,7 +110,6 @@
     <Compile Include="Repositories\MembershipRepository.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="Services\DefaultLanguageService.cs" />
-    <Compile Include="Services\DefaultStatusService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Controls\MainParts\ContentManagement\MainWindowSelector.cs" />
     <Compile Include="Controls\MainParts\LogonBox.xaml.cs">
@@ -136,9 +135,7 @@
     <Compile Include="Converters\TabControlHeaderIconConverter.cs" />
     <Compile Include="LoginWindowViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Services\IStatusService.cs" />
     <Compile Include="Services\SharedApplicationServices.cs" />
-    <Compile Include="Services\Status.cs" />
     <Compile Include="UserEditorWindow.xaml.cs">
       <DependentUpon>UserEditorWindow.xaml</DependentUpon>
     </Compile>

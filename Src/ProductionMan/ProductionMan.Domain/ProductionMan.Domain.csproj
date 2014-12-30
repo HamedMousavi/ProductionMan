@@ -44,6 +44,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppStatus\DefaultStatusService.cs" />
+    <Compile Include="AppStatus\IStatusObservable.cs" />
+    <Compile Include="AppStatus\IStatusObserver.cs" />
+    <Compile Include="AppStatus\IStatusService.cs" />
+    <Compile Include="AppStatus\Status.cs" />
+    <Compile Include="AppStatus\StatusObservableBase.cs" />
     <Compile Include="Globalization\Language.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\User.cs" />

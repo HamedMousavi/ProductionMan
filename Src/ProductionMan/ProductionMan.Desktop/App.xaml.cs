@@ -10,6 +10,7 @@ using ProductionMan.Common;
 using ProductionMan.Desktop.Factories;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Desktop.Services;
+using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.Globalization;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
@@ -108,7 +109,8 @@ namespace ProductionMan.Desktop
             var windowManager = new WindowManager();
             var membershipService = new Membership();
             var membershipRepository = new MembershipRepository(membershipService);
-            var commandFactory = new CommandFactory(windowManager, membershipService, membershipRepository);
+            _appServiceFactory.CreateStatusService().Register(membershipRepository);
+            var commandFactory = new CommandFactory(windowManager, membershipRepository);
             var dataFactory = CreateDataFactory(windowManager, membershipRepository);
             var user = CreateUser(membershipService, dataFactory);
 

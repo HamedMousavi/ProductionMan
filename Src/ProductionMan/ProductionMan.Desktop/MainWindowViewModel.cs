@@ -1,10 +1,11 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using ProductionMan.Common;
+﻿using ProductionMan.Common;
 using ProductionMan.Desktop.Controls;
 using ProductionMan.Desktop.Controls.MainParts;
 using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
-using ProductionMan.Desktop.Services;
+using ProductionMan.Domain.AppStatus;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+
 
 namespace ProductionMan.Desktop
 {

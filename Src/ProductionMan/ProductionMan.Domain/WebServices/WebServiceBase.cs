@@ -53,9 +53,9 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        private void PrepareHeaders(HttpClient client)
+        protected HttpClient CreateClient()
         {
-            client.BaseAddress = _baseAddress;
+            var client = new HttpClient {BaseAddress = _baseAddress};
 
             // Media type
             client.DefaultRequestHeaders.Accept.Clear();
@@ -80,21 +80,10 @@ namespace ProductionMan.Domain.WebServices
             {
                 ServiceCredentialProvider.AttachCredentials(client);
             }
-        }
 
-
-        protected HttpClient CreateClient()
-        {
-            var client = new HttpClient();
-            PrepareHeaders(client);
             return client;
         }
 
-
-        //protected async Task<HttpResponseMessage> RequestGet(HttpClient client, string url)
-        //{
-        //    return await client.GetAsync(url);
-        //}
 
         protected async Task<ServiceCallResult<T>> RequestGet<T>(string url)
         {

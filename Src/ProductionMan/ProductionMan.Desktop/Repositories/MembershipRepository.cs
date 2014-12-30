@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
 
@@ -8,7 +9,7 @@ using ProductionMan.Web.Api.Common.Models;
 namespace ProductionMan.Desktop.Repositories
 {
 
-    public class MembershipRepository
+    public class MembershipRepository : StatusObservableBase
     {
 
         private readonly Membership _membershipService;
@@ -64,23 +65,60 @@ namespace ProductionMan.Desktop.Repositories
 
         internal async Task CreateUser(UserWrite userWrite)
         {
+            LogWarning(Localized.Resources.StatusConnecting);
+
             var successful = await _membershipService.CreateUser(userWrite);
             if (successful)
             {
                 _users.Add(userWrite);
+                LogSuccess(Localized.Resources.StatusItemCreated);
+            }
+            else
+            {
+                LogFailure(Localized.Resources.StatusFailedToCreateItem);
             }
         }
 
+
         internal async Task<bool> DeleteUser(UserRead userRead)
         {
+            LogWarning(Localized.Resources.StatusConnecting);
+
             var successful = await _membershipService.DeleteUser(userRead);
             if (successful)
             {
                 _users.Remove(userRead);
+                LogSuccess(Localized.Resources.StatusItemDeleted);
                 return true;
             }
 
+            LogFailure(Localized.Resources.StatusFailedToDeleteItem);
             return false;
         }
+
+
+        internal void UpdateUser(UserWrite userWrite)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        #region StatusEvents
+
+        private void LogFailure(string message)
+        {
+            FireStatusChanged(Status.Levels.Failure, message);
+        }
+
+        private void LogSuccess(string message)
+        {
+            FireStatusChanged(Status.Levels.Success, message);
+        }
+
+        private void LogWarning(string message)
+        {
+            FireStatusChanged(Status.Levels.Warning, message);
+        }
+        #endregion StatusEvents
     }
 }

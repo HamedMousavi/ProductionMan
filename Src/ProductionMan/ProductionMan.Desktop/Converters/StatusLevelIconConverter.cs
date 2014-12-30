@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ProductionMan.Domain.AppStatus;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using ProductionMan.Desktop.Services;
+
 
 namespace ProductionMan.Desktop.Converters
 {

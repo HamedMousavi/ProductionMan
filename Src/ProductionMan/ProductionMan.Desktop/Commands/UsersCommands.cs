@@ -1,10 +1,11 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
+using System;
+using System.Windows;
+using System.Windows.Input;
+
 
 namespace ProductionMan.Desktop.Commands
 {
@@ -135,12 +136,15 @@ namespace ProductionMan.Desktop.Commands
 
     public class UpdateUserCommand : ICommand
     {
-        private readonly Membership _membershipService;
 
-        public UpdateUserCommand(Membership membershipService)
+        private readonly MembershipRepository _repository;
+
+
+        public UpdateUserCommand(MembershipRepository repository)
         {
-            _membershipService = membershipService;
+            _repository = repository;
         }
+
 
         public bool CanExecute(object parameter)
         {
@@ -153,7 +157,7 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            _membershipService.UpdateUser(parameter as UserWrite);
+            _repository.UpdateUser(parameter as UserWrite);
         }
     }
 

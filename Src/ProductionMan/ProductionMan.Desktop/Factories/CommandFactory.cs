@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using ProductionMan.Desktop.Commands;
+﻿using ProductionMan.Desktop.Commands;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Domain.Security;
-using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
+using System;
+using System.Collections.Generic;
+using System.Windows.Input;
+
 
 namespace ProductionMan.Desktop.Factories
 {
@@ -24,14 +24,12 @@ namespace ProductionMan.Desktop.Factories
         }
 
         private readonly Dictionary<CommandKey, ICommand> _commands;
-        private readonly Membership _membershipService;
         private readonly MembershipRepository _membershipRepository;
 
 
-        public CommandFactory(WindowManager windowManager, Membership membershipService, MembershipRepository membershipRepository)
+        public CommandFactory(WindowManager windowManager, MembershipRepository membershipRepository)
         {
             _windowManager = windowManager;
-            _membershipService = membershipService;
             _membershipRepository = membershipRepository;
             _commands = new Dictionary<CommandKey, ICommand>();
         }
@@ -107,7 +105,7 @@ namespace ProductionMan.Desktop.Factories
 
         internal ICommand UpdateUserCommand()
         {
-            return new UpdateUserCommand(_membershipService);
+            return new UpdateUserCommand(_membershipRepository);
         }
 
         internal ICommand CloseWindowCommand()

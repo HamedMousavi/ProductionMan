@@ -412,6 +412,51 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connecting to server....
+        /// </summary>
+        public static string StatusConnecting {
+            get {
+                return ResourceManager.GetString("StatusConnecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to perform request. Please see log file for details..
+        /// </summary>
+        public static string StatusFailedToCreateItem {
+            get {
+                return ResourceManager.GetString("StatusFailedToCreateItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete operation cancelled due to an error. Please try again or contact administrator in case the issue didn&apos;t resolve itself..
+        /// </summary>
+        public static string StatusFailedToDeleteItem {
+            get {
+                return ResourceManager.GetString("StatusFailedToDeleteItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item created successfuly.
+        /// </summary>
+        public static string StatusItemCreated {
+            get {
+                return ResourceManager.GetString("StatusItemCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requested record deleted successfully!.
+        /// </summary>
+        public static string StatusItemDeleted {
+            get {
+                return ResourceManager.GetString("StatusItemDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language changed. Changes will take effect next time you open the application..
         /// </summary>
         public static string StatusLanguageChanged {
