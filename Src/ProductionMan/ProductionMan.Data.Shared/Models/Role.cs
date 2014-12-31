@@ -9,7 +9,7 @@ namespace ProductionMan.Data.Shared.Models
 
         public string RoleName { get; set; }
         
-        public List<Permission> Permissions { get; set; }
+        public IEnumerable<Permission> Permissions { get; set; }
 
     }
 }

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 
 namespace ProductionMan.Desktop.Repositories
@@ -14,7 +13,7 @@ namespace ProductionMan.Desktop.Repositories
     {
 
         private readonly Membership _membershipService;
-        private List<Permission> _permissions;
+        private ObservableCollection<Permission> _permissions;
         private ObservableCollection<UserRead> _users;
         private ObservableCollection<UserRole> _roles;
 
@@ -25,9 +24,22 @@ namespace ProductionMan.Desktop.Repositories
         }
 
 
-        internal async Task<IEnumerable<Permission>> LoadUserPermissions()
+        internal async Task<ObservableCollection<Permission>> LoadUserPermissions()
         {
-            return _permissions ?? (_permissions = (await _membershipService.GetPermissions()).Results);
+            if (_permissions == null)
+            {
+                var permissions = await _membershipService.GetPermissions();
+                if (permissions != null && permissions.Results != null)
+                {
+                    _permissions = new ObservableCollection<Permission>();
+                    foreach (var permission in permissions.Results)
+                    {
+                        _permissions.Add(permission);
+                    }
+                }
+            }
+
+            return _permissions;
         }
 
 

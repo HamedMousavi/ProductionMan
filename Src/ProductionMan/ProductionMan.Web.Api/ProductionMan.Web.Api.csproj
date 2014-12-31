@@ -82,6 +82,7 @@
     <Compile Include="ActionResults\LocationLinkCalculator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
+    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -97,9 +98,16 @@
     <Compile Include="Security\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Security\AuthenticationFailureResult.cs" />
     <Compile Include="Security\BaseAuthenticator.cs" />
+    <Compile Include="Security\Content\DefaultContentSecurityPoliciesController.cs" />
+    <Compile Include="Security\Content\IContentSecurityPolicy.cs" />
+    <Compile Include="Security\Content\RolePermissionsPolicy.cs" />
     <Compile Include="Security\DefaultAuthenticator.cs" />
+    <Compile Include="Security\DefaultContentControlMessageHandler.cs" />
     <Compile Include="Security\DefaultIAuthorizer.cs" />
+    <Compile Include="Security\DefaultPermissionProvider.cs" />
     <Compile Include="Security\DefaultPrincipal.cs" />
+    <Compile Include="Security\Content\IContentSecurityPoliciesController.cs" />
+    <Compile Include="Security\IPermissionProvider.cs" />
     <Compile Include="Security\Models\ClaimList.cs" />
     <Compile Include="Security\Models\Credentials.cs" />
     <Compile Include="Security\Validation\ValidateModelAttribute.cs" />

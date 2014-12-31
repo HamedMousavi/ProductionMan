@@ -42,7 +42,7 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        public IEnumerable<Permission> Permissions { get; set; }
+        public ObservableCollection<Permission> Permissions { get; set; }
 
         public ObservableCollection<UserRead> Users { get; set; }
 

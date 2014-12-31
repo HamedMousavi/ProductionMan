@@ -12,6 +12,7 @@ namespace ProductionMan.Web.Api.Controllers
     public class RolesController : ApiController
     {
 
+        [HttpGet]
         public IEnumerable<UserRole> GetRoles()
         {
             var list = DataProxy.Instance.MembershipRepository.GetRoles(string.Empty);

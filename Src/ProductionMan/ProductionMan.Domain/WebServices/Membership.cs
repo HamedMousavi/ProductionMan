@@ -10,7 +10,7 @@ namespace ProductionMan.Domain.WebServices
     {
 
         private const string UsersUrl = "Users";
-        private const string CurrentUserUrl = "Users/Current";
+        private const string ProfilesUrl = "Profiles";
         private const string RoleListUrl = "Roles";
         private const string PermissionsUrl = "Permissions";
 
@@ -21,9 +21,9 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public async Task<ServiceCallResult<UserRead>> GetUserDetails()
+        public async Task<ServiceCallResult<UserRead>> GetUserProfile()
         {
-            return await RequestGet<UserRead>(CurrentUserUrl);
+            return await RequestGet<UserRead>(ProfilesUrl);
         }
 
 

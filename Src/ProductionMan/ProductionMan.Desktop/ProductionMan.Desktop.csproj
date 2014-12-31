@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerFactory.cs" />
     <Compile Include="Factories\AppServicesFactory.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="ConfirmDeleteWindowViewModel.cs" />
@@ -102,9 +103,6 @@
     <Compile Include="Controls\MainParts\GenericListToolbar.xaml.cs">
       <DependentUpon>GenericListToolbar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainParts\MaterialManagerViewModel.cs" />
-    <Compile Include="Controls\MainParts\ProcessManagerViewModel.cs" />
-    <Compile Include="Controls\MainParts\StoreManagerViewModel.cs" />
     <Compile Include="Converters\StatusLevelColorConverter.cs" />
     <Compile Include="Converters\StatusLevelIconConverter.cs" />
     <Compile Include="Repositories\MembershipRepository.cs" />

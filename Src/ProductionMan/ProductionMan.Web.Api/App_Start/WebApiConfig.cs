@@ -1,4 +1,5 @@
 ﻿using ProductionMan.Web.Api.Security;
+using ProductionMan.Web.Api.Security.Content;
 using ProductionMan.Web.Api.Services;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
@@ -44,8 +45,14 @@ namespace ProductionMan.Web.Api
             //  This call actually UnAuthenticates requests first! (removes previous IPrincipals)
             config.SuppressHostPrincipal();
 
+            // Register a content policy enforcer handler
+            var permissionProvider = new DefaultPermissionProvider();
+            var policyMan = new DefaultContentSecurityPoliciesController();
+            policyMan.AddContentSecurityPolicy(new RolePermissionsPolicy(permissionProvider));
+            config.MessageHandlers.Add(new DefaultContentControlMessageHandler(policyMan));
+
             // Authentication
-            config.Filters.Add(new DefaultAuthenticator());
+            config.Filters.Add(new DefaultAuthenticator(permissionProvider));
 
             // Authorization
             config.Filters.Add(new DefaultIAuthorizer());

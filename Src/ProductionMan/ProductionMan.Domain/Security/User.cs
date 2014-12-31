@@ -46,7 +46,7 @@ namespace ProductionMan.Domain.Security
                 _membershipService.ServiceCredentialProvider = provider;
             }
 
-            var response = await _membershipService.GetUserDetails();
+            var response = await _membershipService.GetUserProfile();
 
             // If signed in successfully
             if (response.CallStatusCode == HttpStatusCode.OK)

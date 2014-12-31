@@ -37,14 +37,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Models\Depot.cs" />
     <Compile Include="Models\ILinkable.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Linkable.cs" />
     <Compile Include="Models\LinkList.cs" />
-    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Permission.cs" />
-    <Compile Include="Models\Process.cs" />
     <Compile Include="Models\UserRead.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\UserWrite.cs" />

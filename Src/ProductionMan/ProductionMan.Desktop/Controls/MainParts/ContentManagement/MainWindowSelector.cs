@@ -28,10 +28,10 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
             _controlFactories = new Dictionary<string, IControlFactory>
             {
                 {"Users", new UserManagerFactory()},
-                {"Permissions", null},
-                {"Materials", null},
-                {"Processes", null},
-                {"Stores", null},
+                {"Permissions", new PermissionManagerFactory()},
+                //{"Materials", null},
+                //{"Processes", null},
+                //{"Stores", null},
                 {"Settings", new SettingsManagerFactory()},
                 {"About", new AboutUsFactory()},
             };

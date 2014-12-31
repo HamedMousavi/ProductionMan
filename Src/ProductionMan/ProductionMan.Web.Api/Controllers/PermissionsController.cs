@@ -25,9 +25,6 @@ namespace ProductionMan.Web.Api.Controllers
             {
                 new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Users" },
                 new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Permissions" },
-                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Materials" },
-                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Processes" },
-                new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Stores" },
                 new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "Settings" },
                 new Permission {Operation = Permission.OperationType.Read | Permission.OperationType.Create, ResourceName = "About" },
             };

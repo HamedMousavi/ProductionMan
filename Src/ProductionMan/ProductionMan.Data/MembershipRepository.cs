@@ -71,7 +71,7 @@ namespace ProductionMan.Data
             return user;
         }
 
-        public void Insert(User newUser)
+        public void InsertUser(User newUser)
         {
             _context.CreateCommand(
                 false,
@@ -92,7 +92,7 @@ namespace ProductionMan.Data
         }
 
 
-        public void Update(User user)
+        public void UpdateUser(User user)
         {
             _context.CreateCommand(
                 false,
@@ -146,6 +146,37 @@ namespace ProductionMan.Data
                     while (reader.Read())
                     {
                         list.Add(MapRole(reader));
+                    }
+                });
+
+            foreach (var role in list)
+            {
+                role.Permissions = GetPermissions(role.RoleId);
+            }
+
+            return list;
+        }
+
+        private IEnumerable<Permission> GetPermissions(int roleId)
+        {
+            var list = new List<Permission>();
+
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "SELECT [PermissionId], [PermissionResource], [PermissionTypeId] FROM [Permissions] WHERE [PermissionId] IN (SELECT [PermissionId] FROM [RolePermissions] WHERE [RoleId]=@RoleId);",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleId", roleId)
+                }
+                );
+
+            _context.Execute(
+                reader =>
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(MapPermission(reader));
                     }
                 });
 

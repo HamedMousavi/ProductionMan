@@ -59,6 +59,9 @@ namespace ProductionMan.Web.Api
 
         private static void ConfigureAutoMapper()
         {
+            Mapper.CreateMap<Common.Models.Permission, Data.Shared.Models.Permission>();
+            Mapper.CreateMap<Data.Shared.Models.Permission, Common.Models.Permission>();
+
             Mapper.CreateMap<Role, UserRole>();
             Mapper.CreateMap<UserRole, Role>();
 
