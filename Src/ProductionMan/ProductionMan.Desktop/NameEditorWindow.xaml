@@ -1,0 +1,33 @@
+﻿<Window x:Class="ProductionMan.Desktop.NameEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
+        Title="NameEditorWindow" Height="125" Width="300" x:Name="ThisWindow"
+        Style="{StaticResource ModalWindow}" WindowStartupLocation="CenterOwner">
+    <Grid Style="{StaticResource WindowContainerGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource WindowContainerBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{x:Static localized:Resources.Name}" Margin="0,4"/>
+                <TextBox Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Text="{Binding Name}"/>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,10,5,10">
+            <Button Style="{StaticResource AcceptButton}" Content="{x:Static localized:Resources.Save}" Command="{Binding SaveCommand}" CommandParameter="{Binding NamedEntity}"/>
+            <Button Style="{StaticResource CancelButton}"  Content="{x:Static localized:Resources.Cancel}" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=ThisWindow}"/>
+        </StackPanel>
+    </Grid>
+</Window>

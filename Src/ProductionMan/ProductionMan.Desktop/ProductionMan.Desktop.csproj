@@ -44,6 +44,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\Lib\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -60,6 +61,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="Commands\INamedEntityWindowManager.cs" />
+    <Compile Include="Commands\RolesCommands.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerFactory.cs" />
     <Compile Include="Factories\AppServicesFactory.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
@@ -105,6 +108,10 @@
     </Compile>
     <Compile Include="Converters\StatusLevelColorConverter.cs" />
     <Compile Include="Converters\StatusLevelIconConverter.cs" />
+    <Compile Include="NameEditorWindow.xaml.cs">
+      <DependentUpon>NameEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NameEditorWindowViewModel.cs" />
     <Compile Include="Repositories\MembershipRepository.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="Services\DefaultLanguageService.cs" />
@@ -199,6 +206,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NameEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\Dark\Styles\LoginWindowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

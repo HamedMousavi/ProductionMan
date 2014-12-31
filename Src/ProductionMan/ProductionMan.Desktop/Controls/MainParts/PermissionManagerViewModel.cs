@@ -3,7 +3,7 @@ using ProductionMan.Web.Api.Common.Models;
 
 namespace ProductionMan.Desktop.Controls.MainParts
 {
-    public class PermissionManagerViewModel : BaseListViewModel<Permission>
+    public class PermissionManagerViewModel : BaseListViewModel<UserRole>
     {
     }
 }

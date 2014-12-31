@@ -55,5 +55,13 @@ namespace ProductionMan.Desktop.Factories
                 DataContext = _viewModelFactory.CreateUserAddViewModel(user)
             };
         }
+
+        public Window CreateNamedEntityView(dynamic namedEntity)
+        {
+            return new NameEditorWindow
+            {
+                DataContext = _viewModelFactory.CreateNameEditorAddViewModel(namedEntity)
+            };
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace ProductionMan.Desktop.Factories
     public class CommandFactory
     {
 
-        private readonly IUserWindowManager _windowManager;
+        private readonly WindowManager _windowManager;
 
 
         private enum CommandKey
@@ -35,15 +35,15 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        private ICommand CreateCommand<TCommandType>(CommandKey commandKey) where TCommandType : ICommand
-        {
-            if (!_commands.ContainsKey(commandKey))
-            {
-                _commands.Add(commandKey, Activator.CreateInstance<TCommandType>());
-            }
+        //private ICommand CreateCommand<TCommandType>(CommandKey commandKey) where TCommandType : ICommand
+        //{
+        //    if (!_commands.ContainsKey(commandKey))
+        //    {
+        //        _commands.Add(commandKey, Activator.CreateInstance<TCommandType>());
+        //    }
 
-            return _commands[commandKey];
-        }
+        //    return _commands[commandKey];
+        //}
 
 
         private ICommand CreateCommand(CommandKey commandKey, Type type, object[] parameters)
@@ -65,7 +65,7 @@ namespace ProductionMan.Desktop.Factories
 
         internal ICommand CreateExitCommand()
         {
-            return CreateCommand<ExitCommand>(CommandKey.Exit);
+            return CreateCommand(CommandKey.Exit, typeof (ExitCommand), new object[] {});
         }
 
 
@@ -121,6 +121,16 @@ namespace ProductionMan.Desktop.Factories
         internal ICommand CreateUserCommand()
         {
             return new CreateUserCommand(_membershipRepository);
+        }
+
+        internal ICommand AddRoleWindowCommand()
+        {
+            return new RoleWindowEditorCommand(_windowManager);
+        }
+
+        internal ICommand AddRoleCommand()
+        {
+            return new RoleAddCommand(_membershipRepository);
         }
     }
 }

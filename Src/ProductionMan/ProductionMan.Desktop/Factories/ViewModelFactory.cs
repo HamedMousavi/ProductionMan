@@ -1,4 +1,5 @@
-﻿using ProductionMan.Desktop.Controls.Authentication;
+﻿using ProductionMan.Desktop.Commands;
+using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
 using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
 using ProductionMan.Desktop.Services;
@@ -166,15 +167,26 @@ namespace ProductionMan.Desktop.Factories
             {
                 _viewModels.Add(PermissionsViewModelKey, new PermissionManagerViewModel
                 {
-                    //AddCommand = _commandFactory.AddPermissionWindowCommand(),
+                    AddCommand = _commandFactory.AddRoleWindowCommand(),
                     //DeleteCommand = _commandFactory.DeleteUserConfirmWindowCommand(),
                     //EditCommand = _commandFactory.EditUserWindowCommand(),
                     //ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand(),
-                    Items = _dataFactory.Permissions
+                    Items = _dataFactory.Roles
                 });
             }
 
             return _viewModels[PermissionsViewModelKey];
+        }
+
+
+        public object CreateNameEditorAddViewModel(dynamic namedEntity)
+        {
+            return new NameEditorWindowViewModel
+            {
+                NamedEntity = namedEntity,
+                SaveCommand = _commandFactory.AddRoleCommand(),
+                CancelCommand = new CloseWindowCommand()
+            };
         }
     }
 }

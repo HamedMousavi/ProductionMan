@@ -158,5 +158,10 @@ namespace ProductionMan.Desktop.Repositories
             FireStatusChanged(Status.Levels.Warning, message);
         }
         #endregion StatusEvents
+
+        internal Task CreateRole(UserRole userRole)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
