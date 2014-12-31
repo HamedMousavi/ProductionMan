@@ -179,11 +179,11 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        public object CreateNameEditorAddViewModel(dynamic namedEntity)
+        public object CreateRoleAddViewModel(UserRole role)
         {
-            return new NameEditorWindowViewModel
+            return new RoleEditorWindowViewModel
             {
-                NamedEntity = namedEntity,
+                Role = role,
                 SaveCommand = _commandFactory.AddRoleCommand(),
                 CancelCommand = new CloseWindowCommand()
             };

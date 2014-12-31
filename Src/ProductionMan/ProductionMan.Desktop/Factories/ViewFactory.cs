@@ -56,11 +56,11 @@ namespace ProductionMan.Desktop.Factories
             };
         }
 
-        public Window CreateNamedEntityView(dynamic namedEntity)
+        public Window CreateRoleView(UserRole role)
         {
-            return new NameEditorWindow
+            return new RoleEditorWindow
             {
-                DataContext = _viewModelFactory.CreateNameEditorAddViewModel(namedEntity)
+                DataContext = _viewModelFactory.CreateRoleAddViewModel(role)
             };
         }
     }

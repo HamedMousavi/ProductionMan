@@ -8,10 +8,10 @@ namespace ProductionMan.Desktop.Commands
     public class RoleWindowEditorCommand : ICommand
     {
 
-        private readonly INamedEntityWindowManager _windowManager;
+        private readonly IUserRolesWindowManager _windowManager;
 
 
-        public RoleWindowEditorCommand(INamedEntityWindowManager windowManager)
+        public RoleWindowEditorCommand(IUserRolesWindowManager windowManager)
         {
             _windowManager = windowManager;
         }
@@ -28,7 +28,7 @@ namespace ProductionMan.Desktop.Commands
 
         public void Execute(object parameter)
         {
-            _windowManager.DisplayAddWindow(new UserRole());
+            _windowManager.DisplayRoleAddWindow(new UserRole());
         }
     }
     public class RoleAddCommand : ICommand

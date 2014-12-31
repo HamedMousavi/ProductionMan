@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ProductionMan.Desktop
 {
     /// <summary>
-    /// Interaction logic for NameEditorWindow.xaml
+    /// Interaction logic for RoleEditorWindow.xaml
     /// </summary>
-    public partial class NameEditorWindow : Window
+    public partial class RoleEditorWindow : Window
     {
-        public NameEditorWindow()
+        public RoleEditorWindow()
         {
             InitializeComponent();
         }

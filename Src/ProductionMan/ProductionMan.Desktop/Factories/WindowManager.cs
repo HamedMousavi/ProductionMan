@@ -5,7 +5,7 @@ using ProductionMan.Web.Api.Common.Models;
 namespace ProductionMan.Desktop.Factories
 {
 
-    public class WindowManager : IUserWindowManager, INamedEntityWindowManager
+    public class WindowManager : IUserWindowManager, IUserRolesWindowManager
     {
 
         //private readonly AppServicesFactory _appServiceFactory;
@@ -53,9 +53,9 @@ namespace ProductionMan.Desktop.Factories
             _viewFactory.CreateUserAddView(user).Show();
         }
 
-        public void DisplayAddWindow(dynamic namedEntity)
+        public void DisplayRoleAddWindow(UserRole role)
         {
-            _viewFactory.CreateNamedEntityView(namedEntity).Show();
+            _viewFactory.CreateRoleView(role).Show();
         }
     }
 }
