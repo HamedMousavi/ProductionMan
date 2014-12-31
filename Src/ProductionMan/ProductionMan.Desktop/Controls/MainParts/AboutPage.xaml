@@ -9,6 +9,7 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,13 +23,13 @@
             <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TitleLabel}"  Content="{x:Static localized:Resources.AboutAppNameLabel}" />
-        <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"  FontWeight="Bold" FontSize="24" Content="{x:Static localized:Resources.AboutAppName}" />
+        <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"  FontWeight="Bold" FontSize="24" Content="{x:Static localized:Resources.AboutAppName}" />
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TitleLabel}"  Content="{x:Static localized:Resources.AboutAppVersionLabel}" />
-        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  FontSize="12" Content="{Binding ApplicationVersion}"/>
+        <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"  FontSize="12" Content="{Binding ApplicationVersion}"/>
         <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource TitleLabel}"  Content="{x:Static localized:Resources.AboutAppEmailAddressLabel}" />
-        <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  FontSize="12" Content="{x:Static localized:Resources.AboutAppEmailAddress}"/>
+        <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"  FontSize="12" Content="{x:Static localized:Resources.AboutAppEmailAddress}"/>
 
-        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="{x:Static localized:Resources.AboutAppCopyright}" />
-        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"><Hyperlink Command="{Binding OpenUrlCommand}" CommandParameter="http://www.OrderedSoft.com">www.OrderedSoft.com</Hyperlink></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Text="{x:Static localized:Resources.AboutAppCopyright}" />
+        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"><Hyperlink Command="{Binding OpenUrlCommand}" CommandParameter="http://www.OrderedSoft.com">www.OrderedSoft.com</Hyperlink></TextBlock>
     </Grid>
 </UserControl>

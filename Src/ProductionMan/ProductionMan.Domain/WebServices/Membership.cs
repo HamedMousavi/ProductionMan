@@ -1,4 +1,5 @@
-﻿using ProductionMan.Web.Api.Common.Models;
+﻿using System.Net;
+using ProductionMan.Web.Api.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace ProductionMan.Domain.WebServices
 
     public class Membership : WebServiceBase
     {
+        private UserRead _user;
 
         private const string UsersUrl = "Users";
         private const string ProfilesUrl = "Profiles";
@@ -15,15 +17,23 @@ namespace ProductionMan.Domain.WebServices
         private const string PermissionsUrl = "Permissions";
 
 
-        public async Task<ServiceCallResult<List<Permission>>> GetPermissions()
+        public async Task<ServiceCallResult<UserRead>> GetUserProfile()
         {
-            return await RequestGet<List<Permission>>(PermissionsUrl);
+            var response = await RequestGet<UserRead>(ProfilesUrl);
+            if (response != null && response.CallStatusCode == HttpStatusCode.OK)
+            {
+                _user = response.Results;
+            }
+
+            return response;
         }
 
 
-        public async Task<ServiceCallResult<UserRead>> GetUserProfile()
+        public async Task<ServiceCallResult<List<Permission>>> GetPermissions()
         {
-            return await RequestGet<UserRead>(ProfilesUrl);
+            if (_user == null) return null;
+            return await RequestGet<List<Permission>>(
+                string.Format("{0}/{1}/{2}", UsersUrl, _user.UserId, PermissionsUrl));
         }
 
 

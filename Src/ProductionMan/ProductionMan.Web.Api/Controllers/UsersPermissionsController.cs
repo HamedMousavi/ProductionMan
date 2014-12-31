@@ -1,5 +1,6 @@
 ﻿using ProductionMan.Web.Api.Common.Models;
 using ProductionMan.Web.Api.Security;
+using System.Collections.Generic;
 using System.Threading;
 using System.Web.Http;
 
@@ -8,18 +9,16 @@ namespace ProductionMan.Web.Api.Controllers
 {
 
     [RoutePrefix("api")]
-    public class ProfilesController : ApiController
+    public class UsersPermissionsController : ApiController
     {
-        // AS AN EXCEPTION, GET METHOD HERE RETURNS LOGGED IN USER'S PROFILE
-        // Get: api/Profiles
-        [Route("Profiles")]
+        [Route("Users/{userId:long}/Permissions")]
         [HttpGet]
-        public UserRead GetProfile()
+        public IEnumerable<Permission> GetUserPermissions(long userId)
         {
             var principal = Thread.CurrentPrincipal as DefaultPrincipal;
-            if (principal != null)
+            if (principal != null && principal.User.UserId == userId)
             {
-                return principal.User;
+                return principal.Permissions;
             }
 
             return null;

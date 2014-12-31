@@ -1,22 +1,24 @@
 ﻿using AutoMapper;
-using ProductionMan.Data.Shared.Models;
 using ProductionMan.Web.Api.ActionResults;
 using ProductionMan.Web.Api.Common.Models;
 using ProductionMan.Web.Api.Logic;
+using ProductionMan.Web.Api.Security;
 using ProductionMan.Web.Api.Security.Validation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 
 namespace ProductionMan.Web.Api.Controllers
 {
 
+    [RoutePrefix("api")]
     public class UsersController : ApiController
     {
 
-        // Get: api/Users
+        [Route("Users")]
         [HttpGet]
         public IEnumerable<UserRead> GetUsers()
         {
@@ -26,34 +28,12 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
-        // Get: api/Users/Current (id=Current)
-        //[HttpGet]
-        //public UserRead GetUser(string id)
-        //{
-        //    if (string.Equals(id, "Current", StringComparison.InvariantCultureIgnoreCase))
-        //    {
-        //        var principal = Thread.CurrentPrincipal as DefaultPrincipal;
-        //        if (principal != null)
-        //        {
-        //            return new UserRead {DisplayName = principal.Name};
-        //        }
-        //    }
-        //    else if (string.Equals(id, "Roles", StringComparison.InvariantCultureIgnoreCase))
-        //    {
-        //        var list = DataProxy.Instance.MembershipRepository.GetRoles(string.Empty);
-
-        //        //return list.Select(Mapper.Map<UserRole>).ToList();
-        //    }
-
-        //    return null;
-        //}
-
-
+        [Route("Users")]
         [HttpPost]
         [ValidateModel]
         public IHttpActionResult AddUser(HttpRequestMessage requestMessage, UserWrite newUser)
         {
-            var user = Mapper.Map<User>(newUser);
+            var user = Mapper.Map<Data.Shared.Models.User>(newUser);
 
             DataProxy.Instance.MembershipRepository.InsertUser(user);
 
@@ -63,11 +43,12 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
+        [Route("Users")]
         [HttpPut]
         [ValidateModel]
         public UserRead UpdateUser(HttpRequestMessage requestMessage, UserWrite newUser)
         {
-            var user = Mapper.Map<User>(newUser);
+            var user = Mapper.Map<Data.Shared.Models.User>(newUser);
 
             DataProxy.Instance.MembershipRepository.UpdateUser(user);
 
@@ -75,10 +56,11 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
+        [Route("Users/{userId:long}")]
         [HttpDelete]
-        public IHttpActionResult DeleteUser(long id)
+        public IHttpActionResult DeleteUser(long userId)
         {
-            DataProxy.Instance.MembershipRepository.DeleteUser(id);
+            DataProxy.Instance.MembershipRepository.DeleteUser(userId);
             return Ok();
         }
     }

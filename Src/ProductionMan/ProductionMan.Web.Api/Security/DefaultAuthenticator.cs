@@ -23,7 +23,11 @@ namespace ProductionMan.Web.Api.Security
             CancellationToken cancellationToken)
         {
             var claims = await _permissionProvider.GetClaims(credentials, cancellationToken);
-            return claims == null ? null : new DefaultPrincipal(claims);
+            return claims == null ? null : new DefaultPrincipal(claims)
+            {
+                Permissions = _permissionProvider.Permissions,
+                User = _permissionProvider.User
+            };
         }
 
 

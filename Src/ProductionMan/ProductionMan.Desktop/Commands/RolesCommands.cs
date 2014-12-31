@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ProductionMan.Desktop.Repositories;
+using ProductionMan.Web.Api.Common.Models;
+using System;
 using System.Windows;
 using System.Windows.Input;
-using AutoMapper;
-using ProductionMan.Desktop.Repositories;
-using ProductionMan.Web.Api.Common.Models;
+
 
 namespace ProductionMan.Desktop.Commands
 {
+
     public class RoleWindowEditorAddCommand : ICommand
     {
 

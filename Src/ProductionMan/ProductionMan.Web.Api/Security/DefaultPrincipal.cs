@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using ProductionMan.Web.Api.Common.Models;
 
 
 namespace ProductionMan.Web.Api.Security
@@ -17,6 +18,11 @@ namespace ProductionMan.Web.Api.Security
         {
             _claims = claims;
         }
+
+
+        public IEnumerable<Common.Models.Permission> Permissions { get; set; }
+
+        public UserRead User { get; set; }
 
 
         public string Name

@@ -25,5 +25,8 @@ namespace ProductionMan.Data.Shared.Models
 
 
         public OperationType Operation { get; set; }
+        
+        
+        public string Description { get; set; }
     }
 }

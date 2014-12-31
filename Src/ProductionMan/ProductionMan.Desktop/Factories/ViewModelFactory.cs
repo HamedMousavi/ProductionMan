@@ -1,5 +1,4 @@
-﻿using ProductionMan.Desktop.Commands;
-using ProductionMan.Desktop.Controls.Authentication;
+﻿using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
 using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
 using ProductionMan.Desktop.Services;

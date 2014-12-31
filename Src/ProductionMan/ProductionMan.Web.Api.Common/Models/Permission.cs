@@ -20,5 +20,8 @@ namespace ProductionMan.Web.Api.Common.Models
 
 
         public OperationType Operation { get; set; }
+
+
+        public string Description { get; set; }
     }
 }

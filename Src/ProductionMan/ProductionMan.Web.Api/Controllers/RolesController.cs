@@ -13,9 +13,11 @@ using System.Web.Http;
 namespace ProductionMan.Web.Api.Controllers
 {
 
+    [RoutePrefix("api")]
     public class RolesController : ApiController
     {
 
+        [Route("Roles")]
         [HttpGet]
         public IEnumerable<UserRole> Read()
         {
@@ -25,6 +27,7 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
+        [Route("Roles")]
         [HttpPost]
         [ValidateModel]
         public IHttpActionResult Insert(HttpRequestMessage requestMessage, UserRole userRole)
@@ -39,6 +42,7 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
+        [Route("Roles")]
         [HttpPut]
         [ValidateModel]
         public UserRole Update(HttpRequestMessage requestMessage, UserRole userRole)
@@ -51,10 +55,11 @@ namespace ProductionMan.Web.Api.Controllers
         }
 
 
+        [Route("Roles/{roleId:int}")]
         [HttpDelete]
-        public IHttpActionResult Delete(long id)
+        public IHttpActionResult Delete(int roleId)
         {
-            DataProxy.Instance.MembershipRepository.DeleteRole(id);
+            DataProxy.Instance.MembershipRepository.DeleteRole(roleId);
             return Ok();
         }
     }

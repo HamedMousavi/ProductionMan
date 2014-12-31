@@ -152,7 +152,7 @@ namespace ProductionMan.Data
 
             foreach (var role in list)
             {
-                role.Permissions = GetPermissions(role.RoleId);
+                role.Permissions = GetPermissionsByRoleId(role.RoleId);
             }
 
             return list;
@@ -209,7 +209,30 @@ namespace ProductionMan.Data
         }
 
 
-        private IEnumerable<Permission> GetPermissions(int roleId)
+        public IEnumerable<Permission> GetPermissions(string filter)
+        {
+            var list = new List<Permission>();
+
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "SELECT [PermissionId],[PermissionResource],[PermissionTypeId],[Description] FROM [Permissions]",
+                null);
+
+            _context.Execute(
+                reader =>
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(MapPermission(reader));
+                    }
+                });
+
+            return list;
+        }
+
+
+        public IEnumerable<Permission> GetPermissionsByRoleId(int roleId)
         {
             var list = new List<Permission>();
 
@@ -236,39 +259,13 @@ namespace ProductionMan.Data
         }
 
 
-        public List<Permission> GetPermissions(User user)
-        {
-            var list = new List<Permission>();
-
-            _context.CreateCommand(
-                false,
-                CommandType.Text,
-                "SELECT [Permissions].[PermissionId],[PermissionResource],[PermissionTypeId] FROM [Permissions], [RolePermissions] WHERE [RoleId] = @RoleId AND [RolePermissions].[PermissionId] = [Permissions].[PermissionId]",
-                new List<SqlParameter>
-                {
-                    new SqlParameter("@RoleId", user.Role.RoleId)
-                }
-                );
-
-            _context.Execute(
-                reader =>
-                {
-                    while (reader.Read())
-                    {
-                        list.Add(MapPermission(reader));
-                    }
-                });
-
-            return list;
-        }
-
-
         private Permission MapPermission(IDataReader reader)
         {
             return new Permission
             {
                 PermissionId = AdoConverter.Read(reader, "PermissionId", -1),
                 ResourceName = AdoConverter.Read(reader, "PermissionResource", string.Empty),
+                Description = AdoConverter.Read(reader, "Description", string.Empty),
                 Operation = (Permission.OperationType)AdoConverter.Read(reader, "PermissionTypeId", 0)
             };
         }

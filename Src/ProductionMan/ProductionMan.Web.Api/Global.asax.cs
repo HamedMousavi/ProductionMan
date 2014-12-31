@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Web.Routing;
+using AutoMapper;
 using log4net;
 using log4net.Config;
 using ProductionMan.Data.Shared.Models;
@@ -21,14 +22,14 @@ namespace ProductionMan.Web.Api
             // Configure logger
             ConfigureLogger();
 
+            // Configure app
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
             // Configure database
             ConfigureDatabase();
 
             // Auto Mapper object mapping
             ConfigureAutoMapper();
-
-            // Configure app
-            GlobalConfiguration.Configure(WebApiConfig.Register);
         }
 
 

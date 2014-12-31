@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using ProductionMan.Desktop.Repositories;
@@ -23,6 +22,13 @@ namespace ProductionMan.Desktop.Factories
         internal async Task Load()
         {
             Permissions = await _membershipRepository.LoadUserPermissions();
+            if (Permissions == null) return;
+            
+            // All users should be able to see these parts of the app
+            Permissions.Add(new Permission { ResourceName = "/api/settings" });
+            Permissions.Add(new Permission { ResourceName = "/api/about" });
+
+            // Load data required for other parts of the app
             foreach (var permission in Permissions)
             {
                 await LoadData(permission);
@@ -34,7 +40,7 @@ namespace ProductionMan.Desktop.Factories
 
         private async Task LoadData(Permission permission)
         {
-            if (permission.ResourceName == "Users")
+            if (permission.ResourceName == "/api/users")
             {
                 Roles = await _membershipRepository.LoadRoles();
                 Users = await _membershipRepository.LoadUsers();

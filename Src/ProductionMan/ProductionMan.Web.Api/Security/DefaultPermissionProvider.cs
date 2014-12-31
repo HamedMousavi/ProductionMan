@@ -1,4 +1,7 @@
-﻿using ProductionMan.Data.Shared.Models;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
+using ProductionMan.Web.Api.Common.Models;
 using ProductionMan.Web.Api.Logic;
 using ProductionMan.Web.Api.Security.Models;
 using System.Linq;
@@ -28,11 +31,16 @@ namespace ProductionMan.Web.Api.Security
 
             if (user != null)
             {
-                var permissions = DataProxy.Instance.
-                    MembershipRepository.GetPermissions(user);
+                var items = DataProxy.Instance.
+                    MembershipRepository.GetPermissionsByRoleId(user.Role.RoleId);
+
+                var permissions = new List<Common.Models.Permission>();
+                permissions.AddRange(items.Select(Mapper.Map<Common.Models.Permission>));
+                Permissions = permissions;
+                User = Mapper.Map<UserRead>(user);
 
                 _claims = new ClaimList();
-                _claims.AddRange(permissions.Select(CreateClaim));
+                _claims.AddRange(Permissions.Select(CreateClaim));
 
                 return Task.FromResult(_claims);
             }
@@ -44,12 +52,17 @@ namespace ProductionMan.Web.Api.Security
             return Task.FromResult(_claims);
         }
 
+        public IEnumerable<Permission> Permissions { get; private set; }
+        
+        
+        public UserRead User { get; set; }
 
-        private Claim CreateClaim(Permission permission)
+
+        private Claim CreateClaim(Common.Models.Permission permission)
         {
             // get:/api/users
             var url = string.Format("{0}:{1}",
-                DataProxy.Instance.GetMethodByPermission(permission.Operation),
+                DataProxy.Instance.GetMethodByPermission((Data.Shared.Models.Permission.OperationType)(Int32)permission.Operation),
                 permission.ResourceName);
 
             return new Claim(ClaimTypes.Uri, url);

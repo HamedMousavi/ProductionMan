@@ -12,6 +12,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 
         private ObservableCollection<TabItemViewModel> _tabs;
         private Dictionary<string, IControlFactory> _controlFactories;
+        private Dictionary<string, IControlFactory> _createdContent;
         private readonly ViewModelFactory _viewModelFactory;
 
 
@@ -25,15 +26,16 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 
         private void CreateControlFactories()
         {
+            // No content created yet
+            _createdContent = new Dictionary<string, IControlFactory>();
+
+            // All possible content
             _controlFactories = new Dictionary<string, IControlFactory>
             {
-                {"Users", new UserManagerFactory()},
-                {"Permissions", new PermissionManagerFactory()},
-                //{"Materials", null},
-                //{"Processes", null},
-                //{"Stores", null},
-                {"Settings", new SettingsManagerFactory()},
-                {"About", new AboutUsFactory()},
+                {"/api/users", new UserManagerFactory()},
+                {"/api/permissions", new PermissionManagerFactory()},
+                {"/api/settings", new SettingsManagerFactory()},
+                {"/api/about", new AboutUsFactory()},
             };
         }
 
@@ -70,13 +72,15 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 
         private void CreateContent(Permission permission)
         {
-            if (_controlFactories.ContainsKey(permission.ResourceName))
+            if (_controlFactories.ContainsKey(permission.ResourceName) &&
+                !_createdContent.ContainsKey(permission.ResourceName))
             {
                 var factory = _controlFactories[permission.ResourceName];
                 if (factory != null)
                 {
                     factory.CreateViewModels(_viewModelFactory);
                     AddContent(factory.CreateTabItemViewModel(), factory.CreateUserControl());
+                    _createdContent.Add(permission.ResourceName, null);
                 }
             }
         }

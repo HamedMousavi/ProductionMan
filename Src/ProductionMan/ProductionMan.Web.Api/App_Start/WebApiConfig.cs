@@ -14,17 +14,17 @@ namespace ProductionMan.Web.Api
 
         public static void Register(HttpConfiguration config)
         {
-            //// http://stackoverflow.com/questions/12976352/asp-net-web-api-model-binding-not-working-with-xml-data-on-post
-            config.Formatters.XmlFormatter.UseXmlSerializer = true;
-            
+            // Web API routes
+            ConfigureRoutes(config);
+
             // Tracing, logging, and error handling
             ConfigureAppServices(config);
 
             // Authentication & Authorization
             ConfigureSecurity(config);
 
-            // Web API routes
-            ConfigureRoutes(config);
+            //// http://stackoverflow.com/questions/12976352/asp-net-web-api-model-binding-not-working-with-xml-data-on-post
+            config.Formatters.XmlFormatter.UseXmlSerializer = true;
         }
 
 
@@ -32,9 +32,9 @@ namespace ProductionMan.Web.Api
         {
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                "DefaultApi", "api/{controller}/{id}",
-                new {id = RouteParameter.Optional});
+            //config.Routes.MapHttpRoute(
+            //    "DefaultApi", "api/{controller}/{id}",
+            //    new {id = RouteParameter.Optional});
         }
 
 
