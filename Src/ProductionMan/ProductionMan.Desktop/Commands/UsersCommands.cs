@@ -37,12 +37,9 @@ namespace ProductionMan.Desktop.Commands
     }
 
 
-    /// <summary>
-    /// Opens a window to edit selected user
-    /// </summary>
     public class VisualEditUserCommand : ICommand
     {
- 
+
         private readonly IUserWindowManager _windowManager;
 
 
@@ -54,7 +51,7 @@ namespace ProductionMan.Desktop.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;// return parameter != null;
+            return true; // return parameter != null;
         }
 
 
@@ -74,7 +71,7 @@ namespace ProductionMan.Desktop.Commands
 
     public class VisualDeleteUserCommand : ICommand
     {
- 
+
         private readonly IUserWindowManager _windowManager;
 
 
@@ -86,7 +83,7 @@ namespace ProductionMan.Desktop.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;// return parameter != null;
+            return true; // return parameter != null;
         }
 
 
@@ -104,7 +101,6 @@ namespace ProductionMan.Desktop.Commands
     }
 
 
-
     public class CreateUserCommand : ICommand
     {
 
@@ -119,7 +115,7 @@ namespace ProductionMan.Desktop.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;// return parameter != null;
+            return true; // return parameter != null;
         }
 
 
@@ -147,7 +143,7 @@ namespace ProductionMan.Desktop.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;// return parameter != null;
+            return true; // return parameter != null;
         }
 
 
@@ -174,7 +170,7 @@ namespace ProductionMan.Desktop.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;// return parameter != null;
+            return true; // return parameter != null;
         }
 
 
@@ -188,24 +184,6 @@ namespace ProductionMan.Desktop.Commands
                 var window = parameter as Window;
                 if (window != null) window.Close();
             }
-        }
-    }
-
-
-    public class EnableUserCommand : ICommand
-    {
-        public bool CanExecute(object parameter)
-        {
-            return true;// return parameter != null;
-        }
-
-
-        public event EventHandler CanExecuteChanged;
-
-
-        public void Execute(object parameter)
-        {
-
         }
     }
 }

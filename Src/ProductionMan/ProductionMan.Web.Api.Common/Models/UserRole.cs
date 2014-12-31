@@ -4,7 +4,7 @@
 namespace ProductionMan.Web.Api.Common.Models
 {
 
-    public class UserRole
+    public class UserRole : Linkable
     {
         public int RoleId { get; set; }
 

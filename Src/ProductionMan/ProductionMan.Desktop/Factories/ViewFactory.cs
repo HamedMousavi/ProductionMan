@@ -44,7 +44,7 @@ namespace ProductionMan.Desktop.Factories
         {
             return new ConfirmDeleteWindow
             {
-                DataContext = _viewModelFactory.CreateConfirmDeleteViewModel(user)
+                DataContext = _viewModelFactory.CreateUserConfirmDeleteViewModel(user)
             };
         }
 
@@ -56,11 +56,28 @@ namespace ProductionMan.Desktop.Factories
             };
         }
 
-        public Window CreateRoleView(UserRole role)
+        public Window CreateRoleAddView(UserRole role)
         {
             return new RoleEditorWindow
             {
                 DataContext = _viewModelFactory.CreateRoleAddViewModel(role)
+            };
+        }
+
+
+        internal Window CreateRoleDeleteView(UserRole role)
+        {
+            return new ConfirmDeleteWindow
+            {
+                DataContext = _viewModelFactory.CreateRoleConfirmDeleteViewModel(role)
+            };
+        }
+
+        public Window CreateRoleEditView(UserRole role)
+        {
+            return new RoleEditorWindow
+            {
+                DataContext = _viewModelFactory.CreateRoleEditViewModel(role)
             };
         }
     }

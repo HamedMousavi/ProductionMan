@@ -45,7 +45,7 @@ namespace ProductionMan.Data
         }
 
 
-        public User Find(string username, string password)
+        public User FindUser(string username, string password)
         {
             User user = null;
 
@@ -70,6 +70,7 @@ namespace ProductionMan.Data
 
             return user;
         }
+
 
         public void InsertUser(User newUser)
         {
@@ -156,6 +157,57 @@ namespace ProductionMan.Data
 
             return list;
         }
+
+
+        public void InsertRole(Role role)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "INSERT INTO [Roles] ([RoleName],[IsEnabled]) OUTPUT INSERTED.RoleId VALUES (@RoleName, 1);",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleName", role.RoleName)
+                }
+                );
+
+            var output = _context.ExecuteScalar();
+            role.RoleId = AdoConverter.ReadResult(output, -1);
+        }
+
+
+        public void UpdateRole(Role role)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "UPDATE [Roles] SET [RoleName]=@RoleName WHERE [RoleId]=@RoleId;",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleName", role.RoleName),
+                    new SqlParameter("@RoleId", role.RoleId)
+                }
+                );
+
+            _context.ExecuteScalar();
+        }
+
+
+        public void DeleteRole(long id)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "UPDATE [Roles] SET [IsEnabled] = 0 WHERE [RoleId] = @RoleId",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleId", id)
+                }
+                );
+
+            _context.ExecuteScalar();
+        }
+
 
         private IEnumerable<Permission> GetPermissions(int roleId)
         {

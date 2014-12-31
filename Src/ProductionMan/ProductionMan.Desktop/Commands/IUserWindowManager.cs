@@ -9,5 +9,7 @@ namespace ProductionMan.Desktop.Commands
         void RequestPermissionToDelete(UserRead user);
 
         void DisplayUserAddWindow(UserWrite user);
+
+        void RequestPermissionToDelete(UserRole role);
     }
 }

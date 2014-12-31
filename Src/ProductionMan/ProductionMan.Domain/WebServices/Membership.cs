@@ -11,7 +11,7 @@ namespace ProductionMan.Domain.WebServices
 
         private const string UsersUrl = "Users";
         private const string ProfilesUrl = "Profiles";
-        private const string RoleListUrl = "Roles";
+        private const string RolesUrl = "Roles";
         private const string PermissionsUrl = "Permissions";
 
 
@@ -35,7 +35,7 @@ namespace ProductionMan.Domain.WebServices
 
         public async Task<ServiceCallResult<List<UserRole>>> GetRoles()
         {
-            return await RequestGet<List<UserRole>>(RoleListUrl);
+            return await RequestGet<List<UserRole>>(RolesUrl);
         }
 
 
@@ -60,6 +60,27 @@ namespace ProductionMan.Domain.WebServices
         public async Task<bool> UpdateUser(UserWrite user)
         {
             return await RequestUpdate(UsersUrl, user);
+        }
+
+        public async Task<bool> CreateRole(UserRole role)
+        {
+            var response = await RequestCreate(RolesUrl, role);
+            if (response != null)
+            {
+                role.RoleId = response.Results.RoleId;
+            }
+
+            return response != null;
+        }
+
+        public async Task<bool> DeleteRole(UserRole role)
+        {
+            return await RequestDelete(RolesUrl + string.Format("/{0}", role.RoleId));
+        }
+
+        public async Task<bool> Update(UserRole role)
+        {
+            return await RequestUpdate(RolesUrl, role);
         }
     }
 }

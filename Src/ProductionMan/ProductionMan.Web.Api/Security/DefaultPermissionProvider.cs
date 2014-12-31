@@ -24,7 +24,7 @@ namespace ProductionMan.Web.Api.Security
             }
 
             var data = DataProxy.Instance.MembershipRepository;
-            var user = data.Find(credentials.Username, credentials.Password);
+            var user = data.FindUser(credentials.Username, credentials.Password);
 
             if (user != null)
             {

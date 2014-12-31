@@ -48,7 +48,6 @@ namespace ProductionMan.Desktop.Factories
                     AddCommand = _commandFactory.AddUserWindowCommand(),
                     DeleteCommand = _commandFactory.DeleteUserConfirmWindowCommand(),
                     EditCommand = _commandFactory.EditUserWindowCommand(),
-                    ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand(),
                     Items = _dataFactory.Users
                 });
             }
@@ -124,7 +123,7 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        public object CreateConfirmDeleteViewModel(UserRead user)
+        public object CreateUserConfirmDeleteViewModel(UserRead user)
         {
             return new ConfirmDeleteWindowViewModel
             {
@@ -168,9 +167,8 @@ namespace ProductionMan.Desktop.Factories
                 _viewModels.Add(PermissionsViewModelKey, new PermissionManagerViewModel
                 {
                     AddCommand = _commandFactory.AddRoleWindowCommand(),
-                    //DeleteCommand = _commandFactory.DeleteUserConfirmWindowCommand(),
-                    //EditCommand = _commandFactory.EditUserWindowCommand(),
-                    //ToggleUserEnabledStatusCommand = _commandFactory.ToggleUserCommand(),
+                    DeleteCommand = _commandFactory.DeleteRoleConfirmWindowCommand(),
+                    EditCommand = _commandFactory.EditRoleWindowCommand(),
                     Items = _dataFactory.Roles
                 });
             }
@@ -185,7 +183,28 @@ namespace ProductionMan.Desktop.Factories
             {
                 Role = role,
                 SaveCommand = _commandFactory.AddRoleCommand(),
-                CancelCommand = new CloseWindowCommand()
+                CancelCommand = _commandFactory.CloseWindowCommand(),
+            };
+        }
+
+        internal object CreateRoleConfirmDeleteViewModel(UserRole role)
+        {
+            return new ConfirmDeleteWindowViewModel
+            {
+                MessageDetail = string.Format("Role: {0}", role.RoleName),
+                DeleteCommand = _commandFactory.DeleteRoleCommand(role),
+                CancelCommand = _commandFactory.CloseWindowCommand(),
+                DeletingItem = role
+            };
+        }
+
+        internal object CreateRoleEditViewModel(UserRole role)
+        {
+            return new RoleEditorWindowViewModel
+            {
+                Role = role,
+                SaveCommand = _commandFactory.EditRoleCommand(),
+                CancelCommand = _commandFactory.CloseWindowCommand(),
             };
         }
     }

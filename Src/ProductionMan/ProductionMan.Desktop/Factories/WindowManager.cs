@@ -53,9 +53,19 @@ namespace ProductionMan.Desktop.Factories
             _viewFactory.CreateUserAddView(user).Show();
         }
 
+        public void RequestPermissionToDelete(UserRole role)
+        {
+            _viewFactory.CreateRoleDeleteView(role).Show();
+        }
+
         public void DisplayRoleAddWindow(UserRole role)
         {
-            _viewFactory.CreateRoleView(role).Show();
+            _viewFactory.CreateRoleAddView(role).Show();
+        }
+
+        public void DisplayRoleEditWindow(UserRole role)
+        {
+            _viewFactory.CreateRoleEditView(role).Show();
         }
     }
 }

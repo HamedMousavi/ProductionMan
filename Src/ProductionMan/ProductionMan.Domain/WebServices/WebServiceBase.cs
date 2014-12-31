@@ -105,6 +105,16 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
+        protected async Task<ServiceCallResult<T>> RequestCreate<T>(string url, T t)
+        {
+            using (var client = CreateClient())
+            {
+                var response = await client.PostAsJsonAsync(url, t);
+                return ReadAndMap<T>(response);
+            }
+        }
+
+
         protected async Task<bool> RequestDelete(string url)
         {
             using (var client = CreateClient())

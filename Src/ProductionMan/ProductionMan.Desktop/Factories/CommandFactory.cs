@@ -87,12 +87,6 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        public ICommand ToggleUserCommand()
-        {
-            return new EnableUserCommand();
-        }
-
-
         internal ICommand EditUserWindowCommand()
         {
             return new VisualEditUserCommand(_windowManager);
@@ -125,12 +119,32 @@ namespace ProductionMan.Desktop.Factories
 
         internal ICommand AddRoleWindowCommand()
         {
-            return new RoleWindowEditorCommand(_windowManager);
+            return new RoleWindowEditorAddCommand(_windowManager);
+        }
+
+        internal ICommand EditRoleWindowCommand()
+        {
+            return new RoleWindowEditorEditCommand(_windowManager);
+        }
+
+        internal ICommand DeleteRoleConfirmWindowCommand()
+        {
+            return new RoleWindowDeleteCommand(_windowManager);
         }
 
         internal ICommand AddRoleCommand()
         {
             return new RoleAddCommand(_membershipRepository);
+        }
+
+        internal ICommand DeleteRoleCommand(UserRole role)
+        {
+            return new RoleDeleteCommand(_membershipRepository, role);
+        }
+
+        internal ICommand EditRoleCommand()
+        {
+            return new RoleUpdateCommand(_membershipRepository);
         }
     }
 }

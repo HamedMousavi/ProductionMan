@@ -159,9 +159,58 @@ namespace ProductionMan.Desktop.Repositories
         }
         #endregion StatusEvents
 
-        internal Task CreateRole(UserRole userRole)
+
+        internal async Task CreateRole(UserRole role)
         {
-            throw new System.NotImplementedException();
+            LogWarning(Localized.Resources.StatusConnecting);
+
+            var successful = await _membershipService.CreateRole(role);
+            if (successful)
+            {
+                _roles.Add(role);
+                LogSuccess(Localized.Resources.StatusItemCreated);
+            }
+            else
+            {
+                LogFailure(Localized.Resources.StatusFailedToCreateItem);
+            }
+        }
+
+
+        internal async Task<bool> DeleteRole(UserRole role)
+        {
+            LogWarning(Localized.Resources.StatusConnecting);
+
+            var successful = await _membershipService.DeleteRole(role);
+            if (successful)
+            {
+                _roles.Remove(role);
+                LogSuccess(Localized.Resources.StatusItemDeleted);
+                return true;
+            }
+
+            LogFailure(Localized.Resources.StatusFailedToDeleteItem);
+            return false;
+        }
+
+
+        internal async Task UpdateRole(UserRole role)
+        {
+            LogWarning(Localized.Resources.StatusConnecting);
+
+            var successful = await _membershipService.Update(role);
+            if (successful)
+            {
+                var index = _roles.IndexOf(role);
+                _roles.RemoveAt(index);
+                _roles.Insert(index, role);
+
+                LogSuccess(Localized.Resources.StatusItemUpdated);
+            }
+            else
+            {
+                LogFailure(Localized.Resources.StatusFailedToUpdatedItem);
+            }
         }
     }
 }
