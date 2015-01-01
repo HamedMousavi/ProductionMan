@@ -85,6 +85,7 @@
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\RolesPermissionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UsersPermissionsController.cs" />
     <Compile Include="Global.asax.cs">

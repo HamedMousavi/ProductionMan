@@ -63,7 +63,14 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Commands\IUserRolesWindowManager.cs" />
     <Compile Include="Commands\RolesCommands.cs" />
+    <Compile Include="Commands\ToggleRolePermissionAssignment.cs" />
+    <Compile Include="Controls\CheckedListBox\CheckedListItem.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\RoleManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\RoleManagerWindow.xaml.cs">
+      <DependentUpon>RoleManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\RoleManagerWindowViewModel.cs" />
     <Compile Include="Factories\AppServicesFactory.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="ConfirmDeleteWindowViewModel.cs" />
@@ -171,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainParts\LogonBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainParts\RoleManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

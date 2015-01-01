@@ -187,6 +187,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Name.
+        /// </summary>
+        public static string ColumnHeaderRoleName {
+            get {
+                return ResourceManager.GetString("ColumnHeaderRoleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteItem {

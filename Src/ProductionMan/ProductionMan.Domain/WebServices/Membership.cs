@@ -92,5 +92,21 @@ namespace ProductionMan.Domain.WebServices
         {
             return await RequestUpdate(RolesUrl, role);
         }
+
+        public async Task<bool> RolePermissionAssign(UserRole role, Permission permission)
+        {
+            var url = string.Format("{0}/{1}/{2}/{3}",
+                RolesUrl, role.RoleId, PermissionsUrl, permission.PermissionId);
+
+            return await RequestUpdate(url, role);
+        }
+
+        public async Task<bool> RolePermissionRevoke(UserRole role, Permission permission)
+        {
+            var url = string.Format("{0}/{1}/{2}/{3}",
+                RolesUrl, role.RoleId, PermissionsUrl, permission.PermissionId);
+            
+            return await RequestDelete(url);
+        }
     }
 }

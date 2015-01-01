@@ -159,6 +159,9 @@
   <data name="ColumnHeaderRole" xml:space="preserve">
     <value>سطح امنیتی</value>
   </data>
+  <data name="ColumnHeaderRoleName" xml:space="preserve">
+    <value>سطح امنیتی</value>
+  </data>
   <data name="DeleteItem" xml:space="preserve">
     <value>حذف</value>
   </data>

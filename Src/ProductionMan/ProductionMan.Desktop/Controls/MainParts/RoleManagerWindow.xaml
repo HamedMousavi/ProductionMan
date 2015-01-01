@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="ProductionMan.Desktop.Controls.MainParts.RoleManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="1" Grid.Column="0"
+            IsReadOnly="True" CanUserAddRows="False"
+            SelectionMode="Single" SelectionUnit="FullRow" 
+            AutoGenerateColumns="True" Margin="0"
+            Style="{StaticResource CleanDataGrid}" CellStyle="{StaticResource CleanDataGridCenterVAlign}"
+            ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}"
+            HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" AutoGeneratingColumn="OnGridGeneratingColumns">
+            <DataGrid.Resources>
+                <ResourceDictionary>
+                    <!--<SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="NavajoWhite"/>-->
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="NavajoWhite"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="NavajoWhite"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                </ResourceDictionary>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <!--<EventSetter Event="RequestBringIntoView" Handler="DisableScrollEventHandler"></EventSetter>-->
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="ExtraBold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <!--<MenuItem Header="{x:Static localized:Resources.AddNewItem}" Command="{Binding AddCommand}" />-->
+                    <MenuItem Header="{x:Static localized:Resources.EditItem}" Command="{Binding EditCommand}" CommandParameter="{Binding SelectedRole}" />
+                    <MenuItem Header="{x:Static localized:Resources.DeleteItem}" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedRole}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <ListBox ItemsSource="{Binding Permissions}" Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="NavajoWhite">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding Path=Item.Description}" Command="{Binding Path=ItemCheckCommand}" CommandParameter="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

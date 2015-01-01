@@ -146,5 +146,10 @@ namespace ProductionMan.Desktop.Factories
         {
             return new RoleUpdateCommand(_membershipRepository);
         }
+
+        internal ICommand RolePermissionAssignmentCommand()
+        {
+            return new AssignRolePermissionCommand(_membershipRepository);
+        }
     }
 }

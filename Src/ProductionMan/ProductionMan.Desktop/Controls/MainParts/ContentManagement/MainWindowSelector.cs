@@ -33,7 +33,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
             _controlFactories = new Dictionary<string, IControlFactory>
             {
                 {"/api/users", new UserManagerFactory()},
-                {"/api/permissions", new PermissionManagerFactory()},
+                {"/api/permissions", new RoleManagerFactory()},
                 {"/api/settings", new SettingsManagerFactory()},
                 {"/api/about", new AboutUsFactory()},
             };

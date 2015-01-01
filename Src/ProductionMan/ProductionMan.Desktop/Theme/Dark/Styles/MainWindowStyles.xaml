@@ -197,8 +197,8 @@
 
     <Style x:Key="CleanDataGrid" TargetType="DataGrid">
         <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource WindowBkColorLight}" />
-        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource BkLight}" />
-        <Setter Property="BorderBrush" Value="{StaticResource WindowBkColorLight}" />
+        <Setter Property="VerticalGridLinesBrush" Value="NavajoWhite" />
+        <Setter Property="BorderBrush" Value="NavajoWhite" />
         <Setter Property="Background" Value="White" />
         <Setter Property="RowHeight" Value="30" />
     </Style>

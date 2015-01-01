@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Documents;
+using AutoMapper;
 using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
@@ -211,6 +214,41 @@ namespace ProductionMan.Desktop.Repositories
             {
                 LogFailure(Localized.Resources.StatusFailedToUpdatedItem);
             }
+        }
+
+
+        internal async Task<bool> AssignPermissionToRole(UserRole role, Permission permission)
+        {
+            LogWarning(Localized.Resources.StatusConnecting);
+
+            var successful = await _membershipService.RolePermissionAssign(role, permission);
+            if (successful)
+            {
+                role.Permissions = new List<Permission>(role.Permissions) {permission};
+
+                LogSuccess(Localized.Resources.StatusItemUpdated);
+                return true;
+            }
+
+            LogFailure(Localized.Resources.StatusFailedToUpdatedItem);
+            return false;
+        }
+
+        internal async Task<bool> RetractPermissionFromRole(UserRole role, Permission permission)
+        {
+            LogWarning(Localized.Resources.StatusConnecting);
+
+            var successful = await _membershipService.RolePermissionRevoke(role, permission);
+            if (successful)
+            {
+                role.Permissions = role.Permissions.Where(item => item.PermissionId != permission.PermissionId).ToList();
+
+                LogSuccess(Localized.Resources.StatusItemUpdated);
+                return true;
+            }
+
+            LogFailure(Localized.Resources.StatusFailedToUpdatedItem);
+            return false;
         }
     }
 }

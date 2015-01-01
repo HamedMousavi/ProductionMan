@@ -23,6 +23,7 @@ namespace ProductionMan.Desktop.Factories
         private readonly DataFactory _dataFactory;
         private const string UsersViewModelKey = "Users";
         private const string PermissionsViewModelKey = "Permissions";
+        private const string RolesViewModelKey = "Roles";
 
 
         public ViewModelFactory(CommandFactory commandFactory,
@@ -159,6 +160,18 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
+        internal TabItemViewModel CreateRoleManagerTabItemViewModel()
+        {
+            return new TabItemViewModel
+            {
+                HeaderLabel = Localized.Resources.TabTitlePermissions,
+                HeaderIcon = "Permission",
+                PageTitle = Localized.Resources.PageTitlePermissions,
+                Toolbar = new GenericListToolbar { DataContext = CreateRoleManagerViewModel() }
+            };
+        }
+
+
         internal object CreatePermissionManagerViewModel()
         {
             if (!_viewModels.ContainsKey(PermissionsViewModelKey))
@@ -175,6 +188,27 @@ namespace ProductionMan.Desktop.Factories
             return _viewModels[PermissionsViewModelKey];
         }
 
+
+        internal object CreateRoleManagerViewModel()
+        {
+            if (!_viewModels.ContainsKey(RolesViewModelKey))
+            {
+                var viewModel = new RoleManagerWindowViewModel
+                {
+                    Roles = _dataFactory.Roles,
+                    AddCommand = _commandFactory.AddRoleWindowCommand(),
+                    DeleteCommand = _commandFactory.DeleteRoleConfirmWindowCommand(),
+                    EditCommand = _commandFactory.EditRoleWindowCommand(),
+                    ToggleRolePermissionAssignment = _commandFactory.RolePermissionAssignmentCommand()
+                };
+
+                viewModel.SetPermissions(_dataFactory.Permissions);
+
+                _viewModels.Add(RolesViewModelKey, viewModel);
+            }
+
+            return _viewModels[RolesViewModelKey];
+        }
 
         public object CreateRoleAddViewModel(UserRole role)
         {

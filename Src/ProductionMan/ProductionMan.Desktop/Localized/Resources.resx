@@ -159,6 +159,9 @@
   <data name="ColumnHeaderRole" xml:space="preserve">
     <value>Role</value>
   </data>
+  <data name="ColumnHeaderRoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
   <data name="DeleteItem" xml:space="preserve">
     <value>Delete</value>
   </data>

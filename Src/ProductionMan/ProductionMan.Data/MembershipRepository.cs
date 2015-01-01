@@ -239,7 +239,7 @@ namespace ProductionMan.Data
             _context.CreateCommand(
                 false,
                 CommandType.Text,
-                "SELECT [PermissionId], [PermissionResource], [PermissionTypeId] FROM [Permissions] WHERE [PermissionId] IN (SELECT [PermissionId] FROM [RolePermissions] WHERE [RoleId]=@RoleId);",
+                "SELECT [PermissionId], [PermissionResource], [PermissionTypeId],[Description] FROM [Permissions] WHERE [PermissionId] IN (SELECT [PermissionId] FROM [RolePermissions] WHERE [RoleId]=@RoleId);",
                 new List<SqlParameter>
                 {
                     new SqlParameter("@RoleId", roleId)
@@ -256,6 +256,69 @@ namespace ProductionMan.Data
                 });
 
             return list;
+        }
+
+
+        public void AssignPermissionToRole(int roleId, int permissionId)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "INSERT INTO [RolePermissions] ([RoleId],[PermissionId]) VALUES (@RoleId,@PermissionId);",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleId", roleId),
+                    new SqlParameter("@PermissionId", permissionId)
+                }
+                );
+
+            _context.ExecuteScalar();
+        }
+
+
+        public void RetractPermissionFromRole(int roleId, int permissionId)
+        {
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "DELETE FROM [RolePermissions] WHERE [RoleId]= @RoleId AND [PermissionId] = @PermissionId;",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleId", roleId),
+                    new SqlParameter("@PermissionId", permissionId)
+                }
+                );
+
+            _context.ExecuteScalar();
+        }
+
+
+        public Role RoleGetById(int roleId)
+        {
+            Role role = null;
+
+            _context.CreateCommand(
+                false,
+                CommandType.Text,
+                "SELECT [RoleId],[RoleName] FROM [Roles] WHERE [IsEnabled]=1 AND [RoleId]=@RoleId",
+                new List<SqlParameter>
+                {
+                    new SqlParameter("@RoleId", roleId)
+                }
+                );
+
+            _context.Execute(
+                reader =>
+                {
+                    if (reader.Read())
+                    {
+                        role = MapRole(reader);
+                    }
+                });
+
+            if (role != null) role.Permissions = GetPermissionsByRoleId(role.RoleId);
+
+            return role;
         }
 
 
