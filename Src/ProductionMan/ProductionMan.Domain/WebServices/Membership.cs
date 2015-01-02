@@ -9,6 +9,7 @@ namespace ProductionMan.Domain.WebServices
 
     public class Membership : WebServiceBase
     {
+
         private UserRead _user;
 
         private const string UsersUrl = "Users";
@@ -29,11 +30,18 @@ namespace ProductionMan.Domain.WebServices
         }
 
 
-        public async Task<ServiceCallResult<List<Permission>>> GetPermissions()
+        public async Task<ServiceCallResult<List<Permission>>> GetUserPermissions()
         {
             if (_user == null) return null;
             return await RequestGet<List<Permission>>(
                 string.Format("{0}/{1}/{2}", UsersUrl, _user.UserId, PermissionsUrl));
+        }
+
+
+        public async Task<ServiceCallResult<List<Permission>>> GetAllPermissions()
+        {
+            if (_user == null) return null;
+            return await RequestGet<List<Permission>>(PermissionsUrl);
         }
 
 

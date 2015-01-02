@@ -12,10 +12,13 @@ namespace ProductionMan.Desktop.Controls.CheckedListBox
         private T _item;
         private ICommand _itemCheckCommand;
         private T2 _itemOwner;
+        private bool _isVisible;
 
 
         public CheckedListItem()
         {
+            _isVisible = true;
+            _isChecked = false;
         }
 
 
@@ -56,6 +59,13 @@ namespace ProductionMan.Desktop.Controls.CheckedListBox
                 _isChecked = value;
                 FirePropertyChanged(this, "IsChecked");
             }
+        }
+
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set { _isVisible = value; FirePropertyChanged(this, "IsVisible"); }
         }
 
 

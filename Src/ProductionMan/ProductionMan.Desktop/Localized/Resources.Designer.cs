@@ -331,6 +331,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Crusher Data.
+        /// </summary>
+        public static string PageTitleCrusher {
+            get {
+                return ResourceManager.GetString("PageTitleCrusher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Materials.
         /// </summary>
         public static string PageTitleMaterials {
@@ -498,6 +507,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string TabTitleAbout {
             get {
                 return ResourceManager.GetString("TabTitleAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crusher.
+        /// </summary>
+        public static string TabTitleCrusher {
+            get {
+                return ResourceManager.GetString("TabTitleCrusher", resourceCulture);
             }
         }
         

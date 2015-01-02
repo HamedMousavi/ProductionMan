@@ -7,10 +7,10 @@ namespace ProductionMan.Desktop.Controls.MainParts
     /// <summary>
     /// Interaction logic for RoleManagerWindow.xaml
     /// </summary>
-    public partial class RoleManagerWindow
+    public partial class RoleManagerPage
     {
 
-        public RoleManagerWindow()
+        public RoleManagerPage()
         {
             InitializeComponent();
         }

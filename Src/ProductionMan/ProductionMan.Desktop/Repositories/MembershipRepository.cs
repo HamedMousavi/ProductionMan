@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Documents;
-using AutoMapper;
+﻿using AutoMapper;
 using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -16,7 +15,7 @@ namespace ProductionMan.Desktop.Repositories
     {
 
         private readonly Membership _membershipService;
-        private ObservableCollection<Permission> _permissions;
+        private List<Permission> _permissions;
         private ObservableCollection<UserRead> _users;
         private ObservableCollection<UserRole> _roles;
 
@@ -27,22 +26,17 @@ namespace ProductionMan.Desktop.Repositories
         }
 
 
-        internal async Task<ObservableCollection<Permission>> LoadUserPermissions()
+        internal async Task<IList<Permission>> LoadUserPermissions()
         {
-            if (_permissions == null)
-            {
-                var permissions = await _membershipService.GetPermissions();
-                if (permissions != null && permissions.Results != null)
-                {
-                    _permissions = new ObservableCollection<Permission>();
-                    foreach (var permission in permissions.Results)
-                    {
-                        _permissions.Add(permission);
-                    }
-                }
-            }
+            var permissions = await _membershipService.GetUserPermissions();
+            return permissions != null ? permissions.Results : null;
+        }
 
-            return _permissions;
+
+        public async Task<IEnumerable<Permission>> LoadAllPermissions()
+        {
+            var permissions = await _membershipService.GetAllPermissions();
+            return permissions != null ? permissions.Results : null;
         }
 
 
@@ -224,7 +218,14 @@ namespace ProductionMan.Desktop.Repositories
             var successful = await _membershipService.RolePermissionAssign(role, permission);
             if (successful)
             {
-                role.Permissions = new List<Permission>(role.Permissions) {permission};
+                if (role.Permissions == null)
+                {
+                    role.Permissions = new List<Permission> { permission };
+                }
+                else
+                {
+                    role.Permissions = new List<Permission>(role.Permissions) { permission };
+                }
 
                 LogSuccess(Localized.Resources.StatusItemUpdated);
                 return true;

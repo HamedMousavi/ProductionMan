@@ -65,12 +65,17 @@
     <Compile Include="Commands\RolesCommands.cs" />
     <Compile Include="Commands\ToggleRolePermissionAssignment.cs" />
     <Compile Include="Controls\CheckedListBox\CheckedListItem.cs" />
-    <Compile Include="Controls\MainParts\ControlFactories\PermissionManagerFactory.cs" />
+    <Compile Include="Controls\MainParts\CrusherPageViewModel.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\CrusherWindowManager.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\RoleManagerFactory.cs" />
-    <Compile Include="Controls\MainParts\RoleManagerWindow.xaml.cs">
-      <DependentUpon>RoleManagerWindow.xaml</DependentUpon>
+    <Compile Include="Controls\MainParts\CrusherPage.xaml.cs">
+      <DependentUpon>CrusherPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainParts\RoleManagerWindowViewModel.cs" />
+    <Compile Include="Controls\MainParts\RoleManagerPage.xaml.cs">
+      <DependentUpon>RoleManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\RoleManagerPageViewModel.cs" />
+    <Compile Include="Converters\VisibilityFromBooleanConverter.cs" />
     <Compile Include="Factories\AppServicesFactory.cs" />
     <Compile Include="Factories\CommandFactory.cs" />
     <Compile Include="ConfirmDeleteWindowViewModel.cs" />
@@ -104,7 +109,6 @@
     <Compile Include="Controls\MainParts\ControlFactories\UserManagerFactory.cs" />
     <Compile Include="Factories\DataFactory.cs" />
     <Compile Include="Factories\ViewModelFactory.cs" />
-    <Compile Include="Controls\MainParts\PermissionManagerViewModel.cs" />
     <Compile Include="Controls\MainParts\GenericListToolbarViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\IControlFactory.cs" />
     <Compile Include="Controls\MainParts\GenericListManager.xaml.cs">
@@ -169,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\MainParts\CrusherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MainParts\GenericListManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainParts\RoleManagerWindow.xaml">
+    <Page Include="Controls\MainParts\RoleManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

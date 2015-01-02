@@ -4,8 +4,7 @@ using ProductionMan.Desktop.Factories;
 
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
-
-    class SettingsManagerFactory : IControlFactory
+    public class SettingsManagerFactory : IControlFactory
     {
 
         private SettingsPageViewModel _viewModel;

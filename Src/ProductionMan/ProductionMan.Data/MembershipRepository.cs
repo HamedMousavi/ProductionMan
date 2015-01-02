@@ -216,7 +216,7 @@ namespace ProductionMan.Data
             _context.CreateCommand(
                 false,
                 CommandType.Text,
-                "SELECT [PermissionId],[PermissionResource],[PermissionTypeId],[Description] FROM [Permissions]",
+                "SELECT [PermissionId],[PermissionResource],[PermissionTypeId],[Description] FROM [Permissions] ORDER BY [PermissionResource]",
                 null);
 
             _context.Execute(

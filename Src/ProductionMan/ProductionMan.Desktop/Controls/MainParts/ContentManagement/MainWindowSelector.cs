@@ -35,6 +35,7 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
                 {"/api/users", new UserManagerFactory()},
                 {"/api/permissions", new RoleManagerFactory()},
                 {"/api/settings", new SettingsManagerFactory()},
+                {"/api/crusher", new CrusherWindowManager()},
                 {"/api/about", new AboutUsFactory()},
             };
         }
@@ -72,15 +73,16 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
 
         private void CreateContent(Permission permission)
         {
-            if (_controlFactories.ContainsKey(permission.ResourceName) &&
-                !_createdContent.ContainsKey(permission.ResourceName))
+            var key = permission.ResourceName.ToLower();
+            if (_controlFactories.ContainsKey(key) &&
+                !_createdContent.ContainsKey(key))
             {
-                var factory = _controlFactories[permission.ResourceName];
+                var factory = _controlFactories[key];
                 if (factory != null)
                 {
                     factory.CreateViewModels(_viewModelFactory);
                     AddContent(factory.CreateTabItemViewModel(), factory.CreateUserControl());
-                    _createdContent.Add(permission.ResourceName, null);
+                    _createdContent.Add(key, null);
                 }
             }
         }

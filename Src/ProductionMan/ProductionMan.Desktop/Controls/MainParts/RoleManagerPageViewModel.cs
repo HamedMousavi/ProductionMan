@@ -10,7 +10,7 @@ using System.Windows.Input;
 namespace ProductionMan.Desktop.Controls.MainParts
 {
 
-    public class RoleManagerWindowViewModel : NotifyPropertyChanged
+    public class RoleManagerPageViewModel : NotifyPropertyChanged
     {
 
         // Role editor toolbar
@@ -25,7 +25,7 @@ namespace ProductionMan.Desktop.Controls.MainParts
         private UserRole _selectedItem;
 
 
-        public RoleManagerWindowViewModel()
+        public RoleManagerPageViewModel()
         {
             PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
             {
@@ -40,7 +40,7 @@ namespace ProductionMan.Desktop.Controls.MainParts
         }
 
 
-        public void SetPermissions(ObservableCollection<Permission> permissions)
+        public void SetPermissions(IEnumerable<Permission> permissions)
         {
             CreatePermissions(permissions);
 
@@ -80,13 +80,16 @@ namespace ProductionMan.Desktop.Controls.MainParts
             Permissions = new ObservableCollection<CheckedListItem<Permission, UserRole>>();
             foreach (var permission in permissions)
             {
-                Permissions.Add(new CheckedListItem<Permission, UserRole>
+                if (!string.IsNullOrWhiteSpace(permission.Description))
                 {
-                    IsChecked = false,
-                    Item = permission,
-                    ItemCheckCommand = ToggleRolePermissionAssignment,
-                    ItemOwner = null
-                });
+                    Permissions.Add(new CheckedListItem<Permission, UserRole>
+                    {
+                        IsChecked = false,
+                        Item = permission,
+                        ItemCheckCommand = ToggleRolePermissionAssignment,
+                        ItemOwner = null
+                    });
+                }
             }
         }
 

@@ -207,6 +207,9 @@
   <data name="PageTitleAbout" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="PageTitleCrusher" xml:space="preserve">
+    <value>Edit Crusher Data</value>
+  </data>
   <data name="PageTitleMaterials" xml:space="preserve">
     <value>Edit Materials</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="TabTitleAbout" xml:space="preserve">
     <value>About</value>
+  </data>
+  <data name="TabTitleCrusher" xml:space="preserve">
+    <value>Crusher</value>
   </data>
   <data name="TabTitleMaterials" xml:space="preserve">
     <value>Materials</value>

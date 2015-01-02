@@ -20,6 +20,8 @@
     <BitmapImage x:Key="InfoOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/info_on.png" />
     <BitmapImage x:Key="PermissionOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/tick_off.png" />
     <BitmapImage x:Key="PermissionOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/tick_on.png" />
+    <BitmapImage x:Key="CrusherOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/process_off.png" />
+    <BitmapImage x:Key="CrusherOn" UriSource="pack://application:,,,/Theme/Dark/Pictures/process_on.png" />
 
     <BitmapImage x:Key="StatusFailure" UriSource="pack://application:,,,/Theme/Dark/Pictures/cross.png" />
     <BitmapImage x:Key="StatusWarning" UriSource="pack://application:,,,/Theme/Dark/Pictures/exclamation.png" />

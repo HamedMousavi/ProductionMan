@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using ProductionMan.Desktop.Repositories;
@@ -21,15 +22,15 @@ namespace ProductionMan.Desktop.Factories
 
         internal async Task Load()
         {
-            Permissions = await _membershipRepository.LoadUserPermissions();
-            if (Permissions == null) return;
+            UserPermissions = await _membershipRepository.LoadUserPermissions();
+            if (UserPermissions == null) return;
             
             // All users should be able to see these parts of the app
-            Permissions.Add(new Permission { ResourceName = "/api/settings" });
-            Permissions.Add(new Permission { ResourceName = "/api/about" });
+            UserPermissions.Add(new Permission { ResourceName = "/api/settings" });
+            UserPermissions.Add(new Permission { ResourceName = "/api/about" });
 
             // Load data required for other parts of the app
-            foreach (var permission in Permissions)
+            foreach (var permission in UserPermissions)
             {
                 await LoadData(permission);
             }
@@ -45,16 +46,22 @@ namespace ProductionMan.Desktop.Factories
                 Roles = await _membershipRepository.LoadRoles();
                 Users = await _membershipRepository.LoadUsers();
             }
+            else if (permission.ResourceName == "/api/permissions")
+            {
+                AllPermissions = await _membershipRepository.LoadAllPermissions();
+            }
         }
 
 
-        public ObservableCollection<Permission> Permissions { get; set; }
+        // All available permissions in the system
+        public IEnumerable<Permission> AllPermissions { get; set; }
+        
+        // Permissions assigned to current user
+        public IList<Permission> UserPermissions { get; private set; }
 
         public ObservableCollection<UserRead> Users { get; set; }
 
         public ObservableCollection<UserRole> Roles { get; set; }
-
-
         #region events
 
         public delegate void LoadCompletedEvent(object sender, EventArgs e);

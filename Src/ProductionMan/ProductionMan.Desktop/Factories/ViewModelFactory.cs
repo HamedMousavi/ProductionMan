@@ -22,7 +22,7 @@ namespace ProductionMan.Desktop.Factories
         private readonly AppServicesFactory _appServiceFactory;
         private readonly DataFactory _dataFactory;
         private const string UsersViewModelKey = "Users";
-        private const string PermissionsViewModelKey = "Permissions";
+        //private const string PermissionsViewModelKey = "Permissions";
         private const string RolesViewModelKey = "Roles";
 
 
@@ -93,7 +93,7 @@ namespace ProductionMan.Desktop.Factories
         internal MainWindowViewModel CreateMainWindowViewModel()
         {
             var contentSelector = new MainWindowSelector(this);
-            contentSelector.CreateContent(_dataFactory.Permissions);
+            contentSelector.CreateContent(_dataFactory.UserPermissions);
             return new MainWindowViewModel(_appServiceFactory.CreateStatusService())
             {
                 Tabs = contentSelector.Tabs,
@@ -148,18 +148,6 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        internal TabItemViewModel CreatePermissionManagerTabItemViewModel()
-        {
-            return new TabItemViewModel
-            {
-                HeaderLabel = Localized.Resources.TabTitlePermissions,
-                HeaderIcon = "Permission",
-                PageTitle = Localized.Resources.PageTitlePermissions,
-                Toolbar = new GenericListToolbar { DataContext = CreatePermissionManagerViewModel() }
-            };
-        }
-
-
         internal TabItemViewModel CreateRoleManagerTabItemViewModel()
         {
             return new TabItemViewModel
@@ -172,28 +160,11 @@ namespace ProductionMan.Desktop.Factories
         }
 
 
-        internal object CreatePermissionManagerViewModel()
-        {
-            if (!_viewModels.ContainsKey(PermissionsViewModelKey))
-            {
-                _viewModels.Add(PermissionsViewModelKey, new PermissionManagerViewModel
-                {
-                    AddCommand = _commandFactory.AddRoleWindowCommand(),
-                    DeleteCommand = _commandFactory.DeleteRoleConfirmWindowCommand(),
-                    EditCommand = _commandFactory.EditRoleWindowCommand(),
-                    Items = _dataFactory.Roles
-                });
-            }
-
-            return _viewModels[PermissionsViewModelKey];
-        }
-
-
         internal object CreateRoleManagerViewModel()
         {
             if (!_viewModels.ContainsKey(RolesViewModelKey))
             {
-                var viewModel = new RoleManagerWindowViewModel
+                var viewModel = new RoleManagerPageViewModel
                 {
                     Roles = _dataFactory.Roles,
                     AddCommand = _commandFactory.AddRoleWindowCommand(),
@@ -202,7 +173,7 @@ namespace ProductionMan.Desktop.Factories
                     ToggleRolePermissionAssignment = _commandFactory.RolePermissionAssignmentCommand()
                 };
 
-                viewModel.SetPermissions(_dataFactory.Permissions);
+                viewModel.SetPermissions(_dataFactory.AllPermissions);
 
                 _viewModels.Add(RolesViewModelKey, viewModel);
             }
@@ -240,21 +211,10 @@ namespace ProductionMan.Desktop.Factories
                 CancelCommand = _commandFactory.CloseWindowCommand(),
             };
         }
+
+        public CrusherPageViewModel CreateCrusherWindowViewModel()
+        {
+            return new CrusherPageViewModel();
+        }
     }
 }
-
-
-            //HeaderLabel = Localized.Resources.TabTitleStores,
-            //HeaderIcon = "Stores",
-            //PageTitle = Localized.Resources.PageTitleStores,
-            //Toolbar = new GenericListToolbar { DataContext = _viewModel }
-
-//HeaderLabel = Localized.Resources.TabTitleProcesses,
-                //HeaderIcon = "Process",
-                //PageTitle = Localized.Resources.PageTitleProcesses,
-                ////Toolbar = new GenericListToolbar { DataContext = _viewModel }
-
-//HeaderLabel = Localized.Resources.TabTitleMaterials,
-                //HeaderIcon = "Package",
-                //PageTitle = Localized.Resources.PageTitleMaterials,
-                ////Toolbar = new GenericListToolbar { DataContext = _viewModel }

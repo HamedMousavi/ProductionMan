@@ -5,7 +5,7 @@ using ProductionMan.Desktop.Factories;
 namespace ProductionMan.Desktop.Controls.MainParts.ControlFactories
 {
 
-    public class RoleManagerFactory : BaseControlFactory<RoleManagerWindow>
+    public class RoleManagerFactory : BaseControlFactory<RoleManagerPage>
     {
 
         protected override TabItemViewModel CreateTabViewModel(ViewModelFactory viewModelFactory)
