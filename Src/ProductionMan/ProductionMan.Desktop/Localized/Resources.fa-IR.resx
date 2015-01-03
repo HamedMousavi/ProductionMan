@@ -147,6 +147,9 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>شما در حال حذف کامل اطلاعات زیر هستید. این اطلاعات بعد از حذف غیر قابل بازیابی هستند. آیا از حذف اطمینان دارید؟</value>
   </data>
+  <data name="CalciteBinCharge" xml:space="preserve">
+    <value>شارژ بین آهک</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>انصراف</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="GoodNight" xml:space="preserve">
     <value>شب بخیر!</value>
+  </data>
+  <data name="IronBinCharge" xml:space="preserve">
+    <value>شارژ بین آهن</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
@@ -246,6 +252,9 @@
   <data name="SigningInMessage" xml:space="preserve">
     <value>در حال ورود، لطفا صبر کنید...</value>
   </data>
+  <data name="SoilBinCharge" xml:space="preserve">
+    <value>شارژ سالن اختلاط</value>
+  </data>
   <data name="StatusConnecting" xml:space="preserve">
     <value>در حال اتصال به سرویس دهنده...</value>
   </data>
@@ -299,6 +308,9 @@
   </data>
   <data name="TabTitleUsers" xml:space="preserve">
     <value>کاربران</value>
+  </data>
+  <data name="TotalMixCharge" xml:space="preserve">
+    <value>تناژ کل سالن اختلاط</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>نام کاربر</value>

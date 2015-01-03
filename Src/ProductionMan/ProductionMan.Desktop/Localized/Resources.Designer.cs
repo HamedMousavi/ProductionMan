@@ -151,6 +151,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calcite Bin Charge.
+        /// </summary>
+        public static string CalciteBinCharge {
+            get {
+                return ResourceManager.GetString("CalciteBinCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -273,6 +282,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string GoodNight {
             get {
                 return ResourceManager.GetString("GoodNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iron Bin Charge.
+        /// </summary>
+        public static string IronBinCharge {
+            get {
+                return ResourceManager.GetString("IronBinCharge", resourceCulture);
             }
         }
         
@@ -448,6 +466,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Soil Bin Charge.
+        /// </summary>
+        public static string SoilBinCharge {
+            get {
+                return ResourceManager.GetString("SoilBinCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connecting to server....
         /// </summary>
         public static string StatusConnecting {
@@ -606,6 +633,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string TabTitleUsers {
             get {
                 return ResourceManager.GetString("TabTitleUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Mix Charge.
+        /// </summary>
+        public static string TotalMixCharge {
+            get {
+                return ResourceManager.GetString("TotalMixCharge", resourceCulture);
             }
         }
         

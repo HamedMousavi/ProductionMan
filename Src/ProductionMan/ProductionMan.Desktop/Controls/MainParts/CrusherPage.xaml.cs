@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows.Input;
+
 
 namespace ProductionMan.Desktop.Controls.MainParts
 {
@@ -10,6 +11,7 @@ namespace ProductionMan.Desktop.Controls.MainParts
         public CrusherPage()
         {
             InitializeComponent();
+            Loaded += (sender, e) => MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
         }
     }
 }

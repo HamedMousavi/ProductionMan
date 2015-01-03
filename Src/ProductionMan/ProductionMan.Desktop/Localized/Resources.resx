@@ -147,6 +147,9 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>You are about to permanently delete the following record. This process is irrevirsible. Are you sure you want to continue?</value>
   </data>
+  <data name="CalciteBinCharge" xml:space="preserve">
+    <value>Calcite Bin Charge</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="GoodNight" xml:space="preserve">
     <value>Good evening!</value>
+  </data>
+  <data name="IronBinCharge" xml:space="preserve">
+    <value>Iron Bin Charge</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -246,6 +252,9 @@
   <data name="SigningInMessage" xml:space="preserve">
     <value>Signing in, please wait...</value>
   </data>
+  <data name="SoilBinCharge" xml:space="preserve">
+    <value>Soil Bin Charge</value>
+  </data>
   <data name="StatusConnecting" xml:space="preserve">
     <value>Connecting to server...</value>
   </data>
@@ -299,6 +308,9 @@
   </data>
   <data name="TabTitleUsers" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="TotalMixCharge" xml:space="preserve">
+    <value>Total Mix Charge</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
