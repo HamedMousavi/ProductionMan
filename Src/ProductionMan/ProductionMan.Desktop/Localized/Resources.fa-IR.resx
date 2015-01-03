@@ -219,6 +219,12 @@
   <data name="PageTitleProcesses" xml:space="preserve">
     <value>تعریف فرآیندها</value>
   </data>
+  <data name="PageTitleRawMaterial" xml:space="preserve">
+    <value>ویرایش اطلاعات سیلوی مواد خام</value>
+  </data>
+  <data name="PageTitleRawMill" xml:space="preserve">
+    <value>اطلاعات آسیای مواد</value>
+  </data>
   <data name="PageTitleSettings" xml:space="preserve">
     <value>تغییر تنظیمات</value>
   </data>
@@ -278,6 +284,12 @@
   </data>
   <data name="TabTitleProcesses" xml:space="preserve">
     <value>فرآیندها</value>
+  </data>
+  <data name="TabTitleRawMaterial" xml:space="preserve">
+    <value>سیلوی مواد خام</value>
+  </data>
+  <data name="TabTitleRawMill" xml:space="preserve">
+    <value>آسیای مواد</value>
   </data>
   <data name="TabTitleSettings" xml:space="preserve">
     <value>تنظیمات</value>

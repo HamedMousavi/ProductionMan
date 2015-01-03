@@ -219,6 +219,12 @@
   <data name="PageTitleProcesses" xml:space="preserve">
     <value>Manage Processes</value>
   </data>
+  <data name="PageTitleRawMaterial" xml:space="preserve">
+    <value>Edit Raw Material Silo Data</value>
+  </data>
+  <data name="PageTitleRawMill" xml:space="preserve">
+    <value>Edit Raw Mill Data</value>
+  </data>
   <data name="PageTitleSettings" xml:space="preserve">
     <value>Change Settings</value>
   </data>
@@ -278,6 +284,12 @@
   </data>
   <data name="TabTitleProcesses" xml:space="preserve">
     <value>Processes</value>
+  </data>
+  <data name="TabTitleRawMaterial" xml:space="preserve">
+    <value>Raw Material Silo</value>
+  </data>
+  <data name="TabTitleRawMill" xml:space="preserve">
+    <value>Raw Mill</value>
   </data>
   <data name="TabTitleSettings" xml:space="preserve">
     <value>Settings</value>

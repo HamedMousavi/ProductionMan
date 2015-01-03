@@ -216,5 +216,15 @@ namespace ProductionMan.Desktop.Factories
         {
             return new CrusherPageViewModel();
         }
+
+        public RawMillPageViewModel CreateRawMillPageViewModel()
+        {
+            return new RawMillPageViewModel();
+        }
+
+        public RawMaterialSiloPageViewModel CreateRawMaterialSiloPageViewModel()
+        {
+            return new RawMaterialSiloPageViewModel();
+        }
     }
 }

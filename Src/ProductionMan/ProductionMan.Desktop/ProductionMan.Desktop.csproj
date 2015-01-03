@@ -65,12 +65,21 @@
     <Compile Include="Commands\RolesCommands.cs" />
     <Compile Include="Commands\ToggleRolePermissionAssignment.cs" />
     <Compile Include="Controls\CheckedListBox\CheckedListItem.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\RawMillManagerFactory.cs" />
     <Compile Include="Controls\MainParts\CrusherPageViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\CrusherWindowManager.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\RoleManagerFactory.cs" />
     <Compile Include="Controls\MainParts\CrusherPage.xaml.cs">
       <DependentUpon>CrusherPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainParts\RawMaterialSiloPage.xaml.cs">
+      <DependentUpon>RawMaterialSiloPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\RawMaterialSiloPageViewModel.cs" />
+    <Compile Include="Controls\MainParts\RawMillPage.xaml.cs">
+      <DependentUpon>RawMillPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainParts\RawMillPageViewModel.cs" />
     <Compile Include="Controls\MainParts\RoleManagerPage.xaml.cs">
       <DependentUpon>RoleManagerPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +117,7 @@
     <Compile Include="Controls\MainParts\ControlFactories\BaseControlFactory.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\UserManagerFactory.cs" />
     <Compile Include="Factories\DataFactory.cs" />
+    <Compile Include="Controls\MainParts\ControlFactories\RawMaterialSiloFactory.cs" />
     <Compile Include="Factories\ViewModelFactory.cs" />
     <Compile Include="Controls\MainParts\GenericListToolbarViewModel.cs" />
     <Compile Include="Controls\MainParts\ControlFactories\IControlFactory.cs" />
@@ -186,6 +196,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainParts\LogonBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainParts\RawMaterialSiloPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainParts\RawMillPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -349,6 +367,15 @@
     <Resource Include="Theme\Dark\Pictures\exclamation.png" />
     <Resource Include="Theme\Dark\Pictures\information-white.png" />
     <Resource Include="Theme\Dark\Pictures\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\Crusher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\Rawmill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\Dark\Pictures\Silo11.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\Lib\AutoMapper.3.3.0\tools\AutoMapper.targets" Condition="Exists('..\..\Lib\AutoMapper.3.3.0\tools\AutoMapper.targets')" />

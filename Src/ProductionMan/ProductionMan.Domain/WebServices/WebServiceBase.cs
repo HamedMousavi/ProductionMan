@@ -12,8 +12,8 @@ namespace ProductionMan.Domain.WebServices
     public class WebServiceBase
     {
 
-        private readonly Uri _baseAddress = new Uri("http://ipv4.fiddler/ProductionMan/api/");
-        //private readonly Uri _baseAddress = new Uri("http://localhost/ProductionMan/api/");
+        //private readonly Uri _baseAddress = new Uri("http://ipv4.fiddler/ProductionMan/api/");
+        private readonly Uri _baseAddress = new Uri("http://localhost/ProductionMan/api/");
         private readonly MediaTypeWithQualityHeaderValue _mediaType = new MediaTypeWithQualityHeaderValue("application/json");
         private readonly StringWithQualityHeaderValue _defaultCharset = new StringWithQualityHeaderValue("utf-8");
         private const string ApiVersionString = "1.0";

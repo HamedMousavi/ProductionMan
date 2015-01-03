@@ -367,6 +367,24 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Raw Material Silo Data.
+        /// </summary>
+        public static string PageTitleRawMaterial {
+            get {
+                return ResourceManager.GetString("PageTitleRawMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Raw Mill Data.
+        /// </summary>
+        public static string PageTitleRawMill {
+            get {
+                return ResourceManager.GetString("PageTitleRawMill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Settings.
         /// </summary>
         public static string PageTitleSettings {
@@ -543,6 +561,24 @@ namespace ProductionMan.Desktop.Localized {
         public static string TabTitleProcesses {
             get {
                 return ResourceManager.GetString("TabTitleProcesses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raw Material Silo.
+        /// </summary>
+        public static string TabTitleRawMaterial {
+            get {
+                return ResourceManager.GetString("TabTitleRawMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raw Mill.
+        /// </summary>
+        public static string TabTitleRawMill {
+            get {
+                return ResourceManager.GetString("TabTitleRawMill", resourceCulture);
             }
         }
         

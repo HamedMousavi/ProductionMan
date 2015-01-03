@@ -36,6 +36,8 @@ namespace ProductionMan.Desktop.Controls.MainParts.ContentManagement
                 {"/api/permissions", new RoleManagerFactory()},
                 {"/api/settings", new SettingsManagerFactory()},
                 {"/api/crusher", new CrusherWindowManager()},
+                {"/api/rawmill", new RawMillManagerFactory()},
+                {"/api/rawmaterialsilo", new RawMaterialSiloFactory()},
                 {"/api/about", new AboutUsFactory()},
             };
         }
