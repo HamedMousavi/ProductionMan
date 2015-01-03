@@ -26,7 +26,7 @@ namespace ProductionMan.Desktop.Commands
         }
 
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             var credentials = (LoginViewModel)parameter;
             if (credentials == null)
@@ -35,7 +35,7 @@ namespace ProductionMan.Desktop.Commands
             }
             else
             {
-                _user.LoginAsync(credentials.Username, credentials.Password);
+                await _user.LoginAsync(credentials.Username, credentials.Password);
             }
         }
     }

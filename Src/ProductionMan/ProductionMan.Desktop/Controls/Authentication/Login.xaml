@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -17,23 +17,27 @@
         <Border Grid.Row="1" Background="{StaticResource WindowBkColorLight}" BorderThickness="1" BorderBrush="White">
             <Grid Margin="10,10,10,30">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Username}" />
-                <Image   Grid.Row="1" Grid.Column="0" Style="{StaticResource NonScaledImage}" Source="{StaticResource Username}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource LoginTextBox}" Text="{Binding Username}"/>
+                <Image   Grid.Row="1" Grid.RowSpan="5" Style="{StaticResource NonScaledImage}" Source="{StaticResource AppLogoMedium}" />
+                <Label   Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Username}" />
+                <Image   Grid.Row="2" Grid.Column="2" Style="{StaticResource NonScaledImage}" Source="{StaticResource Username}" />
+                <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource LoginTextBox}" Text="{Binding Username}"/>
 
-                <Label   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Content="{x:Static localized:Resources.Password}" />
-                <Image   Grid.Row="4" Grid.Column="0"  Style="{StaticResource NonScaledImage}" Source="{StaticResource Password}" />
-                <PasswordBox Grid.Row="4" Grid.Column="1" Style="{StaticResource LoginPassBox}" LostFocus="OnPasswordChanged" x:Name="PasswordCtrl" />
+                <Label   Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LoginLabel}" Margin="0,5,0,0" Content="{x:Static localized:Resources.Password}" />
+                <Image   Grid.Row="4" Grid.Column="2"  Style="{StaticResource NonScaledImage}" Source="{StaticResource Password}" />
+                <PasswordBox Grid.Row="4" Grid.Column="3" Style="{StaticResource LoginPassBox}" LostFocus="OnPasswordChanged" x:Name="PasswordCtrl" />
             </Grid>
         </Border>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5,10,5,10">

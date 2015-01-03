@@ -86,7 +86,11 @@ namespace ProductionMan.Desktop.Factories
                 new LoginWindowSelector(
                     new LoginWindowFactory(_commandFactory, _user));
 
-            return new LoginWindowViewModel { User = _user, ActiveContentSelector = windowSelector };
+            return new LoginWindowViewModel
+            {
+                Title = Localized.Resources.AppTitle,
+                User = _user, ActiveContentSelector = windowSelector
+            };
         }
 
 
@@ -96,6 +100,7 @@ namespace ProductionMan.Desktop.Factories
             contentSelector.CreateContent(_dataFactory.UserPermissions);
             return new MainWindowViewModel(_appServiceFactory.CreateStatusService())
             {
+                AppTitle = Localized.Resources.AppTitle,
                 Tabs = contentSelector.Tabs,
                 LogonBoxModel = CreateLogonBoxViewModel(),
                 ActiveContentSelector = contentSelector,

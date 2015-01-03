@@ -11,9 +11,12 @@ namespace ProductionMan.Domain.WebServices
 
     public class WebServiceBase
     {
-
-        //private readonly Uri _baseAddress = new Uri("http://ipv4.fiddler/ProductionMan/api/");
+#if DEBUG
+        private readonly Uri _baseAddress = new Uri("http://ipv4.fiddler/ProductionMan/api/");
+#else
         private readonly Uri _baseAddress = new Uri("http://localhost/ProductionMan/api/");
+#endif
+
         private readonly MediaTypeWithQualityHeaderValue _mediaType = new MediaTypeWithQualityHeaderValue("application/json");
         private readonly StringWithQualityHeaderValue _defaultCharset = new StringWithQualityHeaderValue("utf-8");
         private const string ApiVersionString = "1.0";
@@ -87,11 +90,15 @@ namespace ProductionMan.Domain.WebServices
 
         protected async Task<ServiceCallResult<T>> RequestGet<T>(string url)
         {
+            ServiceCallResult<T> result;
+
             using (var client = CreateClient())
             {
                 var response = await client.GetAsync(url);
-                return ReadAndMap<T>(response);
+                result = ReadAndMap<T>(response);
             }
+
+            return result;
         }
 
 

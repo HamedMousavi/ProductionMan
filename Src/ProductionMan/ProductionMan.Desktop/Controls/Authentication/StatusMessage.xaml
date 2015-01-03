@@ -6,7 +6,7 @@
              xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
              xmlns:converters="clr-namespace:ProductionMan.Desktop.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:LoginStatusIconConverter x:Key="LoginStatusIconConverter" />
@@ -22,14 +22,21 @@
         <Border Grid.Row="1" Background="{StaticResource WindowBkColorLight}" BorderThickness="1" BorderBrush="White">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Path=LoginStatus, Converter={StaticResource LoginStatusIconConverter}}" Style="{StaticResource NonScaledImage}" VerticalAlignment="Top" />
-                <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=LoginStatusMessage}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+				<Image Grid.Row="1" Grid.Column="0" Style="{StaticResource NonScaledImage}" Source="{StaticResource AppLogoMedium}" />
+                <Image Grid.Row="1" Grid.Column="2" Source="{Binding Path=LoginStatus, Converter={StaticResource LoginStatusIconConverter}}" Style="{StaticResource NonScaledImage}" />
+                <TextBlock Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" TextWrapping="Wrap" 
+                           Text="{Binding Path=LoginStatusMessage}" HorizontalAlignment="Stretch" 
+                           VerticalAlignment="Top" />
             </Grid>
         </Border>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,10,5,10">

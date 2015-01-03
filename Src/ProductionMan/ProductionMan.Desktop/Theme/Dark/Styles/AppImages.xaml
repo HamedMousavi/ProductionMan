@@ -4,7 +4,11 @@
     <BitmapImage x:Key="Password" UriSource="pack://application:,,,/Theme/Dark/Pictures/Password.png" />
     <BitmapImage x:Key="MidExclamation" UriSource="pack://application:,,,/Theme/Dark/Pictures/exclamation_large.png" />
     <BitmapImage x:Key="MidError" UriSource="pack://application:,,,/Theme/Dark/Pictures/error_large.png" />
+    
+    
+    <!-- Logo -->
     <BitmapImage x:Key="AppLogo" UriSource="pack://application:,,,/Theme/Dark/Pictures/logo.png" />
+    <BitmapImage x:Key="AppLogoMedium" UriSource="pack://application:,,,/Theme/Dark/Pictures/logo_medium.png" />
 
     <!-- Toolbar -->
     <BitmapImage x:Key="PackageOff" UriSource="pack://application:,,,/Theme/Dark/Pictures/package_off.png" />

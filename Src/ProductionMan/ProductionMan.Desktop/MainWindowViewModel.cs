@@ -19,6 +19,18 @@ namespace ProductionMan.Desktop
         private ObservableCollection<TabItemViewModel> _tabs;
         private TabItemViewModel _selectedItem;
         private LogonBoxViewModel _logonBoxModel;
+        private string _appTitle;
+
+
+        public string AppTitle
+        {
+            get { return _appTitle; }
+            set
+            {
+                _appTitle = value;
+                FirePropertyChanged(this, "AppTitle");
+            }
+        }
 
 
         public ObservableCollection<TabItemViewModel> Tabs

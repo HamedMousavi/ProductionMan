@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using ProductionMan.Common;
 using ProductionMan.Domain.WebServices;
 
@@ -28,7 +29,7 @@ namespace ProductionMan.Domain.Security
         }
 
 
-        public async void LoginAsync(string username, string password)
+        public async Task LoginAsync(string username, string password)
         {
             if (LoginStatus != LoginStates.NeverSignedIn)
             {
@@ -39,12 +40,13 @@ namespace ProductionMan.Domain.Security
             LoginStatus = LoginStates.SigningIn;
 
             // Set credentials
-            if (_membershipService.ServiceCredentialProvider == null)
-            {
+            //if (_membershipService.ServiceCredentialProvider == null)
+            //{
+            // Reset it each time, user/pass might have changed!
                 var provider = new DefaultServiceCredentialProvider();
                 provider.SetCredentials(username, password);
                 _membershipService.ServiceCredentialProvider = provider;
-            }
+            //}
 
             var response = await _membershipService.GetUserProfile();
 

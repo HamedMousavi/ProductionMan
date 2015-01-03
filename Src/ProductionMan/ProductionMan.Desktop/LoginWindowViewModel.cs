@@ -12,6 +12,7 @@ namespace ProductionMan.Desktop
         private User _user;
         private BaseContentSelector<User.LoginStates> _activeContentSelector;
         private object _activeContent;
+        private string _title;
 
 
         public LoginWindowViewModel()
@@ -29,6 +30,45 @@ namespace ProductionMan.Desktop
                     }
                 }
             };
+        }
+
+
+
+        private void WireNewUser()
+        {
+            _user.PropertyChanged += UserOnPropertyChanged;
+        }
+
+
+        private void UnWireOldUser()
+        {
+            _user.PropertyChanged -= UserOnPropertyChanged;
+        }
+
+
+        private void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.NameIs("LoginStatus"))
+            {
+                SelectActiveContent();
+            }
+        }
+
+
+        private void SelectActiveContent()
+        {
+            ActiveContent = ActiveContentSelector.Select(_user.LoginStatus);
+        }
+
+
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                FirePropertyChanged(this, "Title");
+            }
         }
 
 
@@ -67,33 +107,6 @@ namespace ProductionMan.Desktop
 
                 FirePropertyChanged(this, "User");
             }
-        }
-
-
-        private void WireNewUser()
-        {
-            _user.PropertyChanged += UserOnPropertyChanged;
-        }
-
-
-        private void UnWireOldUser()
-        {
-            _user.PropertyChanged -= UserOnPropertyChanged;
-        }
-
-
-        private void UserOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.NameIs("LoginStatus"))
-            {
-                SelectActiveContent();
-            }
-        }
-
-
-        private void SelectActiveContent()
-        {
-            ActiveContent = ActiveContentSelector.Select(_user.LoginStatus);
         }
     }
 }
