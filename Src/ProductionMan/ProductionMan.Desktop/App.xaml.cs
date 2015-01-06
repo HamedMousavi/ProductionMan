@@ -8,6 +8,7 @@ using log4net;
 using log4net.Config;
 using ProductionMan.Common;
 using ProductionMan.Desktop.Factories;
+using ProductionMan.Desktop.Logic;
 using ProductionMan.Desktop.Properties;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Desktop.Services;
@@ -124,8 +125,13 @@ namespace ProductionMan.Desktop
             var dataFactory = CreateDataFactory(windowManager, membershipRepository);
             var user = CreateUser(membershipService, dataFactory);
 
-            var viewModelFactory = new ViewModelFactory(commandFactory,
-                _appServiceFactory.CreateLanguageService(), user, _appServiceFactory, dataFactory);
+            var viewModelFactory = new ViewModelFactory(
+                commandFactory,
+                _appServiceFactory.CreateLanguageService(),
+                user, 
+                _appServiceFactory, 
+                dataFactory,
+                new ProductionCalculator());
             
             windowManager.Setup(viewModelFactory, _appServiceFactory.CreateFontService());
             windowManager.DisplayLoginWindow();

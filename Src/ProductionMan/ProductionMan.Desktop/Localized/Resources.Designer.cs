@@ -160,15 +160,6 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calcite Bin Charge.
-        /// </summary>
-        public static string CalciteBinCharge {
-            get {
-                return ResourceManager.GetString("CalciteBinCharge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -309,6 +300,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lime Bin Charge.
+        /// </summary>
+        public static string LimeBinCharge {
+            get {
+                return ResourceManager.GetString("LimeBinCharge", resourceCulture);
             }
         }
         
@@ -651,6 +651,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string TabTitleUsers {
             get {
                 return ResourceManager.GetString("TabTitleUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ton.
+        /// </summary>
+        public static string Ton {
+            get {
+                return ResourceManager.GetString("Ton", resourceCulture);
             }
         }
         

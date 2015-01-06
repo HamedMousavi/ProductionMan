@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Converters\StatusLevelColorConverter.cs" />
     <Compile Include="Converters\StatusLevelIconConverter.cs" />
+    <Compile Include="Logic\ProductionCalculator.cs" />
     <Compile Include="Repositories\MembershipRepository.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="RoleEditorWindow.xaml.cs">

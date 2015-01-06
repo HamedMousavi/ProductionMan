@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using ProductionMan.Common;
-using ProductionMan.Domain.Models;
+﻿using ProductionMan.Domain.Models;
 
 
 namespace ProductionMan.Desktop.Controls.MainParts
@@ -11,36 +9,20 @@ namespace ProductionMan.Desktop.Controls.MainParts
 
         private Weight _soilBinCharge;
         private Weight _ironBinCharge;
-        private Weight _calciteBinCharge;
+        private Weight _limeBinCharge;
         private Weight _mixBinTotalCharge;
 
 
         public CrusherPageViewModel()
         {
-            _mixBinTotalCharge = new Weight();
-            _soilBinCharge = new Weight();
-            _calciteBinCharge = new Weight();
-            _ironBinCharge = new Weight();
+            _mixBinTotalCharge = new Weight { Unit = new MeasurementUnit { Name = Localized.Resources.Ton } };
+            _soilBinCharge = new Weight { Unit = new MeasurementUnit { Name = Localized.Resources.Ton } };
+            _limeBinCharge = new Weight { Unit = new MeasurementUnit { Name = Localized.Resources.Ton } };
+            _ironBinCharge = new Weight { Unit = new MeasurementUnit { Name = Localized.Resources.Ton } };
 
-            _ironBinCharge.PropertyChanged += (o, args) => RecalculateTotal();
-            _soilBinCharge.PropertyChanged += (o, args) => RecalculateTotal();
-            _calciteBinCharge.PropertyChanged += (o, args) => RecalculateTotal();
-
-            PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
-            {
-                if (e.NameIs("SoilBinCharge") ||
-                    e.NameIs("IronBinCharge") ||
-                    e.NameIs("CalciteBinCharge"))
-                {
-                    RecalculateTotal();
-                }
-            };
-        }
-
-
-        private void RecalculateTotal()
-        {
-            MixBinTotalCharge.Value = SoilBinCharge.Value;
+            _ironBinCharge.PropertyChanged += (o, args) => FirePropertyChanged(this, "IronBinCharge");
+            _soilBinCharge.PropertyChanged += (o, args) => FirePropertyChanged(this, "SoilBinCharge");
+            _limeBinCharge.PropertyChanged += (o, args) => FirePropertyChanged(this, "LimeBinCharge");
         }
 
 
@@ -62,13 +44,13 @@ namespace ProductionMan.Desktop.Controls.MainParts
                 FirePropertyChanged(this, "IronBinCharge");
             }
         }
-        public Weight CalciteBinCharge
+        public Weight LimeBinCharge
         {
-            get { return _calciteBinCharge; }
+            get { return _limeBinCharge; }
             set
             {
-                _calciteBinCharge = value; 
-                FirePropertyChanged(this, "CalciteBinCharge");
+                _limeBinCharge = value; 
+                FirePropertyChanged(this, "LimeBinCharge");
             }
         }
         public Weight MixBinTotalCharge

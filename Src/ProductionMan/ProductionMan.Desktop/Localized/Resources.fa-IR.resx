@@ -150,7 +150,7 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>شما در حال حذف کامل اطلاعات زیر هستید. این اطلاعات بعد از حذف غیر قابل بازیابی هستند. آیا از حذف اطمینان دارید؟</value>
   </data>
-  <data name="CalciteBinCharge" xml:space="preserve">
+  <data name="LimeBinCharge" xml:space="preserve">
     <value>شارژ بین آهک</value>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -323,5 +323,8 @@
   </data>
   <data name="WindowTitleLogin" xml:space="preserve">
     <value>ورود به سیستم</value>
+  </data>
+  <data name="Ton" xml:space="preserve">
+    <value>تن</value>
   </data>
 </root>

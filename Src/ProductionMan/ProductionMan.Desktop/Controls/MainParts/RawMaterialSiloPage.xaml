@@ -6,28 +6,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="1041.176" d:DesignWidth="1334.035">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="648*"/>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="519*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="71*"/>
-            <RowDefinition Height="276*"/>
+            <RowDefinition Height="125*"/>
+            <RowDefinition Height="151*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="{StaticResource ResourceKey=RawMaterialSiloBackground}"/>
         </Grid.Background>
-        <Grid HorizontalAlignment="Left" Height="354" Margin="650,398,0,0" Grid.Row="1" VerticalAlignment="Top" Width="166">
+        <Grid HorizontalAlignment="Left" Background="White" Grid.Row="2" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="43*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="46*"/>
-                <RowDefinition Height="43*"/>
-                <RowDefinition Height="63*"/>
-                <RowDefinition Height="47*"/>
-                <RowDefinition Height="49*"/>
-                <RowDefinition Height="106*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="تناژ تولیدی آسیا" Background="White"/>
-            <Label Content="225" Grid.Row="1" Background="White"/>
-            <Label Content="موجودی سیلوها" Grid.Row="2" Background="#FFD4D4D4"/>
-            <Label Content="125" Grid.Row="3" Background="#FFD4D4D4"/>
-            <Label Content="تناژ مصرفی کوره" Grid.Row="4" Background="White"/>
-            <Label Content="384" Grid.Row="5" Background="White"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="تناژ تولیدی آسیا" Grid.ColumnSpan="2" />
+            <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Content="{Binding Path=MillProduction.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="1" Grid.Column="1" FontWeight="Bold" Content="{Binding MillProduction.Unit}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="موجودی سیلوها" Grid.ColumnSpan="2" />
+            <Label Grid.Row="4" Grid.Column="0" FontWeight="Bold" Content="{Binding Path=SilosCharge.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="{Binding SilosCharge.Unit}" />
+            <Label Grid.Row="6" Grid.Column="0" Content="تناژ مصرفی کوره" Grid.ColumnSpan="2" />
+            <Label Grid.Row="7" Grid.Column="0" FontWeight="Bold" Content="{Binding Path=OvenConsumption.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="7" Grid.Column="1" FontWeight="Bold" Content="{Binding OvenConsumption.Unit}" />
         </Grid>
     </Grid>
 </UserControl>

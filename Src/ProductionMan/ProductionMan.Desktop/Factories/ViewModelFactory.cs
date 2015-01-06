@@ -1,6 +1,7 @@
 ﻿using ProductionMan.Desktop.Controls.Authentication;
 using ProductionMan.Desktop.Controls.MainParts;
 using ProductionMan.Desktop.Controls.MainParts.ContentManagement;
+using ProductionMan.Desktop.Logic;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.Security;
 using ProductionMan.Web.Api.Common.Models;
@@ -21,13 +22,14 @@ namespace ProductionMan.Desktop.Factories
         private readonly User _user;
         private readonly AppServicesFactory _appServiceFactory;
         private readonly DataFactory _dataFactory;
+        private readonly ProductionCalculator _productionCalculator;
         private const string UsersViewModelKey = "Users";
         //private const string PermissionsViewModelKey = "Permissions";
         private const string RolesViewModelKey = "Roles";
 
 
         public ViewModelFactory(CommandFactory commandFactory,
-            ILanguageService languageService, User user, AppServicesFactory appServiceFactory, DataFactory dataFactory)
+            ILanguageService languageService, User user, AppServicesFactory appServiceFactory, DataFactory dataFactory, ProductionCalculator productionCalculator)
         {
             _viewModels = new Dictionary<string, object>();
 
@@ -36,6 +38,7 @@ namespace ProductionMan.Desktop.Factories
             _user = user;
             _appServiceFactory = appServiceFactory;
             _dataFactory = dataFactory;
+            _productionCalculator = productionCalculator;
         }
 
 
@@ -219,17 +222,26 @@ namespace ProductionMan.Desktop.Factories
 
         public CrusherPageViewModel CreateCrusherWindowViewModel()
         {
-            return new CrusherPageViewModel();
+            var model = new CrusherPageViewModel();
+            _productionCalculator.CrusherViewModel = model;
+
+            return model;
         }
 
         public RawMillPageViewModel CreateRawMillPageViewModel()
         {
-            return new RawMillPageViewModel();
+            var model = new RawMillPageViewModel();
+            _productionCalculator.RawMillViewModel = model;
+
+            return model;
         }
 
         public RawMaterialSiloPageViewModel CreateRawMaterialSiloPageViewModel()
         {
-            return new RawMaterialSiloPageViewModel();
+            var model = new RawMaterialSiloPageViewModel();
+            _productionCalculator.RawMaterialSiloViewModel = model;
+
+            return model;
         }
     }
 }

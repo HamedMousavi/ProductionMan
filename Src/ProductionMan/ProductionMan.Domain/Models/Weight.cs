@@ -1,4 +1,5 @@
-﻿using ProductionMan.Common;
+﻿using System;
+using ProductionMan.Common;
 
 
 namespace ProductionMan.Domain.Models
@@ -9,6 +10,13 @@ namespace ProductionMan.Domain.Models
 
         private decimal _value;
         private MeasurementUnit _unit;
+
+
+        public static decimal operator +(Weight c1, Weight c2)
+        {
+            if (c1.Unit.Id != c2.Unit.Id) throw new InvalidOperationException("Cannot add weights with different units!");
+            return c1.Value + c2.Value;
+        }
 
 
         public MeasurementUnit Unit
