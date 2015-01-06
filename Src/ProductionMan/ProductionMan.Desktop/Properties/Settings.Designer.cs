@@ -34,5 +34,17 @@ namespace ProductionMan.Desktop.Properties {
                 this["AppLanguage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/ProductionMan/api/")]
+        public string ServerBaseAddress {
+            get {
+                return ((string)(this["ServerBaseAddress"]));
+            }
+            set {
+                this["ServerBaseAddress"] = value;
+            }
+        }
     }
 }

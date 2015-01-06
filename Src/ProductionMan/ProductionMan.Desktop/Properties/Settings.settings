@@ -5,5 +5,8 @@
     <Setting Name="AppLanguage" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ServerBaseAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost/ProductionMan/api/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

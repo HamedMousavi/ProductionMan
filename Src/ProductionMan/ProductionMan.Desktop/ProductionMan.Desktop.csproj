@@ -313,6 +313,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Theme\Dark\Fonts\BKOODB.TTF" />
+    <Resource Include="Theme\Dark\Fonts\TAHOMA.TTF" />
+    <Resource Include="Theme\Dark\Fonts\TAHOMABD.TTF" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

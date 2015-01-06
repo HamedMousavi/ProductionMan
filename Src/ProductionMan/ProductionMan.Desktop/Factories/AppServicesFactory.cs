@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Media;
+using ProductionMan.Desktop.Localized;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.AppStatus;
 using ProductionMan.Domain.Globalization;
@@ -39,6 +42,12 @@ namespace ProductionMan.Desktop.Factories
         public ILanguageService CreateLanguageService()
         {
             return _languageService;
+        }
+
+        public FontFamily CreateFontService()
+        {
+            const string path = "pack://application:,,,/Theme/Dark/Fonts/";
+            return new FontFamily(new Uri(path), Resources.AppFont);
         }
     }
 }

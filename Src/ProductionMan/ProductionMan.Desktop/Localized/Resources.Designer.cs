@@ -133,6 +133,15 @@ namespace ProductionMan.Desktop.Localized {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ./#B Koodak.
+        /// </summary>
+        public static string AppFont {
+            get {
+                return ResourceManager.GetString("AppFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProMan.
         /// </summary>
         public static string AppTitle {
@@ -327,6 +336,15 @@ namespace ProductionMan.Desktop.Localized {
         public static string LoginRetry {
             get {
                 return ResourceManager.GetString("LoginRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Production Manager.
+        /// </summary>
+        public static string MainWindowTitle {
+            get {
+                return ResourceManager.GetString("MainWindowTitle", resourceCulture);
             }
         }
         

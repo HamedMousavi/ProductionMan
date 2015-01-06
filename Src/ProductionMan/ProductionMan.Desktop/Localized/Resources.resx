@@ -141,6 +141,9 @@
   <data name="AppDir" xml:space="preserve">
     <value>LTR</value>
   </data>
+  <data name="AppFont" xml:space="preserve">
+    <value>./#B Koodak</value>
+  </data>
   <data name="AppTitle" xml:space="preserve">
     <value>ProMan</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="LoginRetry" xml:space="preserve">
     <value>Retry Signing In</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Production Manager</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

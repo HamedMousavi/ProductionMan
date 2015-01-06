@@ -141,8 +141,11 @@
   <data name="AppDir" xml:space="preserve">
     <value>RTL</value>
   </data>
+  <data name="AppFont" xml:space="preserve">
+    <value>./#Tahoma</value>
+  </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>سماوات</value>
+    <value>سمات</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
     <value>شما در حال حذف کامل اطلاعات زیر هستید. این اطلاعات بعد از حذف غیر قابل بازیابی هستند. آیا از حذف اطمینان دارید؟</value>
@@ -206,6 +209,9 @@
   </data>
   <data name="LoginRetry" xml:space="preserve">
     <value>تلاش برای ورود مجدد</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>سامانه مدیریت اطلاعات وآمار تولید</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>

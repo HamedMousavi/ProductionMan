@@ -7,6 +7,7 @@
         xmlns:mainParts="clr-namespace:ProductionMan.Desktop.Controls.MainParts"
         xmlns:desktop="clr-namespace:ProductionMan.Desktop"
         xmlns:contentManagement="clr-namespace:ProductionMan.Desktop.Controls.MainParts.ContentManagement"
+        xmlns:localized="clr-namespace:ProductionMan.Desktop.Localized"
         Title="{Binding AppTitle}" Height="600" Width="800" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     
     <Window.Resources>
@@ -32,8 +33,9 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Image Style="{StaticResource MainLogoImage}" Source="{StaticResource AppLogo}" />
-                <mainParts:LogonBox Grid.Column="2" DataContext="{Binding LogonBoxModel}" />
+                <!--<Image Style="{StaticResource MainLogoImage}" Source="{StaticResource AppLogo}" />-->
+                <TextBlock Margin="6,2,6,6" Style="{StaticResource LogoText}" Text="{x:Static localized:Resources.AppTitle}" />
+                <mainParts:LogonBox Margin="6,2,6,6" Grid.Column="2" DataContext="{Binding LogonBoxModel}" />
             </Grid>
 
             <TabControl Grid.Row="1" Style="{StaticResource MainTabControl}" 

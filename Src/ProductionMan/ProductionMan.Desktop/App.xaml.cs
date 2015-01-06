@@ -8,6 +8,7 @@ using log4net;
 using log4net.Config;
 using ProductionMan.Common;
 using ProductionMan.Desktop.Factories;
+using ProductionMan.Desktop.Properties;
 using ProductionMan.Desktop.Repositories;
 using ProductionMan.Desktop.Services;
 using ProductionMan.Domain.AppStatus;
@@ -15,6 +16,7 @@ using ProductionMan.Domain.Globalization;
 using ProductionMan.Domain.Security;
 using ProductionMan.Domain.WebServices;
 using ProductionMan.Web.Api.Common.Models;
+
 
 namespace ProductionMan.Desktop
 {
@@ -40,6 +42,8 @@ namespace ProductionMan.Desktop
             SetupAppServices();
 
             SetupLanguage();
+
+            SetupDomain();
 
             StartApplicationWindow();
         }
@@ -104,6 +108,12 @@ namespace ProductionMan.Desktop
         }
 
 
+        private void SetupDomain()
+        {
+            Domain.Settings.ServerBaseAddress = Settings.Default.ServerBaseAddress;
+        }
+
+
         private void StartApplicationWindow()
         {
             var windowManager = new WindowManager();
@@ -117,7 +127,7 @@ namespace ProductionMan.Desktop
             var viewModelFactory = new ViewModelFactory(commandFactory,
                 _appServiceFactory.CreateLanguageService(), user, _appServiceFactory, dataFactory);
             
-            windowManager.Setup(viewModelFactory);
+            windowManager.Setup(viewModelFactory, _appServiceFactory.CreateFontService());
             windowManager.DisplayLoginWindow();
 
             GreetUser();

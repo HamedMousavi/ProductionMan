@@ -1,5 +1,7 @@
-﻿using System.Windows;
-using ProductionMan.Web.Api.Common.Models;
+﻿using ProductionMan.Web.Api.Common.Models;
+using System.Windows;
+using System.Windows.Media;
+
 
 namespace ProductionMan.Desktop.Factories
 {
@@ -8,11 +10,13 @@ namespace ProductionMan.Desktop.Factories
     {
 
         private readonly ViewModelFactory _viewModelFactory;
+        private readonly FontFamily _fontFamily;
 
 
-        public ViewFactory(ViewModelFactory viewModelFactory)
+        public ViewFactory(ViewModelFactory viewModelFactory, FontFamily fontFamily)
         {
             _viewModelFactory = viewModelFactory;
+            _fontFamily = fontFamily;
         }
 
 
@@ -26,7 +30,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new MainWindow
             {
-                DataContext = _viewModelFactory.CreateMainWindowViewModel()
+                DataContext = _viewModelFactory.CreateMainWindowViewModel(),
+                FontFamily = _fontFamily
             };
         }
 
@@ -35,7 +40,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new UserEditorWindow
             {
-                DataContext = _viewModelFactory.CreateUserEditViewModel(user)
+                DataContext = _viewModelFactory.CreateUserEditViewModel(user),
+                FontFamily = _fontFamily
             };
         }
 
@@ -44,7 +50,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new ConfirmDeleteWindow
             {
-                DataContext = _viewModelFactory.CreateUserConfirmDeleteViewModel(user)
+                DataContext = _viewModelFactory.CreateUserConfirmDeleteViewModel(user),
+                FontFamily = _fontFamily
             };
         }
 
@@ -52,7 +59,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new UserEditorWindow
             {
-                DataContext = _viewModelFactory.CreateUserAddViewModel(user)
+                DataContext = _viewModelFactory.CreateUserAddViewModel(user),
+                FontFamily = _fontFamily
             };
         }
 
@@ -60,7 +68,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new RoleEditorWindow
             {
-                DataContext = _viewModelFactory.CreateRoleAddViewModel(role)
+                DataContext = _viewModelFactory.CreateRoleAddViewModel(role),
+                FontFamily = _fontFamily
             };
         }
 
@@ -69,7 +78,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new ConfirmDeleteWindow
             {
-                DataContext = _viewModelFactory.CreateRoleConfirmDeleteViewModel(role)
+                DataContext = _viewModelFactory.CreateRoleConfirmDeleteViewModel(role),
+                FontFamily = _fontFamily
             };
         }
 
@@ -77,7 +87,8 @@ namespace ProductionMan.Desktop.Factories
         {
             return new RoleEditorWindow
             {
-                DataContext = _viewModelFactory.CreateRoleEditViewModel(role)
+                DataContext = _viewModelFactory.CreateRoleEditViewModel(role),
+                FontFamily = _fontFamily
             };
         }
     }

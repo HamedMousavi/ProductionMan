@@ -28,15 +28,14 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-				<Image Grid.Row="1" Grid.Column="0" Style="{StaticResource NonScaledImage}" Source="{StaticResource AppLogoMedium}" />
-                <Image Grid.Row="1" Grid.Column="2" Source="{Binding Path=LoginStatus, Converter={StaticResource LoginStatusIconConverter}}" Style="{StaticResource NonScaledImage}" />
-                <TextBlock Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" TextWrapping="Wrap" 
+				<Image Grid.Row="1" Grid.Column="2" Style="{StaticResource NonScaledImage}" Source="{StaticResource AppLogoMedium}" Margin="10" />
+                <Image Grid.Row="1" Grid.Column="0" Source="{Binding Path=LoginStatus, Converter={StaticResource LoginStatusIconConverter}}" Style="{StaticResource NonScaledImage}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" TextWrapping="Wrap" 
                            Text="{Binding Path=LoginStatusMessage}" HorizontalAlignment="Stretch" 
-                           VerticalAlignment="Top" />
+                           VerticalAlignment="Center" Margin="5" />
             </Grid>
         </Border>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,10,5,10">

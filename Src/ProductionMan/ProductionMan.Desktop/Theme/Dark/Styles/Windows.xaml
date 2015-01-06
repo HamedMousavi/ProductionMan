@@ -4,9 +4,9 @@
     <Style x:Key="Form" TargetType="Window">
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Background" Value="{StaticResource WindowBkColorDark}" />
-        <Setter Property="FontFamily" Value="Tahoma" />
+        <!--<Setter Property="FontFamily" Value="Tahoma" />-->
         <Setter Property="SizeToContent" Value="Manual" />
-        <Setter Property="FontSize" Value="12" />
+        <!--<Setter Property="FontSize" Value="12" />-->
     </Style>
 
     <Style x:Key="ModalWindow" TargetType="Window" BasedOn="{StaticResource Form}">

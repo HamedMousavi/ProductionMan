@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 using ProductionMan.Desktop.Commands;
 using ProductionMan.Web.Api.Common.Models;
 
@@ -13,10 +14,10 @@ namespace ProductionMan.Desktop.Factories
         private Window _loginWindow;
 
 
-        public void Setup(ViewModelFactory viewModelFactory)
+        public void Setup(ViewModelFactory viewModelFactory, FontFamily fontFamily)
         {
             // Create ViewFactory
-            _viewFactory = new ViewFactory(viewModelFactory);
+            _viewFactory = new ViewFactory(viewModelFactory, fontFamily);
         }
 
 

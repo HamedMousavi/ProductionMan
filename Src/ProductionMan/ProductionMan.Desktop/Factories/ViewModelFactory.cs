@@ -100,7 +100,7 @@ namespace ProductionMan.Desktop.Factories
             contentSelector.CreateContent(_dataFactory.UserPermissions);
             return new MainWindowViewModel(_appServiceFactory.CreateStatusService())
             {
-                AppTitle = Localized.Resources.AppTitle,
+                AppTitle = Localized.Resources.MainWindowTitle,
                 Tabs = contentSelector.Tabs,
                 LogonBoxModel = CreateLogonBoxViewModel(),
                 ActiveContentSelector = contentSelector,

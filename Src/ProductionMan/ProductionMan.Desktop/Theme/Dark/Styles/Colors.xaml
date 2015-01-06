@@ -22,7 +22,7 @@
     <SolidColorBrush x:Key="TextColorLightBlue" Color="#8abbfe" />
     <SolidColorBrush x:Key="TextColorSeaBlue" Color="#457BBE" />
     <SolidColorBrush x:Key="TextColorLightGreen" Color="#97d545" />
-    <SolidColorBrush x:Key="TextColorGold" Color="Gold" />
+    <SolidColorBrush x:Key="TextColorGold" Color="Yellow" />
 
     <!-- Buttons -->
     <SolidColorBrush x:Key="TextColorButton" Color="#f2f2f2" />
